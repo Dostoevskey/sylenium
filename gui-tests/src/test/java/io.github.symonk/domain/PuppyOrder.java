@@ -1,11 +1,9 @@
 package io.github.symonk.domain;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import io.github.symonk.common.annotations.Attachable;
+import io.github.symonk.common.annotations.Modelable;
 import io.github.symonk.common.enumerations.OrderOptions;
 import io.github.symonk.common.enumerations.Puppy;
-import io.qameta.allure.Allure;
-import io.qameta.allure.Step;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
@@ -15,7 +13,8 @@ import java.util.List;
 
 @Slf4j
 @Data
-public class PuppyOrder {
+@Attachable(name = "PuppyOrder.json")
+public class PuppyOrder implements Modelable {
 
   private final String adopterName;
   private final String adopterAddress;
@@ -29,11 +28,7 @@ public class PuppyOrder {
     this.adopterAddress = builder.adopterAddress;
     this.adopterEmail = builder.adopterEmail;
     this.listOfOrderItems = builder.listOfOrderItems;
-  }
-
-  @Override
-  public String toString() {
-    return new GsonBuilder().setPrettyPrinting().create().toJson(this);
+    this.model(this);
   }
 
   public static class PuppyOrderBuilder {
@@ -59,8 +54,7 @@ public class PuppyOrder {
       return this;
     }
 
-    public PuppyOrder build() { ;
-      Allure.addAttachment("Order.json", "application/json", new GsonBuilder().setPrettyPrinting().create().toJson(this));
+    public PuppyOrder build() {
       return new PuppyOrder(this);
     }
   }
