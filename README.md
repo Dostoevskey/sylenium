@@ -158,6 +158,23 @@ This framework provides a serious amount of functionality right out of the box.
 -> Maven module for api-testing, includes some example tests.
 ```
 
+### :triangular_flag_on_post: Managing your own models in the report
+Attaching your test data to the report is extremely simple using sylenium.  Any class you deem to be a model should implement Modelable and include an annotation at the class level to specify the attachment name.  Finally call the model method and pass in the instance of itself.  A basic strategy would be to build your objects and call this function as A) part of a builder build(); method, or in a basic constructor.  Ofcourse if you do not want such data in the report, simply don't call model(this);
+
+```java
+@Attachable(name = PuppyModel.json)
+public class MyModel implements Modelable {
+
+    private final String mySomething;
+    
+    public myModel(final String something) {
+        mySomething = something;
+        model(this);
+    }
+}
+```
+
+
 ### :triangular_flag_on_post: Running performance tests?
 To execute the example performance tests, simply launch a command prompt in the `/performance directory` where the `pom.xml` file resides.  Then execute:
 
