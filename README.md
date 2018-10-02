@@ -195,12 +195,15 @@ Hipchat cloud is also available very soon (@wip).  Please see the below setup fo
 
 Once you have configured either or (or both!) then you can simply enable any tests with @Notify for test information to be notified to the communication channel.  This is managed by Syleniums TeamCommunicator object.  note: it is possible that it can output to both channels.  I would also be cautious of spam caused by this.
 
-There are a few different methods of configuration notifications. `@Notify` at the @Test level will work for every test with such annotation, however configuring the `@Notify` at the Test class level will notify for everything in that class itself.
+There are a few different methods of configuration notifications. `@Notify` at the @Test level will work for every test with such annotation, however configuring the `@Notify` at the Test class level will notify for everything in that class itself.  Annotating both class and test level will take class level as priority.
 
 ```java
+//class level notifications
 @Notify
 public class NotifyMyClass {}
 
+
+// test level notifications
 public class NotifyMyTest {
 
     @Test
