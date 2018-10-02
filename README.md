@@ -55,7 +55,7 @@ from experience you will spend too long doing maintenance.
 
 Write your tests with parallelisation in mind.  Independent tests aren't enough, consider cross contamination (`system wide settings`) contaminating your tests at runtime.  For example if test A modifies
 a system wide setting it can impact other tests, even though they are not remotely reliant on each other.  Multi tenancy applications can really help with this, otherwise run a `@NotThreadSafe` run at the end of your run.
-If you are running one test at a time, again I will find you and I will kill you.
+If you are running one test at a time.
 
 ---
 
@@ -67,7 +67,7 @@ Page objects should encapsulate user actions grouped together, not individual ac
 
 ### :crossed_flags: Using field injection :crossed_flags:
 
-Using field injection with any sort of DI mechanism, I will find you and I will kill you. Yes its easier, but it sucks.  Its gimmicky magic, decreases class testability, masks design errors with large classes.  When you inject into the field often you will 
+Using field injection with any sort of DI mechanism. Yes its easier, but it sucks.  Its gimmicky magic, decreases class testability, masks design errors with large classes.  When you inject into the field often you will 
 not see beefy constructors that can prompt you to do some refactoring.
 
 ---
@@ -156,9 +156,10 @@ This framework provides a serious amount of functionality right out of the box.
 -> Simple bat files to run locally straight away.
 -> Maven module for performance testing powered by Maven Jmeter.
 -> Maven module for api-testing, includes some example tests.
+-> Easy serialization of test data into the report
 ```
 
-### :triangular_flag_on_post: Managing your own models in the report
+### :triangular_flag_on_post: Managing your own models/test data objects in the report
 Attaching your test data to the report is extremely simple using sylenium.  Any class you deem to be a model should implement Modelable and include an annotation at the class level to specify the attachment name.  Finally call the model method and pass in the instance of itself.  A basic strategy would be to build your objects and call this function to serialize to pretty json and attach it to the report for easier debugging later.
 
 ```java
@@ -174,40 +175,7 @@ public class MyModel implements Modelable {
 }
 ```
 
-
-### :triangular_flag_on_post: Running performance tests?
-To execute the example performance tests, simply launch a command prompt in the `/performance directory` where the `pom.xml` file resides.  Then execute:
-
-`mvn verify`
-
-all `.jmx` files will execute and the report will be available under `/target/jmeter/reports`
-
-Complimentary `.bat` file has been added to make this even easier on a windows environment.  An example of the report can be seen below:
-
-![Performance](https://github.com/symonk/sylenium-framework/blob/master/.resources/.images/performance-test.jpg)
-
-### :triangular_flag_on_post: Running user interface tests?
-When executing your tests it is highly recommended to encompass them as part of a CI pipeline.  If your 
-
-- placeholder
-- placeholder
-- placeholder
-
-![User Interface](https://github.com/symonk/sylenium-framework/blob/master/.resources/.images/report-dashboard.png)
-
-### :triangular_flag_on_post: Running service or api tests?
-
-- placeholder
-- placeholder
-- placeholder
-
-### :triangular_flag_on_post: How can I configured Testrail?
-
-- placeholder
-- placeholder
-- placeholder
-
-### :triangular_flag_on_post: How can I configure slack?
+### :triangular_flag_on_post: How can I configure a notification channel?
 As of default, slack will output total test pass percentage, and names of tests which fail in real time.  This is easily configured by doing the following:
 
 - Go to your_team.slack.com/services/new
@@ -219,8 +187,28 @@ As of default, slack will output total test pass percentage, and names of tests 
 
 Framework properties are found under `gui-tests/src/test/resources/framework.properties` or can be passed in at runtime.
 
-### :triangular_flag_on_post: How can I configure Jira cloud?
+Hipchat cloud is also available very soon (@wip).  Please see the below setup for setting up and configuring hipchat:
 
-- placeholder
-- placeholder
-- placeholder
+- A
+- B
+- C
+
+Once you have configured either or (or both!) then you can simply enable any tests with @Notify for test information to be notified to the communication channel.  This is managed by Syleniums TeamCommunicator object.  note: it is possible that it can output to both channels.  I would also be cautious of spam caused by this.
+
+There are a few different methods of configuration notifications. `@Notify` at the @Test level will work for every test with such annotation, however configuring the `@Notify` at the Test class level will notify for everything in that class itself.
+
+```java
+@Notify
+public class NotifyMyClass {}
+
+public class NotifyMyTest {
+
+    @Test
+    @Notify
+    public void notifyTest() {
+    
+    }
+    
+}
+
+
