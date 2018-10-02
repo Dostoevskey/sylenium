@@ -207,8 +207,7 @@ public class NotifyMyTest {
     @Notify
     public void notifyTest() {
     
-    }
-    
+    }  
 }
 
 
