@@ -13,6 +13,9 @@ public interface Modelable {
     if (object.getClass().isAnnotationPresent(Attachable.class)) {
       annoVal = object.getClass().getAnnotation(Attachable.class).name();
     }
+    if (!annoVal.endsWith('.json')) {
+      annoVal = annoVal + '.json';
+    }
     Allure.addAttachment(annoVal, "application/json", gson.toJson(object));
   }
 }
