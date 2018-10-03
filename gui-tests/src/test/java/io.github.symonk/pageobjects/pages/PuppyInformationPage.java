@@ -7,7 +7,7 @@ import static com.codeborne.selenide.Selenide.$x;
 
 public class PuppyInformationPage {
 
-  private static final SelenideElement ADOPT_ME_BUTTON =
+  private final SelenideElement ADOPT_ME_BUTTON =
       $x("//*[@id='content']/div[2]/div/form/div/input[1]");
 
   @Step("Selecting adopt puppy")
