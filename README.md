@@ -123,6 +123,9 @@ run ui_regression_parallel_chrome.bat to see the tests running in parallel! or a
 import the project into intellij
 install lombok intellij plugin and enable annotation-processing in intellij (important)
 install the allure command line tool for reporting capabilities (important)
+
+Allure can be installed on mac using homebrew -> brew install allure or via downloading on windows and adding the /bin directory to your PATH variables
+
 ```
 
 ---
