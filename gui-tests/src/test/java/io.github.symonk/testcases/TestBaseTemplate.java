@@ -10,6 +10,7 @@ import io.github.symonk.selenide.custom_listeners.CustomSelenideLogger;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Guice;
 
@@ -30,7 +31,7 @@ public class TestBaseTemplate {
     this.languageHelper = languageHelper;
   }
 
-  @BeforeMethod(alwaysRun = true, description = "[Register Driver Event Listener]")
+  @BeforeClass(alwaysRun = true, description = "[Register Driver Event Listener]")
   public void registerDriverEventListener() {
     WebDriverRunner.addListener(new WebEventListener());
   }
