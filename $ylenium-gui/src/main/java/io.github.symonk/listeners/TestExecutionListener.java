@@ -66,8 +66,8 @@ public class TestExecutionListener implements ITestListener {
 
   @Override
   public void onStart(final ITestContext context) {
-    Injector parentInjector = context.getSuite().getParentInjector();
-    List<Module> guiceModules = context.getGuiceModules(GuiceModule.class);
+    final Injector parentInjector = context.getSuite().getParentInjector();
+    final List<Module> guiceModules = context.getGuiceModules(GuiceModule.class);
     parentInjector.createChildInjector(guiceModules).injectMembers(this);
 
     communicate("Test run started");

@@ -39,7 +39,7 @@ public class PuppyCartPage {
   }
 
   private void selectAppropriateOptions(final PuppyOrder puppyOrder) {
-    for (OrderOptions option : puppyOrder.getListOfOrderItems()) {
+    for (final OrderOptions option : puppyOrder.getListOfOrderItems()) {
       if (option == OrderOptions.COLLAR) COLLAR_CHECKBOX.setSelected(true);
       if (option == OrderOptions.CHEW_TOY) TOY_CHECKBOX.setSelected(true);
       if (option == OrderOptions.TRAVEL_CARRIER) CARRIER_CHECKBOX.setSelected(true);

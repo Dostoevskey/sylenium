@@ -65,7 +65,7 @@ public class GuiceModule extends AbstractModule {
     final HipChat chat;
     try {
       chat = new HipChat(properties().communicationWebHook());
-    } catch(FoxHttpException exception) {
+    } catch(final FoxHttpException exception) {
         throw new $yCommunicationException(exception);
     }
     return chat;

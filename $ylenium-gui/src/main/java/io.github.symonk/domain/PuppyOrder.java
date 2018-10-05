@@ -22,7 +22,7 @@ public class PuppyOrder implements Modelable {
   private final Puppy dog;
   private final List<OrderOptions> listOfOrderItems;
 
-  private PuppyOrder(PuppyOrderBuilder builder) {
+  private PuppyOrder(final PuppyOrderBuilder builder) {
     this.dog = builder.dog;
     this.adopterName = builder.adopterName;
     this.adopterAddress = builder.adopterAddress;
@@ -49,7 +49,7 @@ public class PuppyOrder implements Modelable {
       this.dog = dog;
     }
 
-    public PuppyOrderBuilder addOptions(OrderOptions... options) {
+    public PuppyOrderBuilder addOptions(final OrderOptions... options) {
       Collections.addAll(listOfOrderItems, options);
       return this;
     }

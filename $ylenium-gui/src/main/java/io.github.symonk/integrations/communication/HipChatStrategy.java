@@ -25,7 +25,7 @@ public class HipChatStrategy implements Communicatable {
     log.info("Sending message to configured hip chat channel..");
     try {
     api.roomsApi().sendRoomNotification("2640607", new Notification(null, null, MessageColor.RED, null, true, "Hello World", null));
-    } catch(FoxHttpException exception) {
+    } catch(final FoxHttpException exception) {
       throw new $yCommunicationException(exception);
     }
   }
