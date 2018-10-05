@@ -5,7 +5,7 @@
 [![Linked In](https://img.shields.io/badge/Add%20Me%20On-LinkedIn-green.svg)](https://www.linkedin.com/in/simonk09/)
 [![Linked In](https://img.shields.io/badge/Join%20Me%20On-Slack-green.svg)](https://testersio.slack.com)
 
-## Sylenium-framework :flags: :star: :panda-face:
+## Sylenium-framework :flags: :star:
 
 The aim of this project is simple, provide a powerful test automation harness for testing web applications with java.  Because test automation (especially) at the ui layer is plagued with bad practice
 I would like to start by outlining a few things of what **NOT** to use this harness for.  If such a license existed that would ban you from doing the following, I would apply it to this repository...
@@ -146,7 +146,8 @@ This framework provides a serious amount of functionality right out of the box.
 -> Dependency injection capabilities powered by google Guice.
 -> Wealth of custom helpers, exceptions and annotations.
 -> Jira (cloud) integration to automatically manage test awareness (@wip).
--> Slack integration to automatically manage notifications (@wip).
+-> Slack integration to automatically manage notifications
+-> Hipchat integration to automatically manage notifications
 -> Customised test failure data (stacktrace, screenshot, pagesource, logs) automatically in the report!
 -> Capturing .har performance data using a proxy (BrowserMob) available at the flip of a switch!
 -> Selenide custom conditions and listeners.
@@ -176,7 +177,7 @@ public class MyModel implements Modelable {
 }
 ```
 
-### :earth_africa: How can I configure a notification strategy?
+### :earth_africa: How can I configure a communication strategy?
 Sylenium supports both `@Test` level notifications or Class level, both are configured using the `@Notify` annotation (see more below).
 The supported levels for communication strategy are `NONE, SLACK, HIPCHAT` respectfully.
 You should always use these with caution, especially on free slack instances with message caps and hipchat rate limiting is in place.
