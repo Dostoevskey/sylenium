@@ -189,7 +189,7 @@ You should always use these with caution, especially on free slack instances wit
 - Choose strategy to post and press add incoming webhooks integration
 - Set the slack url framework property
 - Set the communication strategy property to `SLACK`
-- Both of these properties are required, they can be set at runtime using standard maven -Dslack.enabled etc
+- Both of these properties are required, they can be set at runtime using standard maven -Dcommunication.strategy=SLACK etc
 
 ### Hipchat configuration :star:
 
