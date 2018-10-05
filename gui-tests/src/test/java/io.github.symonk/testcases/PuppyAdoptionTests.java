@@ -31,6 +31,9 @@ public class PuppyAdoptionTests extends TestBaseTemplate {
     this.orderProvider = orderProvider;
   }
 
+
+
+
   @Test(description = "Hannah can be adopted")
   @Story("As a customer, I can adopt Hannah without any options")
   @Issue("ISS-001")

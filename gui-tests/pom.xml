@@ -3,8 +3,8 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>selenide-framework</artifactId>
-        <groupId>io.symonk.github</groupId>
+        <artifactId>sylenium</artifactId>
+        <groupId>io.github.symonk</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -24,8 +24,16 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
+                <artifactId>maven-failsafe-plugin</artifactId>
                 <version>${maven.surefire.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <configuration>
                     <parallel>methods</parallel>
                     <threadCount>${thread.count}</threadCount>
@@ -46,6 +54,28 @@
                         <version>${aspectj.version}</version>
                     </dependency>
                 </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>br.com.softplan.security.zap</groupId>
+                <artifactId>zap-maven-plugin</artifactId>
+                <version>1.2.1-0</version>
+                <configuration>
+                    <zapPort>8080</zapPort>
+                    <targetUrl>https://sy-dashie.herokuapp.com/#/pages/dashboard</targetUrl>
+                    <shouldRunWithDocker>true</shouldRunWithDocker>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>start-zap</id>
+                        <phase>pre-integration-test</phase>
+                        <goals><goal>startZap</goal></goals>
+                    </execution>
+                    <execution>
+                        <id>selenium-analyze</id>
+                        <phase>post-integration-test</phase>
+                        <goals><goal>seleniumAnalyze</goal></goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

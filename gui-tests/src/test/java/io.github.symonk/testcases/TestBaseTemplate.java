@@ -8,6 +8,7 @@ import io.github.symonk.listeners.WebEventListener;
 import io.github.symonk.selenide.custom_listeners.CustomListener;
 import io.github.symonk.selenide.custom_listeners.CustomSelenideLogger;
 import lombok.extern.slf4j.Slf4j;
+import org.openqa.selenium.Proxy;
 import org.slf4j.MDC;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -34,6 +35,12 @@ public class TestBaseTemplate {
   @BeforeClass(alwaysRun = true, description = "[Register Driver Event Listener]")
   public void registerDriverEventListener() {
     WebDriverRunner.addListener(new WebEventListener());
+  }
+
+  @BeforeClass(alwaysRun = true, description = "[Register ZAP Proxy if required]")
+  public void registerZapProxy() {
+    log.error("ADDING PROXY!");
+    WebDriverRunner.setProxy(new Proxy().setHttpProxy("localhost:8080"));
   }
 
   @BeforeMethod(alwaysRun = true, description = "[Initialize Test Logger]")
