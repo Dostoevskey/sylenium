@@ -1,12 +1,15 @@
-package io.github.symonk.common.annotations;
+package io.github.symonk.common.interfaces;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import io.github.symonk.common.annotations.Attachable;
 import io.qameta.allure.Allure;
 
 public interface Modelable {
 
   Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+
 
   default <T extends Modelable> void model(final T object) {
     String annoVal = "Default.json";

@@ -1,7 +1,7 @@
 package io.github.symonk.domain;
 
 import io.github.symonk.common.annotations.Attachable;
-import io.github.symonk.common.annotations.Modelable;
+import io.github.symonk.common.interfaces.Modelable;
 import io.github.symonk.common.enumerations.OrderOptions;
 import io.github.symonk.common.enumerations.Puppy;
 import lombok.Data;
