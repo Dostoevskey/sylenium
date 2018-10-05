@@ -1,23 +1,12 @@
 package io.github.symonk.common.interfaces;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import io.github.symonk.common.annotations.Attachable;
-import io.qameta.allure.Allure;
+import io.github.symonk.integrations.allure2.AllureAttacher;
 
 public interface Modelable {
 
-  Gson gson = new GsonBuilder().setPrettyPrinting().create();
+  AllureAttacher allureAttacher = null;
 
+  default <T extends Modelable> void model(final T object, final String jsonValue) {}
 
-
-  default <T extends Modelable> void model(final T object) {
-    String annoVal = "Default.json";
-    if (object.getClass().isAnnotationPresent(Attachable.class)) {
-      annoVal = object.getClass().getAnnotation(Attachable.class).name();
-
-      if(!annoVal.endsWith(".json")) annoVal = annoVal + ".json";
-    }
-    Allure.addAttachment(annoVal, "application/json", gson.toJson(object));
-  }
+  default <T extends Modelable> void model(final T object) {}
 }

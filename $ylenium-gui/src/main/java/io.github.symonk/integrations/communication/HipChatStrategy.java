@@ -5,7 +5,7 @@ import ch.viascom.hipchat.api.HipChat;
 import ch.viascom.hipchat.api.models.Notification;
 import ch.viascom.hipchat.api.models.message.MessageColor;
 import io.github.symonk.common.enumerations.CommunicationChannel;
-import io.github.symonk.common.exceptions.$yCommunicationException;
+import io.github.symonk.common.exceptions.SyleniumCommunicationException;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.inject.Inject;
@@ -23,12 +23,12 @@ public class HipChatStrategy implements Communicatable {
   }
 
   @Override
-  public void NotifyChannel(final String message) {
+  public void notifyChannel(final String message) {
     log.info("Sending message to configured hip chat channel..");
     try {
     api.roomsApi().sendRoomNotification("Simon Monitoring", new Notification(null, null, MessageColor.RED, null, true, message, null));
     } catch(final FoxHttpException exception) {
-      throw new $yCommunicationException(exception);
+      throw new SyleniumCommunicationException(exception);
     }
   }
 

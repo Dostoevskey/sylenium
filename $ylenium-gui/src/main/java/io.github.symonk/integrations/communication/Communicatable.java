@@ -5,7 +5,7 @@ import net.gpedro.integrations.slack.SlackException;
 
 public interface Communicatable {
 
-  void NotifyChannel(final String message) throws SlackException;
+  void notifyChannel(final String message) throws SlackException;
 
   CommunicationChannel getType();
 }

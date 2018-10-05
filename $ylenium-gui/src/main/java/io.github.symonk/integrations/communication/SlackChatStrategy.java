@@ -8,17 +8,17 @@ import net.gpedro.integrations.slack.SlackMessage;
 import javax.inject.Inject;
 
 @Slf4j
-public class SlackStrategy implements Communicatable {
+public class SlackChatStrategy implements Communicatable {
 
   private final SlackApi api;
 
   @Inject
-  public SlackStrategy(final SlackApi api) {
+  public SlackChatStrategy(final SlackApi api) {
     this.api = api;
   }
 
   @Override
-  public void NotifyChannel(final String message) {
+  public void notifyChannel(final String message) {
     log.info("Sending message to configured slack channel...");
     api.call(new SlackMessage(message));
   }

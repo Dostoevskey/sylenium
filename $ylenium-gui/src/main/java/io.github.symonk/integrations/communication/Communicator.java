@@ -18,7 +18,7 @@ public class Communicator {
 
   public void notify(final String message) {
       if(!isEnabled) return;
-      strategy.NotifyChannel(message);
+      strategy.notifyChannel(message);
   }
 
 
