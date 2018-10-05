@@ -41,6 +41,7 @@
         <owner.version>1.0.10</owner.version>
         <slack.version>1.4.0</slack.version>
         <testrail.api.version>2.0.0</testrail.api.version>
+        <hipchat.client.version>0.4.3</hipchat.client.version>
     </properties>
 
     <profiles>
@@ -76,6 +77,12 @@
     </profiles>
 
     <dependencies>
+        <!-- hipchat v2 api wrapper client -->
+        <dependency>
+            <groupId>io.evanwong.oss</groupId>
+            <artifactId>hipchat-java</artifactId>
+            <version>${hipchat.client.version}</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
         <dependency>
             <groupId>javax.xml.bind</groupId>

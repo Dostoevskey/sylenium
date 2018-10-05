@@ -1,8 +1,10 @@
 package io.github.symonk.listeners;
 
-import io.github.symonk.common.helpers.slack.SlackHelper;
 import io.github.symonk.configurations.properties.FrameworkProperties;
+import io.github.symonk.integrations.communication.Communicator;
+import io.github.symonk.integrations.communication.SlackStrategy;
 import lombok.extern.slf4j.Slf4j;
+import net.gpedro.integrations.slack.SlackApi;
 import org.aeonbits.owner.ConfigFactory;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
@@ -15,12 +17,15 @@ public class NotificationListener implements ITestListener {
 
   public static final AtomicInteger testsPassed = new AtomicInteger(0);
   public static final AtomicInteger testsFailed = new AtomicInteger(0);
-  private final SlackHelper slackNotifier =
-      new SlackHelper(ConfigFactory.create(FrameworkProperties.class));
+  private final Communicator communicator =
+      new Communicator(
+          new SlackStrategy(
+              new SlackApi(
+                  ConfigFactory.create(FrameworkProperties.class).communicationWebHook())));
 
   @Override
   public void onTestStart(final ITestResult iTestResult) {
-    slackNotifier.notify("Test run started");
+    communicator.notify("Test run started");
   }
 
   @Override
@@ -30,7 +35,7 @@ public class NotificationListener implements ITestListener {
 
   @Override
   public void onTestFailure(final ITestResult iTestResult) {
-    slackNotifier.notify("Test Failure! " + iTestResult.getName());
+    communicator.notify("Test Failure! " + iTestResult.getName());
     testsFailed.incrementAndGet();
   }
 
@@ -51,6 +56,6 @@ public class NotificationListener implements ITestListener {
 
   @Override
   public void onFinish(final ITestContext iTestContext) {
-    slackNotifier.notify("Test run finished!");
+    communicator.notify("Test run finished!");
   }
 }

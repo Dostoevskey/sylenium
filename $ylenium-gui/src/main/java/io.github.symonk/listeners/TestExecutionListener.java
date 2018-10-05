@@ -3,31 +3,32 @@ package io.github.symonk.listeners;
 import com.codeborne.selenide.Configuration;
 import io.github.symonk.common.helpers.reporting.ReportHelper;
 import io.github.symonk.common.helpers.reporting.ReportInteractable;
-import io.github.symonk.common.helpers.slack.SlackHelper;
 import io.github.symonk.configurations.properties.FrameworkProperties;
+import io.github.symonk.integrations.communication.Communicator;
+import io.github.symonk.integrations.communication.SlackStrategy;
 import lombok.extern.slf4j.Slf4j;
+import net.gpedro.integrations.slack.SlackApi;
 import org.aeonbits.owner.ConfigFactory;
 import org.testng.IExecutionListener;
 
 @Slf4j
 public class TestExecutionListener implements IExecutionListener {
 
-  private final SlackHelper slackNotifier = new SlackHelper(ConfigFactory.create(FrameworkProperties.class));
   private final FrameworkProperties properties = ConfigFactory.create(FrameworkProperties.class);
   private final ReportInteractable reportHelper = new ReportHelper(properties);
+  private final Communicator communicator = new Communicator(new SlackStrategy(new SlackApi(properties.communicationWebHook())));
 
   @Override
   public void onExecutionStart() {
     log.info("test run starting!");
     configureTestRun();
     pushReportInformation();
-
   }
 
   @Override
   public void onExecutionFinish() {
     log.info("test run finished!");
-    slackNotifier.notify(
+    communicator.notify(
         "Total Tests Executed: "
             + NotificationListener.testsFailed
             + NotificationListener.testsPassed

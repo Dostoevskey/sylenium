@@ -176,12 +176,12 @@ public class MyModel implements Modelable {
 }
 ```
 
-### :triangular_flag_on_post: How can I configure a notification channel?
+### :triangular_flag_on_post: How can I configure a notification strategy?
 As of default, slack will output total test pass percentage, and names of tests which fail in real time.  This is easily configured by doing the following:
 
 - Go to your_team.slack.com/services/new
 - Search for incoming webHook and click in Add
-- Choose channel to post and press add incoming webhooks integration
+- Choose strategy to post and press add incoming webhooks integration
 - Set the webhook url in the framework property (@Default empty)
 - Set the slack notifications enabled framework property to true (@Default false)
 - Both of these properties are required, they can be set at runtime using standard maven -Dslack.enabled etc
@@ -194,7 +194,7 @@ Hipchat cloud is also available very soon (@wip).  Please see the below setup fo
 - B
 - C
 
-Once you have configured either or (or both!) then you can simply enable any tests with @Notify for test information to be notified to the communication channel.  This is managed by Syleniums TeamCommunicator object.  note: it is possible that it can output to both channels.  I would also be cautious of spam caused by this.
+Once you have configured either or (or both!) then you can simply enable any tests with @Notify for test information to be notified to the communication strategy.  This is managed by Syleniums TeamCommunicator object.  note: it is possible that it can output to both channels.  I would also be cautious of spam caused by this.
 
 There are a few different methods of configuration notifications. `@Notify` at the @Test level will work for every test with such annotation, however configuring the `@Notify` at the Test class level will notify for everything in that class itself.  Annotating both class and test level will take class level as priority.
 

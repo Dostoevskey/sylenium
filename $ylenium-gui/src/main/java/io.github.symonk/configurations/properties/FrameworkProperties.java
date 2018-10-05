@@ -1,5 +1,6 @@
 package io.github.symonk.configurations.properties;
 
+import io.github.symonk.common.enumerations.CommunicationChannel;
 import org.aeonbits.owner.Config;
 import org.aeonbits.owner.Config.HotReload;
 import org.aeonbits.owner.Config.Sources;
@@ -62,12 +63,13 @@ public interface FrameworkProperties extends Config {
   @DefaultValue("false")
   boolean isThisRunningOnTravis();
 
-  @Key("slack.enabled")
-  @DefaultValue("false")
-  boolean isSlackEnabled();
+  @Key("communication.strategy")
+  @DefaultValue("NONE")
+  String communicationStrategy();
 
-  @Key("slack.webhook.endpoint")
-  String slackWebhookEndpoint();
+  @Key("communication.webhook")
+  @DefaultValue("NONE")
+  String communicationWebHook();
 
   @Key("testrail.endpoint")
   String testrailEndpoint();
@@ -97,8 +99,8 @@ public interface FrameworkProperties extends Config {
         setProperty("number.of.retries", String.valueOf(numberOfFailRetries()));
         setProperty("use.browsermob.proxy?", String.valueOf(useBrowserMobProxy()));
         setProperty("running.on.travis?", String.valueOf(isThisRunningOnTravis()));
-        setProperty("slack.enabled", String.valueOf(isSlackEnabled()));
-        setProperty("slack.webhook.endpoint", slackWebhookEndpoint());
+        setProperty("communication.strategy", communicationStrategy());
+        setProperty("communication.webhook", communicationWebHook());
         setProperty("testrail.endpoint", testrailEndpoint());
         setProperty("testrail.username", testRailUsername());
         setProperty("testrail.password", testRailPassword());
