@@ -5,7 +5,7 @@
 [![Linked In](https://img.shields.io/badge/Add%20Me%20On-LinkedIn-green.svg)](https://www.linkedin.com/in/simonk09/)
 [![Linked In](https://img.shields.io/badge/Join%20Me%20On-Slack-green.svg)](https://testersio.slack.com)
 
-## Sylenium-framework :flags:
+## Sylenium-framework :flags: :star: :panda-face
 
 The aim of this project is simple, provide a powerful test automation harness for testing web applications with java.  Because test automation (especially) at the ui layer is plagued with bad practice
 I would like to start by outlining a few things of what **NOT** to use this harness for.  If such a license existed that would ban you from doing the following, I would apply it to this repository...
@@ -86,7 +86,7 @@ and ofcourse, open PRs here
 
 ---
 
-# :triangular_flag_on_post: Framework stack
+# :earth_africa: Framework stack
 
 | Technology | Description | Link
 | ------------- | ------------- | -------------
@@ -107,7 +107,7 @@ and ofcourse, open PRs here
 | **Selenide** | Selenium wrapper | [@Selenide](http://http://selenide.org)
 
 
-# :triangular_flag_on_post: Getting started?
+# :earth_africa: Getting started?
 
 In order to get started you should clone this repository and remove all test(s) around the Puppy adoption webpage, we use this just to demonstrate the testing capabilities.
 Alternatively you can fork this repo and work from there.
@@ -128,7 +128,7 @@ Allure can be installed on mac using homebrew -> brew install allure or via down
 
 ---
 
-# :triangular_flag_on_post: Framework functionality?
+# :earth_africa: Framework functionality?
 This framework provides a serious amount of functionality right out of the box.
 
 ```
@@ -160,7 +160,7 @@ This framework provides a serious amount of functionality right out of the box.
 -> Easy serialization of test data into the report
 ```
 
-### :triangular_flag_on_post: Managing your own models/test data objects in the report
+### :earth_africa: Managing your own models/test data objects in the report
 Attaching your test data to the report is extremely simple using sylenium.  Any class you deem to be a model should implement Modelable and include an annotation at the class level to specify the attachment name.  Finally call the model method and pass in the instance of itself.  A basic strategy would be to build your objects and call this function to serialize to pretty json and attach it to the report for easier debugging later.
 
 ```java
@@ -176,10 +176,12 @@ public class MyModel implements Modelable {
 }
 ```
 
-### :triangular_flag_on_post: How can I configure a notification strategy?
+### :earth_africa: How can I configure a notification strategy?
 Sylenium supports both `@Test` level notifications or Class level, both are configured using the `@Notify` annotation (see more below).
 The supported levels for communication strategy are `NONE, SLACK, HIPCHAT` respectfully.
 You should always use these with caution, especially on free slack instances with message caps and hipchat rate limiting is in place.
+
+###Slack configuration :mortar-board:
 
 - Go to your_team.slack.com/services/new
 - Search for incoming webHook and click in Add
@@ -188,9 +190,7 @@ You should always use these with caution, especially on free slack instances wit
 - Set the communication strategy property to `SLACK`
 - Both of these properties are required, they can be set at runtime using standard maven -Dslack.enabled etc
 
-Framework properties are found under `gui-tests/src/test/resources/framework.properties` or can be passed in at runtime.
-
-Hipchat cloud is also available very soon (@wip).  Please see the below setup for setting up and configuring hipchat:
+###Hipchat configuration :mortar-board:
 
 - Navigate to your rooms tokens page `/rooms/tokens/1234` <-- 1234 being a room number
 - Create a new token for `Send Notifications` only and provide a label name
