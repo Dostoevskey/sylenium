@@ -9,6 +9,8 @@ import io.github.symonk.common.enumerations.CommunicationChannel;
 import io.github.symonk.common.exceptions.$yCommunicationException;
 import io.github.symonk.common.helpers.localisation.LanguageHelper;
 import io.github.symonk.common.helpers.localisation.ProvidesLanguageValues;
+import io.github.symonk.common.helpers.reporting.ReportHelper;
+import io.github.symonk.common.helpers.reporting.ReportInteractable;
 import io.github.symonk.configurations.properties.FrameworkProperties;
 import io.github.symonk.data.OrderProvidable;
 import io.github.symonk.data.PuppyOrderFactory;
@@ -19,6 +21,7 @@ import io.github.symonk.integrations.communication.SlackStrategy;
 import lombok.extern.slf4j.Slf4j;
 import net.gpedro.integrations.slack.SlackApi;
 import org.aeonbits.owner.ConfigFactory;
+import org.apache.commons.validator.routines.UrlValidator;
 
 @Slf4j
 public class GuiceModule extends AbstractModule {
@@ -27,12 +30,19 @@ public class GuiceModule extends AbstractModule {
   protected void configure() {
     bind(ProvidesLanguageValues.class).to(LanguageHelper.class).in(Singleton.class);
     bind(OrderProvidable.class).to(PuppyOrderFactory.class).in(Singleton.class);
+    bind(ReportInteractable.class).to(ReportHelper.class).in(Singleton.class);
   }
 
   @Provides
   @Singleton
   public Communicator communicator() {
-    final CommunicationChannel strategy = CommunicationChannel.valueOf(getProperties().communicationStrategy());
+
+    CommunicationChannel strategy = CommunicationChannel.valueOf(properties().communicationStrategy());
+    if(!new UrlValidator().isValid(properties().communicationWebHook()) && strategy != CommunicationChannel.NONE) {
+      log.error("Web hook provided is not a valid http url, overriding and running with no communication strategy");
+      strategy = CommunicationChannel.NONE;
+    }
+
     switch (strategy) {
       case SLACK:
         return new Communicator(new SlackStrategy(getSlackClient()));
@@ -46,7 +56,7 @@ public class GuiceModule extends AbstractModule {
   @Provides
   @Singleton
   public SlackApi getSlackClient() {
-    return new SlackApi(getProperties().communicationWebHook());
+    return new SlackApi(properties().communicationWebHook());
   }
 
   @Provides
@@ -54,7 +64,7 @@ public class GuiceModule extends AbstractModule {
   public HipChat getHipChatClient() {
     final HipChat chat;
     try {
-      chat = new HipChat(getProperties().communicationWebHook());
+      chat = new HipChat(properties().communicationWebHook());
     } catch(FoxHttpException exception) {
         throw new $yCommunicationException(exception);
     }
@@ -63,7 +73,7 @@ public class GuiceModule extends AbstractModule {
 
   @Provides
   @Singleton
-  public FrameworkProperties getProperties() {
+  public FrameworkProperties properties() {
     return ConfigFactory.create(FrameworkProperties.class);
   }
 }

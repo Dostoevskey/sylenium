@@ -42,6 +42,7 @@
         <slack.version>1.4.0</slack.version>
         <testrail.api.version>2.0.0</testrail.api.version>
         <hipchat.client.version>2.1-RC3</hipchat.client.version>
+        <apache.commons.validator.version>1.6</apache.commons.validator.version>
     </properties>
 
     <profiles>
@@ -77,6 +78,12 @@
     </profiles>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/commons-validator/commons-validator -->
+        <dependency>
+            <groupId>commons-validator</groupId>
+            <artifactId>commons-validator</artifactId>
+            <version>${apache.commons.validator.version}</version>
+        </dependency>
         <!-- hipchat v2 api wrapper client -->
         <dependency>
             <groupId>ch.viascom</groupId>

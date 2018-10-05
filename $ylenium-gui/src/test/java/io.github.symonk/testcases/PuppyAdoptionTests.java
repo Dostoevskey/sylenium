@@ -4,9 +4,6 @@ import io.github.symonk.common.helpers.localisation.ProvidesLanguageValues;
 import io.github.symonk.configurations.guice.GuiceModule;
 import io.github.symonk.data.OrderProvidable;
 import io.github.symonk.domain.PuppyOrder;
-import io.github.symonk.integrations.communication.Communicatable;
-import io.github.symonk.integrations.communication.Communicator;
-import io.github.symonk.listeners.NotificationListener;
 import io.github.symonk.listeners.TestExecutionListener;
 import io.github.symonk.pageobjects.pages.PuppyAdoptionHomePage;
 import io.qameta.allure.*;
@@ -22,13 +19,14 @@ import javax.inject.Inject;
 @Epic("Puppy Adoption Epic")
 @Feature("Puppy Adoption Process Feature")
 @Guice(modules = GuiceModule.class)
-@Listeners({TestExecutionListener.class, NotificationListener.class})
+@Listeners({TestExecutionListener.class})
 public class PuppyAdoptionTests extends TestBaseTemplate {
 
   private final OrderProvidable orderProvider;
 
   @Inject
-  public PuppyAdoptionTests(final ProvidesLanguageValues languageHelper, final OrderProvidable orderProvider) {
+  public PuppyAdoptionTests(
+      final ProvidesLanguageValues languageHelper, final OrderProvidable orderProvider) {
     super(languageHelper);
     this.orderProvider = orderProvider;
   }

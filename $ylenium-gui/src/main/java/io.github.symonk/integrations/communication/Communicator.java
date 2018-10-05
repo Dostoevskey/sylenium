@@ -17,10 +17,7 @@ public class Communicator {
   }
 
   public void notify(final String message) {
-      if(!isEnabled) {
-        log.error("You have not configured the communications channel correctly, setup configurations in the framework.properties");
-        return;
-      }
+      if(!isEnabled) return;
       strategy.NotifyChannel(message);
   }
 

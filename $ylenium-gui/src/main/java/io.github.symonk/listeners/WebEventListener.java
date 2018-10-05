@@ -8,7 +8,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.events.WebDriverEventListener;
 
 import java.util.Arrays;
-import java.util.Optional;
 
 @Slf4j
 public class WebEventListener implements WebDriverEventListener {

@@ -1,6 +1,5 @@
 package io.github.symonk.configurations.properties;
 
-import io.github.symonk.common.enumerations.CommunicationChannel;
 import org.aeonbits.owner.Config;
 import org.aeonbits.owner.Config.HotReload;
 import org.aeonbits.owner.Config.Sources;
