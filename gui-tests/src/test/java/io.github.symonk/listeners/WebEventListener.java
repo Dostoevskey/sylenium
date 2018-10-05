@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.events.WebDriverEventListener;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 @Slf4j
 public class WebEventListener implements WebDriverEventListener {
@@ -93,17 +94,18 @@ public class WebEventListener implements WebDriverEventListener {
   }
 
   @Override
-  public void beforeChangeValueOf(
-      final WebElement webElement, final WebDriver webDriver, final CharSequence[] charSequences) {
-    log.info(
-            "Attempting to set value of: {}  on element: {} ",
-            Arrays.toString(charSequences), webElement);
+  public void beforeChangeValueOf(final WebElement webElement, final WebDriver webDriver, final CharSequence[] charSequences) {
+    log.info("Attempting to set value of: {}  on element: {} ", logValuesAvoidingEmpty(charSequences), webElement);
   }
 
   @Override
-  public void afterChangeValueOf(
-      final WebElement webElement, final WebDriver webDriver, final CharSequence[] charSequences) {
-    log.info("Set the value of an element to: {} ", Arrays.toString(charSequences));
+  public void afterChangeValueOf(final WebElement webElement, final WebDriver webDriver, final CharSequence[] charSequences) {
+    log.info("Set the value of an element to: {} ", logValuesAvoidingEmpty(charSequences));
+  }
+
+  private String logValuesAvoidingEmpty(CharSequence[] charSequences) {
+    if(null != charSequences) return Arrays.toString(charSequences);
+    return "[EMPTY-VALUE]";
   }
 
   @Override
@@ -150,4 +152,6 @@ public class WebEventListener implements WebDriverEventListener {
   public void afterGetText(final WebElement webElement, final WebDriver webDriver, final String s) {
     log.info("The text was: {} ", s);
   }
+
+
 }
