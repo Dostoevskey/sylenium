@@ -66,9 +66,15 @@ public interface FrameworkProperties extends Config {
   @DefaultValue("NONE")
   String communicationStrategy();
 
-  @Key("communication.webhook")
+  @Key("slack.url")
   @DefaultValue("NONE")
-  String communicationWebHook();
+  String slackUrl();
+
+  @Key("hipchat.access.code")
+  String hipchatAccessCode();
+
+  @Key("hipchat.channel")
+  String hipchatChannel();
 
   @Key("testrail.endpoint")
   String testrailEndpoint();
@@ -99,7 +105,9 @@ public interface FrameworkProperties extends Config {
         setProperty("use.browsermob.proxy?", String.valueOf(useBrowserMobProxy()));
         setProperty("running.on.travis?", String.valueOf(isThisRunningOnTravis()));
         setProperty("communication.strategy", communicationStrategy());
-        setProperty("communication.webhook", communicationWebHook());
+        setProperty("slack.url", slackUrl());
+        setProperty("hipchat.access.code", hipchatAccessCode());
+        setProperty("hipchat.channel", hipchatChannel());
         setProperty("testrail.endpoint", testrailEndpoint());
         setProperty("testrail.username", testRailUsername());
         setProperty("testrail.password", testRailPassword());

@@ -14,17 +14,19 @@ import javax.inject.Inject;
 public class HipChatStrategy implements Communicatable {
 
   private final HipChat api;
+  private final String channel;
 
   @Inject
-  public HipChatStrategy(final HipChat api) {
+  public HipChatStrategy(final HipChat api, final String channel) {
     this.api = api;
+    this.channel = channel;
   }
 
   @Override
   public void NotifyChannel(final String message) {
     log.info("Sending message to configured hip chat channel..");
     try {
-    api.roomsApi().sendRoomNotification("2640607", new Notification(null, null, MessageColor.RED, null, true, "Hello World", null));
+    api.roomsApi().sendRoomNotification("Simon Monitoring", new Notification(null, null, MessageColor.RED, null, true, message, null));
     } catch(final FoxHttpException exception) {
       throw new $yCommunicationException(exception);
     }

@@ -37,26 +37,26 @@ public class GuiceModule extends AbstractModule {
   @Singleton
   public Communicator communicator() {
 
-    CommunicationChannel strategy = CommunicationChannel.valueOf(properties().communicationStrategy());
-    if(!new UrlValidator().isValid(properties().communicationWebHook()) && strategy != CommunicationChannel.NONE) {
-      log.error("Web hook provided is not a valid http url, overriding and running with no communication strategy");
-      strategy = CommunicationChannel.NONE;
+    final CommunicationChannel strategy = CommunicationChannel.valueOf(properties().communicationStrategy());
+    if (strategy == CommunicationChannel.SLACK && new UrlValidator().isValid(properties().slackUrl())) {
+      log.info("Slack communication strategy selected.  url is valid");
+      return new Communicator(new SlackStrategy(getSlackClient()));
     }
 
-    switch (strategy) {
-      case SLACK:
-        return new Communicator(new SlackStrategy(getSlackClient()));
-      case HIPCHAT:
-        return new Communicator(new HipChatStrategy(getHipChatClient()));
-      default:
-        return new Communicator(new NoCommsStrategy());
+    if (strategy == CommunicationChannel.HIPCHAT && !properties().hipchatAccessCode().isEmpty()) {
+      log.info("Hipchat communication strategy selected. access token is not empty");
+      log.info("Will output to channel: {}", properties().hipchatChannel());
+      return new Communicator(new HipChatStrategy(getHipChatClient(), properties().hipchatChannel()));
     }
+
+    log.info("No communication strategy configured, no notifications will be triggered");
+    return new Communicator(new NoCommsStrategy());
   }
 
   @Provides
   @Singleton
   public SlackApi getSlackClient() {
-    return new SlackApi(properties().communicationWebHook());
+    return new SlackApi(properties().slackUrl());
   }
 
   @Provides
@@ -64,9 +64,9 @@ public class GuiceModule extends AbstractModule {
   public HipChat getHipChatClient() {
     final HipChat chat;
     try {
-      chat = new HipChat(properties().communicationWebHook());
-    } catch(final FoxHttpException exception) {
-        throw new $yCommunicationException(exception);
+      chat = new HipChat(properties().hipchatAccessCode());
+    } catch (final FoxHttpException exception) {
+      throw new $yCommunicationException(exception);
     }
     return chat;
   }

@@ -177,40 +177,42 @@ public class MyModel implements Modelable {
 ```
 
 ### :triangular_flag_on_post: How can I configure a notification strategy?
-As of default, slack will output total test pass percentage, and names of tests which fail in real time.  This is easily configured by doing the following:
+Sylenium supports both `@Test` level notifications or Class level, both are configured using the `@Notify` annotation (see more below).
+The supported levels for communication strategy are `NONE, SLACK, HIPCHAT` respectfully.
+You should always use these with caution, especially on free slack instances with message caps and hipchat rate limiting is in place.
 
 - Go to your_team.slack.com/services/new
 - Search for incoming webHook and click in Add
 - Choose strategy to post and press add incoming webhooks integration
-- Set the webhook url in the framework property (@Default empty)
-- Set the slack notifications enabled framework property to true (@Default false)
+- Set the slack url framework property
+- Set the communication strategy property to `SLACK`
 - Both of these properties are required, they can be set at runtime using standard maven -Dslack.enabled etc
 
 Framework properties are found under `gui-tests/src/test/resources/framework.properties` or can be passed in at runtime.
 
 Hipchat cloud is also available very soon (@wip).  Please see the below setup for setting up and configuring hipchat:
 
-- A
-- B
-- C
+- Navigate to your rooms tokens page `/rooms/tokens/1234` <-- 1234 being a room number
+- Create a new token for `Send Notifications` only and provide a label name
+- Set the framework.properties file strategy to `HIPCHAT` and provide both channel and token in the appropriate fields
 
 Once you have configured either or (or both!) then you can simply enable any tests with @Notify for test information to be notified to the communication strategy.  This is managed by Syleniums TeamCommunicator object.  note: it is possible that it can output to both channels.  I would also be cautious of spam caused by this.
 
 There are a few different methods of configuration notifications. `@Notify` at the @Test level will work for every test with such annotation, however configuring the `@Notify` at the Test class level will notify for everything in that class itself.  Annotating both class and test level will take class level as priority.
 
+**note:** Sylenium does some checking based on configuration properties and if anything is not correct it will default to no strategy for communications.
+for example, a non valid URL for the slack url or an empty access token for hipchat will default immediately to a `NONE` communication strategy.
+
 ```java
-//class level notifications
 @Notify
 public class NotifyMyClass {}
 
-
-// test level notifications
 public class NotifyMyTest {
 
     @Test
     @Notify
     public void notifyTest() {
-    
+        //hello world
     }  
 }
 
