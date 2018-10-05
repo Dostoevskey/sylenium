@@ -181,8 +181,8 @@ public class MyModel implements Modelable {
 Sylenium supports both `@Test` level notifications or Class level, both are configured using the `@Notify` annotation (see more below).
 The supported levels for communication strategy are `NONE, SLACK, HIPCHAT` respectfully.
 You should always use these with caution, especially on free slack instances with message caps and hipchat rate limiting is in place.
-
-###Slack configuration :mortar-board:
+ 
+### Slack configuration :mortar-board:
 
 - Go to your_team.slack.com/services/new
 - Search for incoming webHook and click in Add
@@ -191,7 +191,7 @@ You should always use these with caution, especially on free slack instances wit
 - Set the communication strategy property to `SLACK`
 - Both of these properties are required, they can be set at runtime using standard maven -Dslack.enabled etc
 
-###Hipchat configuration :mortar-board:
+### Hipchat configuration :mortar-board:
 
 - Navigate to your rooms tokens page `/rooms/tokens/1234` <-- 1234 being a room number
 - Create a new token for `Send Notifications` only and provide a label name
