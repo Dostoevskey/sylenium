@@ -1,6 +1,6 @@
 package io.github.symonk.integrations.allure2;
 
-import io.github.symonk.configurations.properties.FrameworkProperties;
+import io.github.symonk.configurations.properties.SyleniumProperties;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.inject.Inject;
@@ -22,10 +22,10 @@ public class ReportHelper implements ReportInteractable {
   private static final String INVALID_ARGS = "provided arguments do not meet a valid test run, aborting the run";
   private static final String IO_EXCEPTION = "IO error occurred when generating or pushing the environment file";
 
-  private final FrameworkProperties properties;
+  private final SyleniumProperties properties;
 
   @Inject
-  public ReportHelper(final FrameworkProperties properties) {
+  public ReportHelper(final SyleniumProperties properties) {
     this.properties = properties;
   }
 

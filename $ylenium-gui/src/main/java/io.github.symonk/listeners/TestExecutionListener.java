@@ -6,7 +6,7 @@ import com.google.inject.Injector;
 import com.google.inject.Module;
 import io.github.symonk.integrations.allure2.ReportInteractable;
 import io.github.symonk.configurations.guice.GuiceModule;
-import io.github.symonk.configurations.properties.FrameworkProperties;
+import io.github.symonk.configurations.properties.SyleniumProperties;
 import io.github.symonk.integrations.communication.Communicator;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.ITestContext;
@@ -19,7 +19,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Slf4j
 public class TestExecutionListener implements ITestListener {
 
-  @Inject private FrameworkProperties properties;
+  @Inject private SyleniumProperties properties;
   @Inject private ReportInteractable reportHelper;
   @Inject private Communicator communicator;
 

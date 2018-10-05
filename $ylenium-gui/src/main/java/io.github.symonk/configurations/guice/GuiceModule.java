@@ -11,7 +11,7 @@ import io.github.symonk.common.helpers.localisation.LanguageHelper;
 import io.github.symonk.common.helpers.localisation.ProvidesLanguageValues;
 import io.github.symonk.integrations.allure2.ReportHelper;
 import io.github.symonk.integrations.allure2.ReportInteractable;
-import io.github.symonk.configurations.properties.FrameworkProperties;
+import io.github.symonk.configurations.properties.SyleniumProperties;
 import io.github.symonk.data.OrderProvidable;
 import io.github.symonk.data.PuppyOrderFactory;
 import io.github.symonk.integrations.communication.Communicator;
@@ -73,7 +73,7 @@ public class GuiceModule extends AbstractModule {
 
   @Provides
   @Singleton
-  public FrameworkProperties properties() {
-    return ConfigFactory.create(FrameworkProperties.class);
+  public SyleniumProperties properties() {
+    return ConfigFactory.create(SyleniumProperties.class);
   }
 }

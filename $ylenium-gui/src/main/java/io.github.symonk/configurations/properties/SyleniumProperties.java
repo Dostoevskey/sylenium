@@ -8,7 +8,7 @@ import java.util.Properties;
 
 @HotReload
 @Sources("classpath:framework.properties")
-public interface FrameworkProperties extends Config {
+public interface SyleniumProperties extends Config {
 
   /** General Framework Properties */
   @Key("base.url")
