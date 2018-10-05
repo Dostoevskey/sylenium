@@ -24,7 +24,7 @@ public class TestBaseTemplate {
   private static final String TEST_NAME = "test";
   private static final CustomListener listener = new CustomListener().withPageSource(true).withScreenshot(true).withTestLog(true);
 
-  protected final ProvidesLanguageValues languageHelper;
+  final ProvidesLanguageValues languageHelper;
 
   @Inject
   public TestBaseTemplate(final ProvidesLanguageValues languageHelper) {

@@ -1,10 +1,12 @@
 package io.github.symonk.configurations.guice;
 
+import ch.viascom.groundwork.foxhttp.exception.FoxHttpException;
+import ch.viascom.hipchat.api.HipChat;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
-import io.evanwong.oss.hipchat.v2.HipChatClient;
 import io.github.symonk.common.enumerations.CommunicationChannel;
+import io.github.symonk.common.exceptions.$yCommunicationException;
 import io.github.symonk.common.helpers.localisation.LanguageHelper;
 import io.github.symonk.common.helpers.localisation.ProvidesLanguageValues;
 import io.github.symonk.configurations.properties.FrameworkProperties;
@@ -49,8 +51,14 @@ public class GuiceModule extends AbstractModule {
 
   @Provides
   @Singleton
-  public HipChatClient getHipChatClient() {
-    return new HipChatClient(getProperties().communicationWebHook());
+  public HipChat getHipChatClient() {
+    final HipChat chat;
+    try {
+      chat = new HipChat(getProperties().communicationWebHook());
+    } catch(FoxHttpException exception) {
+        throw new $yCommunicationException(exception);
+    }
+    return chat;
   }
 
   @Provides
