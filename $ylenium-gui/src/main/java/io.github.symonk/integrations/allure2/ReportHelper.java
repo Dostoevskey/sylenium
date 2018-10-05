@@ -1,4 +1,4 @@
-package io.github.symonk.common.helpers.reporting;
+package io.github.symonk.integrations.allure2;
 
 import io.github.symonk.configurations.properties.FrameworkProperties;
 import lombok.extern.slf4j.Slf4j;
@@ -16,9 +16,7 @@ public class ReportHelper implements ReportInteractable {
 
   private static final String FILE_EXISTS = "environment.properties file already exists, deleting it";
   private static final String DUPLICATE_FILE_ERROR = "io error occurred when checking for duplicate files";
-  private static final String DEFAULT_TRAVIS_PATH = File.separator + "home" + File.separator + "travis" + File.separator + "build" + File.separator + "symonk" +
-          File.separator + "sylenium-framework" + File.separator + "gui-tests" + File.separator + "target" + File.separator +
-          "allure-results" + File.separator + "environment.properties";
+  private static final String DEFAULT_TRAVIS_PATH = File.separator + "home" + File.separator + "travis" + File.separator + "build" + File.separator + "symonk" + File.separator + "sylenium-framework" + File.separator + "gui-tests" + File.separator + "target" + File.separator + "allure-results" + File.separator + "environment.properties";
   private static final String DEFAULT_LOCAL_PATH = "target" + File.separator + "allure-results" + File.separator + "environment.properties";
   private static final String PROPERTIES_HEADER = "Generated runtime properties";
   private static final String INVALID_ARGS = "provided arguments do not meet a valid test run, aborting the run";

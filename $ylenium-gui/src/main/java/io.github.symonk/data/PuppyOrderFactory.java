@@ -2,7 +2,7 @@ package io.github.symonk.data;
 
 import io.github.symonk.common.enumerations.OrderOptions;
 import io.github.symonk.common.enumerations.Puppy;
-import io.github.symonk.domain.PuppyOrder;
+import io.github.symonk.models.PuppyOrder;
 
 public class PuppyOrderFactory implements OrderProvidable {
 

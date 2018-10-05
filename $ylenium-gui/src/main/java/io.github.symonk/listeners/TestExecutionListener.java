@@ -4,7 +4,7 @@ import com.codeborne.selenide.Configuration;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.google.inject.Module;
-import io.github.symonk.common.helpers.reporting.ReportInteractable;
+import io.github.symonk.integrations.allure2.ReportInteractable;
 import io.github.symonk.configurations.guice.GuiceModule;
 import io.github.symonk.configurations.properties.FrameworkProperties;
 import io.github.symonk.integrations.communication.Communicator;

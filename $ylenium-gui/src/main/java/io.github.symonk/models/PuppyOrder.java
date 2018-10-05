@@ -1,4 +1,4 @@
-package io.github.symonk.domain;
+package io.github.symonk.models;
 
 import io.github.symonk.common.annotations.Attachable;
 import io.github.symonk.common.enumerations.OrderOptions;
