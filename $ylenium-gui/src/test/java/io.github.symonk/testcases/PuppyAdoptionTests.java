@@ -23,11 +23,12 @@ import javax.inject.Inject;
 public class PuppyAdoptionTests extends TestBaseTemplate {
 
   private final OrderProvidable orderProvider;
+  private final PuppyAdoptionHomePage puppyAdoptionHomePage;
 
   @Inject
-  public PuppyAdoptionTests(
-      final ProvidesLanguageValues languageHelper, final OrderProvidable orderProvider) {
+  public PuppyAdoptionTests(final ProvidesLanguageValues languageHelper, final OrderProvidable orderProvider, final PuppyAdoptionHomePage puppyAdoptionHomePage) {
     super(languageHelper);
+    this.puppyAdoptionHomePage = puppyAdoptionHomePage;
     this.orderProvider = orderProvider;
   }
 
@@ -37,7 +38,7 @@ public class PuppyAdoptionTests extends TestBaseTemplate {
   @TmsLink("1")
   @Severity(SeverityLevel.CRITICAL)
   public void adoptingHannahWithoutAnyOptions() {
-    new PuppyAdoptionHomePage()
+    puppyAdoptionHomePage
         .openPage()
         .viewHannahDetails()
         .adoptPuppy()
@@ -53,7 +54,7 @@ public class PuppyAdoptionTests extends TestBaseTemplate {
   @Severity(SeverityLevel.CRITICAL)
   public void adoptingBrookWithAllOptions() {
     final PuppyOrder order = orderProvider.createRandomOrderWithAllOptions();
-    new PuppyAdoptionHomePage()
+    puppyAdoptionHomePage
         .openPage()
         .viewBrookDetails()
         .adoptPuppy()
@@ -69,7 +70,7 @@ public class PuppyAdoptionTests extends TestBaseTemplate {
   @Severity(SeverityLevel.CRITICAL)
   public void optionsAreCorrectlyBilled() {
     final PuppyOrder order = orderProvider.createRandomOrderWithAllOptions();
-    new PuppyAdoptionHomePage()
+    puppyAdoptionHomePage
         .openPage()
         .viewBrookDetails()
         .adoptPuppy()
