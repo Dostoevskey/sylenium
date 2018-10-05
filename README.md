@@ -5,7 +5,7 @@
 [![Linked In](https://img.shields.io/badge/Add%20Me%20On-LinkedIn-green.svg)](https://www.linkedin.com/in/simonk09/)
 [![Linked In](https://img.shields.io/badge/Join%20Me%20On-Slack-green.svg)](https://testersio.slack.com)
 
-## Sylenium-framework :flags: :star: :panda-face
+## Sylenium-framework :flags: :star: :panda-face:
 
 The aim of this project is simple, provide a powerful test automation harness for testing web applications with java.  Because test automation (especially) at the ui layer is plagued with bad practice
 I would like to start by outlining a few things of what **NOT** to use this harness for.  If such a license existed that would ban you from doing the following, I would apply it to this repository...
