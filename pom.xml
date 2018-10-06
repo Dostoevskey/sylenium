@@ -44,6 +44,7 @@
         <hipchat.client.version>2.1-RC3</hipchat.client.version>
         <apache.commons.validator.version>1.6</apache.commons.validator.version>
         <mockito.version>2.0.2-beta</mockito.version>
+        <spring.version>5.1.0-RELEASE</spring.version>
     </properties>
 
     <profiles>
@@ -79,6 +80,18 @@
     </profiles>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-aop -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>5.1.0.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.lightbody.bmp</groupId>
+            <artifactId>browsermob-core</artifactId>
+            <version>${browsermob.proxy.version}</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
         <dependency>
             <groupId>org.mockito</groupId>

@@ -16,8 +16,8 @@ import io.github.symonk.common.helpers.localisation.LanguageHelper;
 import io.github.symonk.common.helpers.localisation.ProvidesLanguageValues;
 import io.github.symonk.configurations.guice.aop.ModelMethodInterceptor;
 import io.github.symonk.configurations.guice.aop.NotifyInterceptor;
-import io.github.symonk.integrations.allure2.AllureAttacher;
-import io.github.symonk.integrations.allure2.ReportHelper;
+import io.github.symonk.integrations.allure2.AllureFileAttacher;
+import io.github.symonk.integrations.allure2.AllureHelper;
 import io.github.symonk.common.interfaces.ReportInteractable;
 import io.github.symonk.configurations.properties.SyleniumProperties;
 import io.github.symonk.common.interfaces.OrderProvidable;
@@ -38,15 +38,15 @@ public class GuiceModule extends AbstractModule {
   protected void configure() {
     bind(ProvidesLanguageValues.class).to(LanguageHelper.class).in(Singleton.class);
     bind(OrderProvidable.class).to(PuppyOrderFactory.class).in(Singleton.class);
-    bind(ReportInteractable.class).to(ReportHelper.class).in(Singleton.class);
+    bind(ReportInteractable.class).to(AllureHelper.class).in(Singleton.class);
     bindInterceptor(Matchers.any(), Matchers.annotatedWith(Attachable.class), new ModelMethodInterceptor(allure()));
     bindInterceptor(Matchers.any(), Matchers.annotatedWith(Notify.class), new NotifyInterceptor(communicator()));
   }
 
   @Provides
   @Singleton
-  public AllureAttacher allure() {
-    return new AllureAttacher(gson());
+  public AllureFileAttacher allure() {
+    return new AllureFileAttacher(gson());
   }
 
   @Provides

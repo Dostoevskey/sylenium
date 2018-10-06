@@ -13,7 +13,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 @Slf4j
-public class ReportHelper implements ReportInteractable {
+public class AllureHelper implements ReportInteractable {
 
   private static final String FILE_EXISTS = "environment.properties file already exists, deleting it";
   private static final String DUPLICATE_FILE_ERROR = "io error occurred when checking for duplicate files";
@@ -26,7 +26,7 @@ public class ReportHelper implements ReportInteractable {
   private final SyleniumProperties properties;
 
   @Inject
-  public ReportHelper(final SyleniumProperties properties) {
+  public AllureHelper(final SyleniumProperties properties) {
     this.properties = properties;
   }
 

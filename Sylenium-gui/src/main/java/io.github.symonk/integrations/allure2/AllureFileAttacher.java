@@ -9,14 +9,14 @@ import lombok.extern.slf4j.Slf4j;
 import javax.inject.Inject;
 
 @Slf4j
-public class AllureAttacher {
+public class AllureFileAttacher {
 
   private final Gson gson;
   private static final String DEFAULT = "default.json";
   private static final String JSON = "application/json";
 
   @Inject
-  public AllureAttacher(final Gson gson) {
+  public AllureFileAttacher(final Gson gson) {
     this.gson = gson;
   }
 
