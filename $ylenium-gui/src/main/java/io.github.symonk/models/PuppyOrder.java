@@ -1,9 +1,9 @@
-package io.github.symonk.domain;
+package io.github.symonk.models;
 
 import io.github.symonk.common.annotations.Attachable;
-import io.github.symonk.common.interfaces.Modelable;
 import io.github.symonk.common.enumerations.OrderOptions;
 import io.github.symonk.common.enumerations.Puppy;
+import io.github.symonk.common.interfaces.Modelable;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,7 +22,7 @@ public class PuppyOrder implements Modelable {
   private final Puppy dog;
   private final List<OrderOptions> listOfOrderItems;
 
-  private PuppyOrder(PuppyOrderBuilder builder) {
+  private PuppyOrder(final PuppyOrderBuilder builder) {
     this.dog = builder.dog;
     this.adopterName = builder.adopterName;
     this.adopterAddress = builder.adopterAddress;
@@ -49,7 +49,7 @@ public class PuppyOrder implements Modelable {
       this.dog = dog;
     }
 
-    public PuppyOrderBuilder addOptions(OrderOptions... options) {
+    public PuppyOrderBuilder addOptions(final OrderOptions... options) {
       Collections.addAll(listOfOrderItems, options);
       return this;
     }

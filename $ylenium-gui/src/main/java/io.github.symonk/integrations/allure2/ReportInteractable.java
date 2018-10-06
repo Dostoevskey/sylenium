@@ -1,4 +1,4 @@
-package io.github.symonk.common.helpers.reporting;
+package io.github.symonk.integrations.allure2;
 
 public interface ReportInteractable {
 

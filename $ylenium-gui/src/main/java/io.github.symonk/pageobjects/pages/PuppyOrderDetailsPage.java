@@ -1,7 +1,7 @@
 package io.github.symonk.pageobjects.pages;
 
 import com.codeborne.selenide.SelenideElement;
-import io.github.symonk.domain.PuppyOrder;
+import io.github.symonk.models.PuppyOrder;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 

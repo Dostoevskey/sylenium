@@ -11,10 +11,8 @@ import static com.codeborne.selenide.Selenide.$x;
 
 public class PuppyAdoptionHomePage {
 
-  private final SelenideElement BROOK_VIEW_DETAILS_BUTTON =
-      $x("//form[@action='/puppies/4']//input");
-  private final SelenideElement HANNA_VIEW_DETAILS_BUTTON =
-      $x("//form[@action='/puppies/3']//input");
+  private final SelenideElement BROOK_VIEW_DETAILS_BUTTON = $x("//form[@action='/puppies/4']//input");
+  private final SelenideElement HANNA_VIEW_DETAILS_BUTTON = $x("//form[@action='/puppies/3']//input");
   private final SelenideElement CUSTOMER_MESSAGE = $(By.id("notice"));
 
   @Step("Opening the puppy adoption home page")

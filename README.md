@@ -5,7 +5,7 @@
 [![Linked In](https://img.shields.io/badge/Add%20Me%20On-LinkedIn-green.svg)](https://www.linkedin.com/in/simonk09/)
 [![Linked In](https://img.shields.io/badge/Join%20Me%20On-Slack-green.svg)](https://testersio.slack.com)
 
-## Sylenium-framework :flags:
+## Sylenium-framework :flags: :star:
 
 The aim of this project is simple, provide a powerful test automation harness for testing web applications with java.  Because test automation (especially) at the ui layer is plagued with bad practice
 I would like to start by outlining a few things of what **NOT** to use this harness for.  If such a license existed that would ban you from doing the following, I would apply it to this repository...
@@ -86,7 +86,7 @@ and ofcourse, open PRs here
 
 ---
 
-# :triangular_flag_on_post: Framework stack
+# :earth_africa: Framework stack
 
 | Technology | Description | Link
 | ------------- | ------------- | -------------
@@ -107,7 +107,7 @@ and ofcourse, open PRs here
 | **Selenide** | Selenium wrapper | [@Selenide](http://http://selenide.org)
 
 
-# :triangular_flag_on_post: Getting started?
+# :earth_africa: Getting started?
 
 In order to get started you should clone this repository and remove all test(s) around the Puppy adoption webpage, we use this just to demonstrate the testing capabilities.
 Alternatively you can fork this repo and work from there.
@@ -128,11 +128,11 @@ Allure can be installed on mac using homebrew -> brew install allure or via down
 
 ---
 
-# :triangular_flag_on_post: Framework functionality?
+# :earth_africa: Framework functionality?
 This framework provides a serious amount of functionality right out of the box.
 
 ```
--> Driver and Page Factory free page objects
+-> Driver and Page Factory free page objects.
 -> Localisation support for multi lingual applications, simply use the localisation helper to read your values from .properties files.
 -> Powerful DSL powered by selenide to manage driver manipulation and powerful assertions.
 -> Robust test automation properties out of the box.
@@ -144,23 +144,25 @@ This framework provides a serious amount of functionality right out of the box.
 -> Multi threaded logging per test.
 -> 100% easily configurable settings for allure, properties, logging, webdriver management.
 -> Dependency injection capabilities powered by google Guice.
--> Wealth of custom helpers, exceptions and annotations.
+-> Wealth of helpers, exceptions, annotations and interfaces.
 -> Jira (cloud) integration to automatically manage test awareness (@wip).
--> Slack integration to automatically manage notifications (@wip).
--> Customised test failure data (stacktrace, screenshot, pagesource, logs) automatically in the report!
--> Capturing .har performance data using a proxy (BrowserMob) available at the flip of a switch!
+-> Slack integration to automatically manage notifications.
+-> Hipchat integration to automatically manage notifications.
+-> Customised test failure data (stacktrace, screenshot, pagesource, logs) automatically in the report.
+-> Capturing .har performance data using a proxy (BrowserMob) available at the flip of a switch.
 -> Selenide custom conditions and listeners.
--> Example tests and page objects to give you an example of how to get started
+-> Example tests and page objects to give you an example of how to get started.
 -> Easy out of the box element containers (Custom page objects like tables etc) powered by Selenide.
 -> Wired together for you, using maven.
 -> Supports 2 languages out of the box, with easy capabilities to add more.
--> Simple bat files to run locally straight away.
+-> Simple .bat files to run locally straight away. (Windows)
+-> Simple .sh files to run locally straight away. (Linux)
 -> Maven module for performance testing powered by Maven Jmeter.
 -> Maven module for api-testing, includes some example tests.
--> Easy serialization of test data into the report
+-> Easy serialization of test data into the report.
 ```
 
-### :triangular_flag_on_post: Managing your own models/test data objects in the report
+### :earth_africa: Managing your own models/test data objects in the report
 Attaching your test data to the report is extremely simple using sylenium.  Any class you deem to be a model should implement Modelable and include an annotation at the class level to specify the attachment name.  Finally call the model method and pass in the instance of itself.  A basic strategy would be to build your objects and call this function to serialize to pretty json and attach it to the report for easier debugging later.
 
 ```java
@@ -176,41 +178,42 @@ public class MyModel implements Modelable {
 }
 ```
 
-### :triangular_flag_on_post: How can I configure a notification channel?
-As of default, slack will output total test pass percentage, and names of tests which fail in real time.  This is easily configured by doing the following:
+### :earth_africa: How can I configure a communication strategy?
+Sylenium supports both `@Test` level notifications or Class level, both are configured using the `@Notify` annotation (see more below).
+The supported levels for communication strategy are `NONE, SLACK, HIPCHAT` respectfully.
+You should always use these with caution, especially on free slack instances with message caps and hipchat rate limiting is in place.
+ 
+### Slack configuration :star:
 
 - Go to your_team.slack.com/services/new
 - Search for incoming webHook and click in Add
-- Choose channel to post and press add incoming webhooks integration
-- Set the webhook url in the framework property (@Default empty)
-- Set the slack notifications enabled framework property to true (@Default false)
-- Both of these properties are required, they can be set at runtime using standard maven -Dslack.enabled etc
+- Choose strategy to post and press add incoming webhooks integration
+- Set the slack url framework property
+- Set the communication strategy property to `SLACK`
+- Both of these properties are required, they can be set at runtime using standard maven -Dcommunication.strategy=SLACK etc
 
-Framework properties are found under `gui-tests/src/test/resources/framework.properties` or can be passed in at runtime.
+### Hipchat configuration :star:
 
-Hipchat cloud is also available very soon (@wip).  Please see the below setup for setting up and configuring hipchat:
+- Navigate to your rooms tokens page `/rooms/tokens/1234` <-- 1234 being a room number
+- Create a new token for `Send Notifications` only and provide a label name
+- Set the framework.properties file strategy to `HIPCHAT` and provide both channel and token in the appropriate fields
 
-- A
-- B
-- C
+Once you have configured either or (or both!) then you can simply enable any tests with @Notify for test information to be notified to the communication strategy.  This is managed by Syleniums TeamCommunicator object.  note: it is possible that it can output to both channels.  I would also be cautious of spam caused by this.
 
-Once you have configured either or (or both!) then you can simply enable any tests with @Notify for test information to be notified to the communication channel.  This is managed by Syleniums TeamCommunicator object.  note: it is possible that it can output to both channels.  I would also be cautious of spam caused by this.
+**note:** Sylenium does some checking based on configuration properties and if anything is not correct it will default to no strategy for communications.
+for example, a non valid URL for the slack url or an empty access token for hipchat will default immediately to a `NONE` communication strategy.
 
-There are a few different methods of configuration notifications. `@Notify` at the @Test level will work for every test with such annotation, however configuring the `@Notify` at the Test class level will notify for everything in that class itself.  Annotating both class and test level will take class level as priority.
+There are a few different methods of configuration notifications. 
+`@Notify` is supported at the method level.  pass in any value you wish and the desired message will be sent to your communications channel.
+
 
 ```java
-//class level notifications
-@Notify
-public class NotifyMyClass {}
-
-
-// test level notifications
 public class NotifyMyTest {
 
     @Test
-    @Notify
+    @Notify(message = "Some cool message for the communications channel!")
     public void notifyTest() {
-    
+        //hello world
     }  
 }
 

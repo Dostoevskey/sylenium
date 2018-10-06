@@ -2,7 +2,7 @@ package io.github.symonk.pageobjects.pages;
 
 import com.codeborne.selenide.SelenideElement;
 import io.github.symonk.common.enumerations.OrderOptions;
-import io.github.symonk.domain.PuppyOrder;
+import io.github.symonk.models.PuppyOrder;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
@@ -39,7 +39,7 @@ public class PuppyCartPage {
   }
 
   private void selectAppropriateOptions(final PuppyOrder puppyOrder) {
-    for (OrderOptions option : puppyOrder.getListOfOrderItems()) {
+    for (final OrderOptions option : puppyOrder.getListOfOrderItems()) {
       if (option == OrderOptions.COLLAR) COLLAR_CHECKBOX.setSelected(true);
       if (option == OrderOptions.CHEW_TOY) TOY_CHECKBOX.setSelected(true);
       if (option == OrderOptions.TRAVEL_CARRIER) CARRIER_CHECKBOX.setSelected(true);

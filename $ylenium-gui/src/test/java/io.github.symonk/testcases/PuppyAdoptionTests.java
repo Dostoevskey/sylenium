@@ -3,8 +3,7 @@ package io.github.symonk.testcases;
 import io.github.symonk.common.helpers.localisation.ProvidesLanguageValues;
 import io.github.symonk.configurations.guice.GuiceModule;
 import io.github.symonk.data.OrderProvidable;
-import io.github.symonk.domain.PuppyOrder;
-import io.github.symonk.listeners.NotificationListener;
+import io.github.symonk.models.PuppyOrder;
 import io.github.symonk.listeners.TestExecutionListener;
 import io.github.symonk.pageobjects.pages.PuppyAdoptionHomePage;
 import io.qameta.allure.*;
@@ -20,14 +19,16 @@ import javax.inject.Inject;
 @Epic("Puppy Adoption Epic")
 @Feature("Puppy Adoption Process Feature")
 @Guice(modules = GuiceModule.class)
-@Listeners({TestExecutionListener.class, NotificationListener.class})
+@Listeners({TestExecutionListener.class})
 public class PuppyAdoptionTests extends TestBaseTemplate {
 
   private final OrderProvidable orderProvider;
+  private final PuppyAdoptionHomePage puppyAdoptionHomePage;
 
   @Inject
-  public PuppyAdoptionTests(final ProvidesLanguageValues languageHelper, final OrderProvidable orderProvider) {
+  public PuppyAdoptionTests(final ProvidesLanguageValues languageHelper, final OrderProvidable orderProvider, final PuppyAdoptionHomePage puppyAdoptionHomePage) {
     super(languageHelper);
+    this.puppyAdoptionHomePage = puppyAdoptionHomePage;
     this.orderProvider = orderProvider;
   }
 
@@ -37,7 +38,7 @@ public class PuppyAdoptionTests extends TestBaseTemplate {
   @TmsLink("1")
   @Severity(SeverityLevel.CRITICAL)
   public void adoptingHannahWithoutAnyOptions() {
-    new PuppyAdoptionHomePage()
+    puppyAdoptionHomePage
         .openPage()
         .viewHannahDetails()
         .adoptPuppy()
@@ -53,7 +54,7 @@ public class PuppyAdoptionTests extends TestBaseTemplate {
   @Severity(SeverityLevel.CRITICAL)
   public void adoptingBrookWithAllOptions() {
     final PuppyOrder order = orderProvider.createRandomOrderWithAllOptions();
-    new PuppyAdoptionHomePage()
+    puppyAdoptionHomePage
         .openPage()
         .viewBrookDetails()
         .adoptPuppy()
@@ -69,7 +70,7 @@ public class PuppyAdoptionTests extends TestBaseTemplate {
   @Severity(SeverityLevel.CRITICAL)
   public void optionsAreCorrectlyBilled() {
     final PuppyOrder order = orderProvider.createRandomOrderWithAllOptions();
-    new PuppyAdoptionHomePage()
+    puppyAdoptionHomePage
         .openPage()
         .viewBrookDetails()
         .adoptPuppy()

@@ -8,7 +8,7 @@ import java.util.Properties;
 
 @HotReload
 @Sources("classpath:framework.properties")
-public interface FrameworkProperties extends Config {
+public interface SyleniumProperties extends Config {
 
   /** General Framework Properties */
   @Key("base.url")
@@ -62,12 +62,19 @@ public interface FrameworkProperties extends Config {
   @DefaultValue("false")
   boolean isThisRunningOnTravis();
 
-  @Key("slack.enabled")
-  @DefaultValue("false")
-  boolean isSlackEnabled();
+  @Key("communication.strategy")
+  @DefaultValue("NONE")
+  String communicationStrategy();
 
-  @Key("slack.webhook.endpoint")
-  String slackWebhookEndpoint();
+  @Key("slack.url")
+  @DefaultValue("NONE")
+  String slackUrl();
+
+  @Key("hipchat.access.code")
+  String hipchatAccessCode();
+
+  @Key("hipchat.channel")
+  String hipchatChannel();
 
   @Key("testrail.endpoint")
   String testrailEndpoint();
@@ -97,8 +104,10 @@ public interface FrameworkProperties extends Config {
         setProperty("number.of.retries", String.valueOf(numberOfFailRetries()));
         setProperty("use.browsermob.proxy?", String.valueOf(useBrowserMobProxy()));
         setProperty("running.on.travis?", String.valueOf(isThisRunningOnTravis()));
-        setProperty("slack.enabled", String.valueOf(isSlackEnabled()));
-        setProperty("slack.webhook.endpoint", slackWebhookEndpoint());
+        setProperty("communication.strategy", communicationStrategy());
+        setProperty("slack.url", slackUrl());
+        setProperty("hipchat.access.code", hipchatAccessCode());
+        setProperty("hipchat.channel", hipchatChannel());
         setProperty("testrail.endpoint", testrailEndpoint());
         setProperty("testrail.username", testRailUsername());
         setProperty("testrail.password", testRailPassword());
