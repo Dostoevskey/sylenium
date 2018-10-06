@@ -9,9 +9,9 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>$ylenium-api</module>
-        <module>$ylenium-gui</module>
-        <module>$ylenium-performance</module>
+        <module>Sylenium-api</module>
+        <module>Sylenium-gui</module>
+        <module>Sylenium-performance</module>
     </modules>
 
     <properties>
@@ -53,27 +53,27 @@
             </activation>
             <id>default</id>
             <modules>
-                <module>$ylenium-gui</module>
-                <module>$ylenium-api</module>
-                <module>$ylenium-performance</module>
+                <module>Sylenium-gui</module>
+                <module>Sylenium-api</module>
+                <module>Sylenium-performance</module>
             </modules>
         </profile>
         <profile>
             <id>api-tests</id>
             <modules>
-                <module>$ylenium-api</module>
+                <module>Sylenium-api</module>
             </modules>
         </profile>
         <profile>
             <id>gui-tests</id>
             <modules>
-                <module>$ylenium-gui</module>
+                <module>Sylenium-gui</module>
             </modules>
         </profile>
         <profile>
             <id>performance-tests</id>
             <modules>
-                <module>$ylenium-performance</module>
+                <module>Sylenium-performance</module>
             </modules>
         </profile>
     </profiles>
