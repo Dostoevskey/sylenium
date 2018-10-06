@@ -132,7 +132,7 @@ Allure can be installed on mac using homebrew -> brew install allure or via down
 This framework provides a serious amount of functionality right out of the box.
 
 ```
--> Driver and Page Factory free page objects
+-> Driver and Page Factory free page objects.
 -> Localisation support for multi lingual applications, simply use the localisation helper to read your values from .properties files.
 -> Powerful DSL powered by selenide to manage driver manipulation and powerful assertions.
 -> Robust test automation properties out of the box.
@@ -144,21 +144,22 @@ This framework provides a serious amount of functionality right out of the box.
 -> Multi threaded logging per test.
 -> 100% easily configurable settings for allure, properties, logging, webdriver management.
 -> Dependency injection capabilities powered by google Guice.
--> Wealth of custom helpers, exceptions and annotations.
+-> Wealth of helpers, exceptions, annotations and interfaces.
 -> Jira (cloud) integration to automatically manage test awareness (@wip).
--> Slack integration to automatically manage notifications
--> Hipchat integration to automatically manage notifications
--> Customised test failure data (stacktrace, screenshot, pagesource, logs) automatically in the report!
--> Capturing .har performance data using a proxy (BrowserMob) available at the flip of a switch!
+-> Slack integration to automatically manage notifications.
+-> Hipchat integration to automatically manage notifications.
+-> Customised test failure data (stacktrace, screenshot, pagesource, logs) automatically in the report.
+-> Capturing .har performance data using a proxy (BrowserMob) available at the flip of a switch.
 -> Selenide custom conditions and listeners.
--> Example tests and page objects to give you an example of how to get started
+-> Example tests and page objects to give you an example of how to get started.
 -> Easy out of the box element containers (Custom page objects like tables etc) powered by Selenide.
 -> Wired together for you, using maven.
 -> Supports 2 languages out of the box, with easy capabilities to add more.
--> Simple bat files to run locally straight away.
+-> Simple .bat files to run locally straight away. (Windows)
+-> Simple .sh files to run locally straight away. (Linux)
 -> Maven module for performance testing powered by Maven Jmeter.
 -> Maven module for api-testing, includes some example tests.
--> Easy serialization of test data into the report
+-> Easy serialization of test data into the report.
 ```
 
 ### :earth_africa: Managing your own models/test data objects in the report
@@ -199,19 +200,18 @@ You should always use these with caution, especially on free slack instances wit
 
 Once you have configured either or (or both!) then you can simply enable any tests with @Notify for test information to be notified to the communication strategy.  This is managed by Syleniums TeamCommunicator object.  note: it is possible that it can output to both channels.  I would also be cautious of spam caused by this.
 
-There are a few different methods of configuration notifications. `@Notify` at the @Test level will work for every test with such annotation, however configuring the `@Notify` at the Test class level will notify for everything in that class itself.  Annotating both class and test level will take class level as priority.
-
 **note:** Sylenium does some checking based on configuration properties and if anything is not correct it will default to no strategy for communications.
 for example, a non valid URL for the slack url or an empty access token for hipchat will default immediately to a `NONE` communication strategy.
 
-```java
-@Notify
-public class NotifyMyClass {}
+There are a few different methods of configuration notifications. 
+`@Notify` is supported at the method level.  pass in any value you wish and the desired message will be sent to your communications channel.
 
+
+```java
 public class NotifyMyTest {
 
     @Test
-    @Notify
+    @Notify(message = "Some cool message for the communications channel!")
     public void notifyTest() {
         //hello world
     }  
