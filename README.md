@@ -179,7 +179,7 @@ public class MyModel {
 ```
 **Want a dynamic model name at runtime?**
 ```java
-@Attachable(name = PuppyModel.json) <-- overridden by overloaded addAttachment method
+@Attachable(name = PuppyModel.json) //<-- overridden by overloaded addAttachment method
 public class MyModel {
 
     private final String mySomething;
