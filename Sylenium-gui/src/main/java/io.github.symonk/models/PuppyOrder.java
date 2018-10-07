@@ -1,9 +1,9 @@
 package io.github.symonk.models;
 
+import io.github.symonk.Sylenium;
 import io.github.symonk.common.annotations.Attachable;
 import io.github.symonk.common.enumerations.OrderOptions;
 import io.github.symonk.common.enumerations.Puppy;
-import io.github.symonk.common.interfaces.Modelable;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
@@ -13,6 +13,7 @@ import java.util.List;
 
 @Slf4j
 @Data
+@Attachable(name = "PuppyOrder.json")
 public class PuppyOrder {
 
   private final String adopterName;
@@ -21,13 +22,13 @@ public class PuppyOrder {
   private final Puppy dog;
   private final List<OrderOptions> listOfOrderItems;
 
-  @Attachable(name = "PuppyOrder.json")
   private PuppyOrder(final PuppyOrderBuilder builder) {
     this.dog = builder.dog;
     this.adopterName = builder.adopterName;
     this.adopterAddress = builder.adopterAddress;
     this.adopterEmail = builder.adopterEmail;
     this.listOfOrderItems = builder.listOfOrderItems;
+    Sylenium.attachModel(this);
   }
 
   public static class PuppyOrderBuilder {

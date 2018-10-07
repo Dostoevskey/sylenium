@@ -8,16 +8,14 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
 import com.google.inject.matcher.Matchers;
-import io.github.symonk.common.annotations.Attachable;
+import com.google.inject.name.Named;
 import io.github.symonk.common.annotations.Notify;
 import io.github.symonk.common.enumerations.CommunicationChannel;
 import io.github.symonk.common.exceptions.SyleniumCommunicationException;
 import io.github.symonk.common.helpers.localisation.LanguageHelper;
 import io.github.symonk.common.helpers.localisation.ProvidesLanguageValues;
-import io.github.symonk.configurations.guice.aop.ModelMethodInterceptor;
 import io.github.symonk.configurations.guice.aop.NotifyInterceptor;
-import io.github.symonk.integrations.allure2.AllureFileAttacher;
-import io.github.symonk.integrations.allure2.AllureHelper;
+import io.github.symonk.integrations.allure2.ReportHelper;
 import io.github.symonk.common.interfaces.ReportInteractable;
 import io.github.symonk.configurations.properties.SyleniumProperties;
 import io.github.symonk.common.interfaces.OrderProvidable;
@@ -38,21 +36,8 @@ public class GuiceModule extends AbstractModule {
   protected void configure() {
     bind(ProvidesLanguageValues.class).to(LanguageHelper.class).in(Singleton.class);
     bind(OrderProvidable.class).to(PuppyOrderFactory.class).in(Singleton.class);
-    bind(ReportInteractable.class).to(AllureHelper.class).in(Singleton.class);
-    bindInterceptor(Matchers.any(), Matchers.annotatedWith(Attachable.class), new ModelMethodInterceptor(allure()));
+    bind(ReportInteractable.class).to(ReportHelper.class).in(Singleton.class);
     bindInterceptor(Matchers.any(), Matchers.annotatedWith(Notify.class), new NotifyInterceptor(communicator()));
-  }
-
-  @Provides
-  @Singleton
-  public AllureFileAttacher allure() {
-    return new AllureFileAttacher(gson());
-  }
-
-  @Provides
-  @Singleton
-  public Gson gson() {
-    return new GsonBuilder().setPrettyPrinting().create();
   }
 
   @Provides
