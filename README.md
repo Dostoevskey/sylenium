@@ -106,6 +106,7 @@ and ofcourse, open PRs here
 | **Owner** | Properties management | [@Owner](http://owner.aeonbits.org/)
 | **Selenide** | Selenium wrapper | [@Selenide](http://http://selenide.org)
 
+---
 
 # :earth_africa: Getting started?
 
@@ -162,6 +163,8 @@ This framework provides a serious amount of functionality right out of the box.
 -> Easy serialization of test data into the report.
 ```
 
+---
+
 ### :earth_africa: Managing your own models/test data objects in the report
 Attach any object in pretty json format easily with Sylenium! simply tell Sylenium to add your attachment and pass in your object instance! :) 
 
@@ -190,6 +193,8 @@ public class MyModel {
     }
 }
 ```
+
+---
 
 ### :earth_africa: How can I configure a communication strategy?
 Sylenium supports both `@Test` level notifications or Class level, both are configured using the `@Notify` annotation (see more below).
@@ -229,5 +234,10 @@ public class NotifyMyTest {
         //hello world
     }  
 }
+```
+
+---
+
+
 
 
