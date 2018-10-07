@@ -2,24 +2,21 @@ package io.github.symonk.configurations.guice;
 
 import ch.viascom.groundwork.foxhttp.exception.FoxHttpException;
 import ch.viascom.hipchat.api.HipChat;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
 import com.google.inject.matcher.Matchers;
-import com.google.inject.name.Named;
 import io.github.symonk.common.annotations.Notify;
 import io.github.symonk.common.enumerations.CommunicationChannel;
 import io.github.symonk.common.exceptions.SyleniumCommunicationException;
 import io.github.symonk.common.helpers.localisation.LanguageHelper;
 import io.github.symonk.common.helpers.localisation.ProvidesLanguageValues;
-import io.github.symonk.configurations.guice.aop.NotifyInterceptor;
-import io.github.symonk.integrations.allure2.ReportHelper;
-import io.github.symonk.common.interfaces.ReportInteractable;
-import io.github.symonk.configurations.properties.SyleniumProperties;
 import io.github.symonk.common.interfaces.OrderProvidable;
+import io.github.symonk.common.interfaces.ReportInteractable;
+import io.github.symonk.configurations.guice.aop.NotifyInterceptor;
+import io.github.symonk.configurations.properties.SyleniumProperties;
 import io.github.symonk.data.PuppyOrderFactory;
+import io.github.symonk.integrations.allure2.AllureHelper;
 import io.github.symonk.integrations.communication.Communicator;
 import io.github.symonk.integrations.communication.HipChatStrategy;
 import io.github.symonk.integrations.communication.NoChatStrategy;
@@ -36,7 +33,7 @@ public class GuiceModule extends AbstractModule {
   protected void configure() {
     bind(ProvidesLanguageValues.class).to(LanguageHelper.class).in(Singleton.class);
     bind(OrderProvidable.class).to(PuppyOrderFactory.class).in(Singleton.class);
-    bind(ReportInteractable.class).to(ReportHelper.class).in(Singleton.class);
+    bind(ReportInteractable.class).to(AllureHelper.class).in(Singleton.class);
     bindInterceptor(Matchers.any(), Matchers.annotatedWith(Notify.class), new NotifyInterceptor(communicator()));
   }
 

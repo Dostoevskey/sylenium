@@ -177,6 +177,19 @@ public class MyModel {
     }
 }
 ```
+**Want a dynamic model name at runtime?**
+``````
+@Attachable(name = PuppyModel.json) <-- overridden by overloaded addAttachment method
+public class MyModel {
+
+    private final String mySomething;
+    
+    public myModel(final String something) {
+        mySomething = something;
+        Sylenium.addAttachment(this, "someDynamicName");
+    }
+}
+```
 
 ### :earth_africa: How can I configure a communication strategy?
 Sylenium supports both `@Test` level notifications or Class level, both are configured using the `@Notify` annotation (see more below).
