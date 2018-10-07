@@ -163,17 +163,17 @@ This framework provides a serious amount of functionality right out of the box.
 ```
 
 ### :earth_africa: Managing your own models/test data objects in the report
-Attaching your test data to the report is extremely simple using sylenium.  Any class you deem to be a model should implement Modelable and include an annotation at the class level to specify the attachment name.  Finally call the model method and pass in the instance of itself.  A basic strategy would be to build your objects and call this function to serialize to pretty json and attach it to the report for easier debugging later.
+Attach any object in pretty json format easily with Sylenium! simply tell Sylenium to add your attachment and pass in your object instance! :) 
 
 ```java
 @Attachable(name = PuppyModel.json)
-public class MyModel implements Modelable {
+public class MyModel {
 
     private final String mySomething;
     
     public myModel(final String something) {
         mySomething = something;
-        model(this);
+        Sylenium.addAttachment(this);
     }
 }
 ```
