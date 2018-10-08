@@ -80,6 +80,11 @@
     </profiles>
 
     <dependencies>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-rest-assured -->
         <dependency>
             <groupId>io.qameta.allure</groupId>
