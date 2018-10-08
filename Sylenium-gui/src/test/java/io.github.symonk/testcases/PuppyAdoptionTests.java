@@ -1,5 +1,6 @@
 package io.github.symonk.testcases;
 
+import com.codeborne.selenide.Selenide;
 import io.github.symonk.common.helpers.localisation.ProvidesLanguageValues;
 import io.github.symonk.configurations.guice.GuiceModule;
 import io.github.symonk.common.interfaces.OrderProvidable;
@@ -15,6 +16,8 @@ import org.testng.annotations.Test;
 
 import javax.inject.Inject;
 
+import static com.codeborne.selenide.Selenide.open;
+
 @Slf4j
 @Epic("Puppy Adoption Epic")
 @Feature("Puppy Adoption Process Feature")
@@ -23,12 +26,10 @@ import javax.inject.Inject;
 public class PuppyAdoptionTests extends TestBaseTemplate {
 
   private final OrderProvidable orderProvider;
-  private final PuppyAdoptionHomePage puppyAdoptionHomePage;
 
   @Inject
-  public PuppyAdoptionTests(final ProvidesLanguageValues languageHelper, final OrderProvidable orderProvider, final PuppyAdoptionHomePage puppyAdoptionHomePage) {
+  public PuppyAdoptionTests(final ProvidesLanguageValues languageHelper, final OrderProvidable orderProvider) {
     super(languageHelper);
-    this.puppyAdoptionHomePage = puppyAdoptionHomePage;
     this.orderProvider = orderProvider;
   }
 
@@ -38,8 +39,7 @@ public class PuppyAdoptionTests extends TestBaseTemplate {
   @TmsLink("1")
   @Severity(SeverityLevel.CRITICAL)
   public void adoptingHannahWithoutAnyOptions() {
-    puppyAdoptionHomePage
-        .openPage()
+         open("http://puppies.herokuapp.com/", PuppyAdoptionHomePage.class)
         .viewHannahDetails()
         .adoptPuppy()
         .completeTheAdoption()
@@ -54,8 +54,7 @@ public class PuppyAdoptionTests extends TestBaseTemplate {
   @Severity(SeverityLevel.CRITICAL)
   public void adoptingBrookWithAllOptions() {
     final PuppyOrder order = orderProvider.createRandomOrderWithAllOptions();
-    puppyAdoptionHomePage
-        .openPage()
+        open("http://puppies.herokuapp.com/", PuppyAdoptionHomePage.class)
         .viewBrookDetails()
         .adoptPuppy()
         .completeTheAdoption(order)
@@ -70,8 +69,7 @@ public class PuppyAdoptionTests extends TestBaseTemplate {
   @Severity(SeverityLevel.CRITICAL)
   public void optionsAreCorrectlyBilled() {
     final PuppyOrder order = orderProvider.createRandomOrderWithAllOptions();
-    puppyAdoptionHomePage
-        .openPage()
+         open("http://puppies.herokuapp.com/", PuppyAdoptionHomePage.class)
         .viewBrookDetails()
         .adoptPuppy()
         .orderPriceForAllItemsIsCorrect(
