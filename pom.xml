@@ -12,6 +12,7 @@
         <module>Sylenium-api</module>
         <module>Sylenium-gui</module>
         <module>Sylenium-performance</module>
+        <module>common</module>
     </modules>
 
     <properties>
