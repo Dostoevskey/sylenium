@@ -238,6 +238,30 @@ public class NotifyMyTest {
 }
 ```
 
+
+### Zephyr Jira Integration (Jira Cloud only)
+
+Sylenium supports zephyr integration right out of the box, all you need to do is configure a few framework properties in your respective module.
+Using `@TmsLink` annotations on the test cases makes it super easy, these should be a mapping to zephyr test case ids.
+Enable zephyr configurations in the properties and configure example tests like so:
+
+```java
+  @Test(description = "Hannah can be adopted")
+  @Story("As a customer, I can adopt Hannah without any options")
+  @Issue("ISS-001")
+  @TmsLink("1")
+  @Severity(SeverityLevel.CRITICAL)
+  public void adoptingHannahWithoutAnyOptions() {
+         open("http://puppies.herokuapp.com/", PuppyAdoptionHomePage.class)
+        .viewHannahDetails()
+        .adoptPuppy()
+        .completeTheAdoption()
+        .fillInOrderDetails(orderProvider.createRandomOrder())
+        .messageIsDisplayed(languageHelper.getResource("successful.adoption.message"));
+  }
+
+```
+
 ---
 
 ### Attributions! :star:
