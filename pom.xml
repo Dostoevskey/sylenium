@@ -58,6 +58,7 @@
                 <module>Sylenium-gui</module>
                 <module>Sylenium-api</module>
                 <module>Sylenium-performance</module>
+                <module>Sylenium-common</module>
             </modules>
         </profile>
         <profile>
@@ -76,6 +77,12 @@
             <id>performance-tests</id>
             <modules>
                 <module>Sylenium-performance</module>
+            </modules>
+        </profile>
+        <profile>
+            <id>common</id>
+            <modules>
+                <module>Sylenium-common</module>
             </modules>
         </profile>
     </profiles>
