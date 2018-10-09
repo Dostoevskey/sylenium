@@ -249,7 +249,7 @@ Enable zephyr configurations in the properties and configure example tests like 
   @Test(description = "Hannah can be adopted")
   @Story("As a customer, I can adopt Hannah without any options")
   @Issue("ISS-001")
-  @TmsLink("1")
+  @TmsLink("1") // <-- like so :)
   @Severity(SeverityLevel.CRITICAL)
   public void adoptingHannahWithoutAnyOptions() {
          open("http://puppies.herokuapp.com/", PuppyAdoptionHomePage.class)
