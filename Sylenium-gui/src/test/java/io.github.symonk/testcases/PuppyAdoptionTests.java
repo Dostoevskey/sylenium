@@ -1,11 +1,10 @@
 package io.github.symonk.testcases;
 
-import com.codeborne.selenide.Selenide;
 import io.github.symonk.common.helpers.localisation.ProvidesLanguageValues;
-import io.github.symonk.configurations.guice.GuiceModule;
 import io.github.symonk.common.interfaces.OrderProvidable;
-import io.github.symonk.models.PuppyOrder;
+import io.github.symonk.configurations.guice.GuiceModule;
 import io.github.symonk.listeners.TestExecutionListener;
+import io.github.symonk.models.PuppyOrder;
 import io.github.symonk.pageobjects.pages.PuppyAdoptionHomePage;
 import io.qameta.allure.*;
 import lombok.extern.slf4j.Slf4j;

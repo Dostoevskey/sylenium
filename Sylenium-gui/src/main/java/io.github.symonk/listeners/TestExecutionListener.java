@@ -13,7 +13,12 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Slf4j
@@ -30,6 +35,16 @@ public class TestExecutionListener implements ITestListener {
   @Override
   public void onTestStart(final ITestResult iTestResult) {
     communicate(String.format("Starting test: %s", iTestResult.getName()));
+    try (BufferedReader br = new BufferedReader(new FileReader(new File(Objects.requireNonNull(getClass().getClassLoader().getResource("ascii.txt")).getFile())))) {
+      String line;
+      System.out.println("\n*******************************************************");
+      while ((line = br.readLine()) != null) {
+        System.out.println(line);
+      }
+      System.out.println("******************************************************** \n");
+    } catch (IOException e) {
+      log.error("Ascii file cannot be found, continuing without it");
+    }
   }
 
   @Override
@@ -76,7 +91,7 @@ public class TestExecutionListener implements ITestListener {
   }
 
   private void configureTestRun() {
-   communicate("Configuring the test run");
+    communicate("Configuring the test run");
     Configuration.browser = properties.selenideBrowser();
     if (properties.useSeleniumGrid()) {
       Configuration.remote = properties.seleniumGridEndpoint();
