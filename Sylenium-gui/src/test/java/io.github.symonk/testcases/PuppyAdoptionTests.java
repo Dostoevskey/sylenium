@@ -35,7 +35,7 @@ public class PuppyAdoptionTests extends TestBaseTemplate {
   @Test(description = "Hannah can be adopted")
   @Story("As a customer, I can adopt Hannah without any options")
   @Issue("ISS-001")
-  @TmsLink("1")
+  @TmsLink("SYL-1")
   @Severity(SeverityLevel.CRITICAL)
   public void adoptingHannahWithoutAnyOptions() {
          open("http://puppies.herokuapp.com/", PuppyAdoptionHomePage.class)
@@ -49,7 +49,7 @@ public class PuppyAdoptionTests extends TestBaseTemplate {
   @Test(description = "Brook can be adopted")
   @Story("As a customer, I can adopt Brook including all options")
   @Issue("ISS-002")
-  @TmsLink("2")
+  @TmsLink("SYL-2")
   @Severity(SeverityLevel.CRITICAL)
   public void adoptingBrookWithAllOptions() {
     final PuppyOrder order = orderProvider.createRandomOrderWithAllOptions();
@@ -64,7 +64,7 @@ public class PuppyAdoptionTests extends TestBaseTemplate {
   @Test(description = "Cart reflects correct pricing for all options")
   @Story("As a customer, I am billed correctly for my options")
   @Issue("ISS-003")
-  @TmsLink("3")
+  @TmsLink("SYL-3")
   @Severity(SeverityLevel.CRITICAL)
   public void optionsAreCorrectlyBilled() {
     final PuppyOrder order = orderProvider.createRandomOrderWithAllOptions();
