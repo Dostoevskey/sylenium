@@ -1,3 +1,5 @@
+![](/.github/.images/sylenium.png)
+
 [![Build Status](https://api.travis-ci.org/symonk/sylenium.svg?branch=master)](https://travis-ci.org/symonk/sylenium)
 [![MIT License](http://img.shields.io/badge/license-MIT-green.svg)](https://github.com/symonk/selenide-testng-allure2-test-automation-framework/blob/master/LICENSE)
 ![Free](https://img.shields.io/badge/free-open--source-green.svg)
@@ -238,6 +240,9 @@ public class NotifyMyTest {
 
 ---
 
+### Attributions! :star:
 
+Here are all the great freebie / open-source things I have used as part of building $ylenium.  A massive thanks to the following:
 
+- https://www.designevo.com (cool logos creator)
 
