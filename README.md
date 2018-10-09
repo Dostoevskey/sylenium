@@ -245,6 +245,8 @@ Sylenium supports zephyr integration right out of the box, all you need to do is
 Using `@TmsLink` annotations on the test cases makes it super easy, these should be a mapping to zephyr test case ids.
 Enable zephyr configurations in the properties and configure example tests like so:
 
+**note:** Jira cloud does not support zephyr tests for modern agile projects.  Old style kanban etc works perfectly.
+
 ```java
   @Test(description = "Hannah can be adopted")
   @Story("As a customer, I can adopt Hannah without any options")
