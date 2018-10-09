@@ -237,7 +237,7 @@ public class NotifyMyTest {
     }  
 }
 ```
-
+---
 
 ### Zephyr Jira Integration (Jira Cloud only)
 
