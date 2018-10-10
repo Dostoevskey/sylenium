@@ -259,10 +259,59 @@ Enable zephyr configurations in the properties and configure example tests like 
         .adoptPuppy()
         .completeTheAdoption()
         .fillInOrderDetails(orderProvider.createRandomOrder())
-        .messageIsDisplayed(languageHelper.getResource("successful.adoption.message"));
+        .messageIsDisplayed("successful.adoption.message"));
   }
 
 ```
+
+---
+
+### Localisation In Your Tests
+
+We all know that using LinkText explicitly or using hard coded strings for ui tests that may change under a difference language are flaky and none to break.  Any time you need a localised value in your tests
+Sylenium comes straight to the rescue.  Marking a test with @RequiresLocalisation will provide you with a simple way in your tests to get localised values.
+These are determined by your framework properties at runtime for language(s).  For example:
+
+```java
+  @Test(description = "Hannah can be adopted")
+  @Story("As a customer, I can adopt Hannah without any options")
+  @Issue("ISS-001")
+  @TmsLink("1")
+  @Severity(SeverityLevel.CRITICAL)
+  @RequiresLocalisation
+  public void adoptingHannahWithoutAnyOptions() {
+         open("http://puppies.herokuapp.com/", PuppyAdoptionHomePage.class)
+        .viewHannahDetails()
+        .adoptPuppy()
+        .completeTheAdoption()
+        .fillInOrderDetails(orderProvider.createRandomOrder())
+        .messageIsDisplayed(languageHelper.getResource("successful.adoption.message"));
+  }
+ ```
+
+---
+
+### Unix SSH command support
+
+Sylenium now boasts the ability to connect via ssh and issue unix commands on a remote system, returning you the value.  We support a variant of commands
+out of the box, but its easy to make your own.  Simply implement Command and using AOP we will put all the commands into the system for use!
+
+```java
+    @Slf4j
+    public class Ls implements Command<String[]> {
+
+        private final SyUnix syUnix;
+
+        @Inject
+        public Ls(final SyUnix syUnix) {
+            this.syUnix = syUnix;
+        }
+
+        @Override
+        public String[] execute(SyUnix syUnix) throws IOException {
+            return this.execute(syUnix);
+        }
+    }```
 
 ---
 
