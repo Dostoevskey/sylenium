@@ -1,6 +1,6 @@
-package io.symonk.github.Syunix;
+package io.symonk.github.integration.Syunix;
 
-import io.symonk.github.Syunix.commands.Ls;
+import io.symonk.github.integration.Syunix.commands.Ls;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;

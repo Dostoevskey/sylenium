@@ -1,4 +1,4 @@
-package io.symonk.github.Syunix;
+package io.symonk.github.integration.Syunix;
 
 
 import java.io.IOException;

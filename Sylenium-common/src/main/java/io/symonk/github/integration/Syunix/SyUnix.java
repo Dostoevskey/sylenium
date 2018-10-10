@@ -1,4 +1,4 @@
-package io.symonk.github.Syunix;
+package io.symonk.github.integration.Syunix;
 
 import com.google.inject.Inject;
 import com.jcraft.jsch.JSch;

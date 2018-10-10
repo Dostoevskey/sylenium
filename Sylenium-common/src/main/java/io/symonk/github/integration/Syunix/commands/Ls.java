@@ -1,7 +1,7 @@
-package io.symonk.github.Syunix.commands;
+package io.symonk.github.integration.Syunix.commands;
 
-import io.symonk.github.Syunix.Command;
-import io.symonk.github.Syunix.SyUnix;
+import io.symonk.github.integration.Syunix.Command;
+import io.symonk.github.integration.Syunix.SyUnix;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.inject.Inject;
