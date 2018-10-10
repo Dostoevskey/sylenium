@@ -239,7 +239,7 @@ public class NotifyMyTest {
 ```
 ---
 
-### :star Zephyr Jira Integration (Jira Cloud only)
+### :star: Zephyr Jira Integration (Jira Cloud only)
 
 Sylenium supports zephyr integration right out of the box, all you need to do is configure a few framework properties in your respective module.
 Using `@TmsLink` annotations on the test cases makes it super easy, these should be a mapping to zephyr test case ids.
