@@ -46,6 +46,7 @@
         <apache.commons.validator.version>1.6</apache.commons.validator.version>
         <mockito.version>2.0.2-beta</mockito.version>
         <spring.version>5.1.0-RELEASE</spring.version>
+        <java.ssh.version>0.1.54</java.ssh.version>
     </properties>
 
     <profiles>
@@ -88,6 +89,13 @@
     </profiles>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/com.jcraft/jsch -->
+        <dependency>
+            <groupId>com.jcraft</groupId>
+            <artifactId>jsch</artifactId>
+            <version>${java.ssh.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>

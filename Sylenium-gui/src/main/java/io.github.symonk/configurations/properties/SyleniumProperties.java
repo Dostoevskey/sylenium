@@ -89,6 +89,18 @@ public interface SyleniumProperties extends Config {
   @DefaultValue("false")
   boolean isTestRailEnabled();
 
+  @Key("unix.host")
+  String unixHost();
+
+  @Key("unix.username")
+  String unixUsername();
+
+  @Key("unix.password")
+  String unixPassword();
+
+  @Key("unix.port")
+  int unixPort();
+
   //todo FIX AND INJECT!
   default Properties getAllProperties() {
     return new Properties() {
@@ -113,6 +125,10 @@ public interface SyleniumProperties extends Config {
         setProperty("testrail.username", testRailUsername());
         setProperty("testrail.password", testRailPassword());
         setProperty("testrail.enabled", String.valueOf(isTestRailEnabled()));
+        setProperty("unix.host", unixHost());
+        setProperty("unix.username", unixUsername());
+        setProperty("unix.password", unixPassword());
+        setProperty("unix.port", String.valueOf(unixPort()));
       }
     };
   }
