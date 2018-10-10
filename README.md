@@ -203,7 +203,7 @@ Sylenium supports both `@Test` level notifications or Class level, both are conf
 The supported levels for communication strategy are `NONE, SLACK, HIPCHAT` respectfully.
 You should always use these with caution, especially on free slack instances with message caps and hipchat rate limiting is in place.
  
-### Slack configuration :star:
+### :star: Slack configuration
 
 - Go to your_team.slack.com/services/new
 - Search for incoming webHook and click in Add
@@ -212,7 +212,7 @@ You should always use these with caution, especially on free slack instances wit
 - Set the communication strategy property to `SLACK`
 - Both of these properties are required, they can be set at runtime using standard maven -Dcommunication.strategy=SLACK etc
 
-### Hipchat configuration :star:
+### :star: Hipchat configuration
 
 - Navigate to your rooms tokens page `/rooms/tokens/1234` <-- 1234 being a room number
 - Create a new token for `Send Notifications` only and provide a label name
@@ -239,7 +239,7 @@ public class NotifyMyTest {
 ```
 ---
 
-### Zephyr Jira Integration (Jira Cloud only)
+### :star Zephyr Jira Integration (Jira Cloud only)
 
 Sylenium supports zephyr integration right out of the box, all you need to do is configure a few framework properties in your respective module.
 Using `@TmsLink` annotations on the test cases makes it super easy, these should be a mapping to zephyr test case ids.
@@ -266,7 +266,7 @@ Enable zephyr configurations in the properties and configure example tests like 
 
 ---
 
-### Localisation In Your Tests
+### :star: Localisation In Your Tests
 
 We all know that using LinkText explicitly or using hard coded strings for ui tests that may change under a difference language are flaky and none to break.  Any time you need a localised value in your tests
 Sylenium comes straight to the rescue.  Marking a test with @RequiresLocalisation will provide you with a simple way in your tests to get localised values.
@@ -291,7 +291,7 @@ These are determined by your framework properties at runtime for language(s).  F
 
 ---
 
-### Unix SSH command support
+### :star: Unix SSH command support
 
 Sylenium now boasts the ability to connect via ssh and issue unix commands on a remote system, returning you the value.  We support a variant of commands
 out of the box, but its easy to make your own.  Simply implement Command and using AOP we will put all the commands into the system for use!
@@ -311,7 +311,8 @@ out of the box, but its easy to make your own.  Simply implement Command and usi
         public String[] execute(SyUnix syUnix) throws IOException {
             return this.execute(syUnix);
         }
-    }```
+    }
+    ```
 
 ---
 
