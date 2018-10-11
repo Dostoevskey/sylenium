@@ -9,6 +9,8 @@
 
 ## Sylenium-framework :flags: :star:
 
+**note:** Sylenium is still under heavy development and is not remotely close to feature complete, nor does the documentation match up fully with implemented functionality.
+
 The aim of this project is simple, provide a powerful test automation harness for testing web applications with java.  Because test automation (especially) at the ui layer is plagued with bad practice
 I would like to start by outlining a few things of what **NOT** to use this harness for.  If such a license existed that would ban you from doing the following, I would apply it to this repository...
 
@@ -268,7 +270,7 @@ Enable zephyr configurations in the properties and configure example tests like 
 
 ### :star: Localisation In Your Tests
 
-We all know that using LinkText explicitly or using hard coded strings for ui tests that may change under a difference language are flaky and none to break.  Any time you need a localised value in your tests
+We all know that using LinkText explicitly or using hard coded strings for ui tests that may change under a difference language are flaky and known to break.  Any time you need a localised value in your tests
 Sylenium comes straight to the rescue.  Marking a test with @RequiresLocalisation will provide you with a simple way in your tests to get localised values.
 These are determined by your framework properties at runtime for language(s).  For example:
 
