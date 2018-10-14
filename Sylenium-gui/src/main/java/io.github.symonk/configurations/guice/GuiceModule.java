@@ -21,15 +21,16 @@ import io.github.symonk.integrations.communication.Communicator;
 import io.github.symonk.integrations.communication.HipChatStrategy;
 import io.github.symonk.integrations.communication.NoChatStrategy;
 import io.github.symonk.integrations.communication.SlackChatStrategy;
-import lombok.extern.slf4j.Slf4j;
 import net.gpedro.integrations.slack.SlackApi;
 import org.aeonbits.owner.ConfigFactory;
 import org.apache.commons.validator.routines.UrlValidator;
+import org.slf4j.Logger;
 
-@Slf4j
 public class GuiceModule extends AbstractModule {
 
-  @Override
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(GuiceModule.class);
+
+    @Override
   protected void configure() {
     bind(ProvidesLanguageValues.class).to(LanguageHelper.class).in(Singleton.class);
     bind(OrderProvidable.class).to(PuppyOrderFactory.class).in(Singleton.class);

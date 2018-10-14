@@ -3,12 +3,12 @@ package io.github.symonk.interactions.wrappers;
 import io.github.symonk.interactions.dto.Booking;
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 
 import static io.restassured.RestAssured.given;
 
-@Slf4j
 public class RestfulBookerServiceWrapper extends AbstractWrapperBase {
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(RestfulBookerServiceWrapper.class);
     private final String apiEndpoint = getBaseUrl() + "booking/";
 
 

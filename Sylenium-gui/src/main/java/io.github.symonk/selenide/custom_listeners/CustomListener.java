@@ -9,9 +9,9 @@ import io.qameta.allure.model.Status;
 import io.qameta.allure.model.StatusDetails;
 import io.qameta.allure.model.StepResult;
 import io.qameta.allure.util.ResultsUtils;
-import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.slf4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,10 +21,10 @@ import java.nio.file.Paths;
 import java.util.UUID;
 import java.util.regex.Pattern;
 
-@Slf4j
 public class CustomListener implements LogEventListener {
 
-  private final AllureLifecycle lifecycle;
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(CustomListener.class);
+    private final AllureLifecycle lifecycle;
   private boolean withScreenshot;
   private boolean withPageSource;
   private boolean withTestLog;

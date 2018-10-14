@@ -1,9 +1,10 @@
 package io.github.symonk.common.exceptions;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 
-@Slf4j
 public class SyleniumCommunicationException extends RuntimeException {
+
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(SyleniumCommunicationException.class);
 
     public SyleniumCommunicationException(final Exception exception) {
         super(exception);

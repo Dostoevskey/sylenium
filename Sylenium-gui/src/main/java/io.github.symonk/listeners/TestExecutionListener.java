@@ -8,7 +8,7 @@ import io.github.symonk.common.interfaces.ReportInteractable;
 import io.github.symonk.configurations.guice.GuiceModule;
 import io.github.symonk.configurations.properties.SyleniumProperties;
 import io.github.symonk.integrations.communication.Communicator;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
@@ -21,10 +21,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
-@Slf4j
 public class TestExecutionListener implements ITestListener {
 
-  @Inject private SyleniumProperties properties;
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(TestExecutionListener.class);
+    @Inject private SyleniumProperties properties;
   @Inject private ReportInteractable reportHelper;
   @Inject private Communicator communicator;
 

@@ -3,12 +3,12 @@ package io.github.symonk.integrations.communication;
 import com.google.inject.Inject;
 import io.github.symonk.common.enumerations.CommunicationChannel;
 import io.github.symonk.common.interfaces.Communicatable;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 
-@Slf4j
 public class Communicator {
 
-  private final Communicatable strategy;
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(Communicator.class);
+    private final Communicatable strategy;
   private boolean isEnabled = false;
 
   @Inject

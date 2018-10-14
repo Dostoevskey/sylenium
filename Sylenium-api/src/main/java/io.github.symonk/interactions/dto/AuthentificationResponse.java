@@ -1,16 +1,16 @@
 package io.github.symonk.interactions.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 
-@Slf4j
 public class AuthentificationResponse {
 
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(AuthentificationResponse.class);
     @JsonProperty
-    @Getter
     private String token;
 
 
-
+    public String getToken() {
+        return this.token;
+    }
 }

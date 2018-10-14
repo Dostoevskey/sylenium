@@ -1,16 +1,15 @@
 package io.github.symonk.integrations.proxy;
 
-import lombok.Getter;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 
 import javax.inject.Inject;
 import java.lang.reflect.Proxy;
 
-@Slf4j
 public class SyleniumProxy {
 
-  private final Proxyable proxy;
-  @Getter private final boolean isProxyEnabled;
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(SyleniumProxy.class);
+    private final Proxyable proxy;
+  private final boolean isProxyEnabled;
 
   @Inject
   public SyleniumProxy(final Proxyable proxy, final boolean isProxyEnabled) {
@@ -22,4 +21,8 @@ public class SyleniumProxy {
     log.info("Returning proxy for {}, ", proxy.getProxyName());
     return proxy.getProxy();
   }
+
+    public boolean isProxyEnabled() {
+        return this.isProxyEnabled;
+    }
 }

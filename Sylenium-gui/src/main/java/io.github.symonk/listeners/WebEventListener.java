@@ -1,18 +1,19 @@
 package io.github.symonk.listeners;
 
-import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.events.WebDriverEventListener;
+import org.slf4j.Logger;
 
 import java.util.Arrays;
 
-@Slf4j
 public class WebEventListener implements WebDriverEventListener {
 
-  @Override
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(WebEventListener.class);
+
+    @Override
   public void beforeAlertAccept(final WebDriver webDriver) {
     log.info("Attempting to accept an alert");
   }

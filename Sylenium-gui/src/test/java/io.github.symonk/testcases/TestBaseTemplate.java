@@ -7,7 +7,7 @@ import io.github.symonk.configurations.guice.GuiceModule;
 import io.github.symonk.listeners.WebEventListener;
 import io.github.symonk.selenide.custom_listeners.CustomListener;
 import io.github.symonk.selenide.custom_listeners.CustomSelenideLogger;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 import org.slf4j.MDC;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -17,14 +17,14 @@ import org.testng.annotations.Guice;
 import javax.inject.Inject;
 import java.lang.reflect.Method;
 
-@Slf4j
 @Guice(modules = GuiceModule.class)
 public class TestBaseTemplate {
 
   private static final String TEST_NAME = "test";
   private static final CustomListener listener = new CustomListener().withPageSource(true).withScreenshot(true).withTestLog(true);
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(TestBaseTemplate.class);
 
-  final ProvidesLanguageValues languageHelper;
+    final ProvidesLanguageValues languageHelper;
 
   @Inject
   public TestBaseTemplate(final ProvidesLanguageValues languageHelper) {

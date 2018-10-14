@@ -7,14 +7,14 @@ import ch.viascom.hipchat.api.models.message.MessageColor;
 import io.github.symonk.common.enumerations.CommunicationChannel;
 import io.github.symonk.common.exceptions.SyleniumCommunicationException;
 import io.github.symonk.common.interfaces.Communicatable;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 
 import javax.inject.Inject;
 
-@Slf4j
 public class HipChatStrategy implements Communicatable {
 
-  private final HipChat api;
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(HipChatStrategy.class);
+    private final HipChat api;
   private final String channel;
 
   @Inject

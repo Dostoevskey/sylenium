@@ -1,17 +1,21 @@
 package io.github.symonk.interactions.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 
-@Slf4j
 public class BookingResponse {
 
-    @Getter
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(BookingResponse.class);
     @JsonProperty
     private int bookingid;
-    @Getter
     @JsonProperty
     private Booking booking;
 
+    public int getBookingid() {
+        return this.bookingid;
+    }
+
+    public Booking getBooking() {
+        return this.booking;
+    }
 }
