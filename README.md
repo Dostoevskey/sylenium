@@ -9,6 +9,8 @@
 
 ## Sylenium-framework :flags: :star:
 
+OLD SYLENIUM PROJECT IS NOW HOSTED HERE -> https://github.com/Sylenium/sylenium
+
 **note:** Sylenium is still under heavy development and is not remotely close to feature complete, nor does the documentation match up fully with implemented functionality.
 
 The aim of this project is simple, provide a powerful test automation harness for testing web applications with java.  Because test automation (especially) at the ui layer is plagued with bad practice
