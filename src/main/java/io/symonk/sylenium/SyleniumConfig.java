@@ -8,7 +8,7 @@ import org.aeonbits.owner.Mutable;
 
 @HotReload
 @Sources("classpath:sylenium.properties")
-public interface $yConfig extends Config, Mutable, Accessible {
+public interface SyleniumConfig extends Config, Mutable, Accessible {
 
     /** $ylenium localisation */
 
