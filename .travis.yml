@@ -10,7 +10,7 @@ git:
 before_install:
 
 script:
-  - mvn clean verify org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar -DskipTests
+  - mvn clean verify org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar
 
 
 before_cache:
