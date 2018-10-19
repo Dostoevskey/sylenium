@@ -8,10 +8,9 @@ git:
   depth: 99999
 
 before_install:
-- export CHROME_BIN=/usr/bin/google-chrome
 
 script:
-  - mvn clean integration-test -pl Sylenium-gui -Dchromeoptions.args=--no-sandbox,--disable-dev-shm-usage,--headless -Dis.running.on.travis=true
+  - mvn clean verify
 
 
 before_cache:
@@ -25,14 +24,6 @@ cache:
   - "$HOME/.sonar/cache"
 
 addons:
-  apt:
-    update: true
-  chrome: stable
-  firefox: latest
   sonarcloud:
     organization: symonk-github
-    token:
-      secure: $SLACK_TOKEN
-  packages:
-    - google-chrome-stable
 
