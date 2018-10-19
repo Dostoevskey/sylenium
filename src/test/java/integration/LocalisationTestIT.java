@@ -12,38 +12,42 @@ import org.testng.annotations.Test;
 
 public class LocalisationTestIT {
 
-    private Sylenium sy;
+    private Sylenium sy = new Sylenium();
 
     @BeforeTest
     public void clearProperties() {
-        System.clearProperty("sylenium.language.file");
-        sy = Sylenium.getInstance();
     }
 
     @Test(expectedExceptions = NoSuchLanguageFileException.class)
     public void noLocalisationFileThrowsNoSuchLanguageFileException() {
-        System.setProperty("sylenium.language.file", "made-up.properties");
-        sy.localised("fail");
+        sy.updateLocalisationFile("made-up.properties");
+        sy.localisedValueOf("fail");
     }
 
     @Test
     public void validLocalisationFileCanReadProperty() {
-        System.setProperty("sylenium.language.file", "english.properties");
-        Assert.assertEquals(sy.localised("one"), "1");
+        sy.updateLocalisationFile("english.properties");
+        Assert.assertEquals(sy.localisedValueOf("one"), "1");
     }
 
     @Test
     public void runtimeChangesToLanguageFileAreAccurate() {
-        System.setProperty("sylenium.language.file", "english.properties");
-        Assert.assertEquals(sy.localised("one"), "1");
-        System.setProperty("sylenium.language.file", "jibberish.properties");
-        Assert.assertEquals(sy.localised("tango"), "orange");
+        sy.updateLocalisationFile("english.properties");
+        Assert.assertEquals(sy.localisedValueOf("one"), "1");
+        sy.updateLocalisationFile("jibberish.properties");
+        Assert.assertEquals(sy.localisedValueOf("tango"), "orange");
     }
 
     @Test(expectedExceptions = NoSuchLocalisedPropertyException.class)
     public void noSuchPropertyThrowsNoSuchLocalisedPropertyException() {
-        System.setProperty("sylenium.language.file", "english.properties");
-        Assert.assertEquals(sy.localised("n0p3"), "1");
+        sy.updateLocalisationFile("english.properties");
+        Assert.assertEquals(sy.localisedValueOf("n0p3"), "1");
+    }
+
+    @Test
+    public void updatingLanguageViaSetterWorks() {
+        sy.updateLocalisationFile("jibberish.properties");
+        Assert.assertEquals(sy.localisedValueOf("tango"), "orange");
     }
 
 }
