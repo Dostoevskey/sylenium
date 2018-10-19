@@ -1,271 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns="http://maven.apache.org/POM/4.0.0"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>io.github.symonk</groupId>
-    <artifactId>sylenium</artifactId>
-    <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
-    <modules>
-        <module>Sylenium-api</module>
-        <module>Sylenium-gui</module>
-        <module>Sylenium-performance</module>
-        <module>common</module>
-    </modules>
+    <artifactId>sylenium-beta</artifactId>
+    <groupId>io.symonk.sylenium</groupId>
+    <version>1.0-BETA</version>
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <lombok.version>1.18.2</lombok.version>
-        <selenide.version>5.0.0-rc.2</selenide.version>
-        <logback.version>1.3.0-alpha4</logback.version>
-        <slf4j.version>1.8.0-beta1</slf4j.version>
-        <logstash.version>5.2</logstash.version>
-        <allure.version>2.7.0</allure.version>
-        <aspectj.version>1.9.1</aspectj.version>
         <testng.version>6.14.3</testng.version>
-        <awaitility.version>3.1.0</awaitility.version>
-        <rest-assured.version>3.1.1</rest-assured.version>
-        <maven.surefire.failsafe.version>2.22.0</maven.surefire.failsafe.version>
-        <maven.compiler.plugin.version>3.7.0</maven.compiler.plugin.version>
-        <jackson.version>2.9.7</jackson.version>
-        <thread.count>5</thread.count>
         <java.version>1.8</java.version>
-        <guice.version>4.2.1</guice.version>
-        <guava.version>22.0</guava.version>
-        <automation.assistant.version>1.2</automation.assistant.version>
-        <jmeter.version>2.7.0</jmeter.version>
-        <browsermob.proxy.version>2.1.5</browsermob.proxy.version>
-        <assertj.version>3.11.1</assertj.version>
-        <jaxb-api.version>2.4.0-b180830.0359</jaxb-api.version>
-        <owner.version>1.0.10</owner.version>
-        <slack.version>1.4.0</slack.version>
-        <testrail.api.version>2.0.0</testrail.api.version>
-        <hipchat.client.version>2.1-RC3</hipchat.client.version>
-        <apache.commons.validator.version>1.6</apache.commons.validator.version>
-        <mockito.version>2.0.2-beta</mockito.version>
-        <spring.version>5.1.0-RELEASE</spring.version>
-        <java.ssh.version>0.1.54</java.ssh.version>
+        <maven.compiler.version>3.8.0</maven.compiler.version>
+        <maven.failfire.version>2.22.1</maven.failfire.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
-    <profiles>
-        <profile>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <id>default</id>
-            <modules>
-                <module>Sylenium-gui</module>
-                <module>Sylenium-api</module>
-                <module>Sylenium-performance</module>
-                <module>Sylenium-common</module>
-            </modules>
-        </profile>
-        <profile>
-            <id>api-tests</id>
-            <modules>
-                <module>Sylenium-api</module>
-            </modules>
-        </profile>
-        <profile>
-            <id>gui-tests</id>
-            <modules>
-                <module>Sylenium-gui</module>
-            </modules>
-        </profile>
-        <profile>
-            <id>performance-tests</id>
-            <modules>
-                <module>Sylenium-performance</module>
-            </modules>
-        </profile>
-        <profile>
-            <id>common</id>
-            <modules>
-                <module>Sylenium-common</module>
-            </modules>
-        </profile>
-    </profiles>
-
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/com.jcraft/jsch -->
-        <dependency>
-            <groupId>com.jcraft</groupId>
-            <artifactId>jsch</artifactId>
-            <version>${java.ssh.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-rest-assured -->
-        <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-rest-assured</artifactId>
-            <version>${allure.version}</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.springframework/spring-aop -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-aop</artifactId>
-            <version>5.1.0.RELEASE</version>
-        </dependency>
-
-        <dependency>
-            <groupId>net.lightbody.bmp</groupId>
-            <artifactId>browsermob-core</artifactId>
-            <version>${browsermob.proxy.version}</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
-            <version>${mockito.version}</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/commons-validator/commons-validator -->
-        <dependency>
-            <groupId>commons-validator</groupId>
-            <artifactId>commons-validator</artifactId>
-            <version>${apache.commons.validator.version}</version>
-        </dependency>
-        <!-- hipchat v2 api wrapper client -->
-        <dependency>
-            <groupId>ch.viascom</groupId>
-            <artifactId>hipchat-api</artifactId>
-            <version>2.1-RC3</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
-        <dependency>
-            <groupId>javax.xml.bind</groupId>
-            <artifactId>jaxb-api</artifactId>
-            <version>${jaxb-api.version}</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
-        <dependency>
-            <groupId>org.assertj</groupId>
-            <artifactId>assertj-core</artifactId>
-            <version>${assertj.version}</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/net.lightbody.bmp/browsermob-proxy -->
-        <dependency>
-            <groupId>net.lightbody.bmp</groupId>
-            <artifactId>browsermob-proxy</artifactId>
-            <version>${browsermob.proxy.version}</version>
-            <type>pom</type>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>${guava.version}</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/com.google.inject/guice -->
-        <dependency>
-            <groupId>com.google.inject</groupId>
-            <artifactId>guice</artifactId>
-            <version>${guice.version}</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok-maven -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/com.codeborne/selenide -->
-        <dependency>
-            <groupId>com.codeborne</groupId>
-            <artifactId>selenide</artifactId>
-            <version>${selenide.version}</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-selenide -->
-        <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-selenide</artifactId>
-            <version>${allure.version}</version>
-        </dependency>
-        <!-- Test NG -->
+        <!-- https://mvnrepository.com/artifact/org.testng/testng -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>${testng.version}</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/net.logstash.logback/logstash-logback-encoder -->
-        <dependency>
-            <groupId>net.logstash.logback</groupId>
-            <artifactId>logstash-logback-encoder</artifactId>
-            <version>${logstash.version}</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>${logback.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-core</artifactId>
-            <version>${logback.version}</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-testng -->
-        <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-testng</artifactId>
-            <version>${allure.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.github.symonk</groupId>
-            <artifactId>Automation-Assistant</artifactId>
-            <version>${automation.assistant.version}</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/com.lazerycode.jmeter/jmeter-maven-plugin -->
-        <dependency>
-            <groupId>com.lazerycode.jmeter</groupId>
-            <artifactId>jmeter-maven-plugin</artifactId>
-            <version>${jmeter.version}</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.aeonbits.owner/owner -->
-        <dependency>
-            <groupId>org.aeonbits.owner</groupId>
-            <artifactId>owner-java8</artifactId>
-            <version>${owner.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>net.gpedro.integrations.slack</groupId>
-            <artifactId>slack-webhook</artifactId>
-            <version>${slack.version}</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
-        <dependency>
-            <groupId>io.rest-assured</groupId>
-            <artifactId>rest-assured</artifactId>
-            <version>${rest-assured.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.codepine.api</groupId>
-            <artifactId>testrail-api-java-client</artifactId>
-            <version>${testrail.api.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.7.0</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+
+
+            <!-- Maven surefire unit tests -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven.failfire.version}</version>
+                <configuration>
+                    <includes>
+                        <include>**/*Test.java</include>
+                    </includes>
+                    <excludes>
+                        <exclude>**/*IT.java</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+
+            <!-- Maven failsafe integration tests -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>${maven.failfire.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
 
 </project>
