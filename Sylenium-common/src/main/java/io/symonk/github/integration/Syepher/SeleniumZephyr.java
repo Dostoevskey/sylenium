@@ -1,7 +1,7 @@
 package io.symonk.github.integration.Syepher;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 
-@Slf4j
 public class SeleniumZephyr {
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(SeleniumZephyr.class);
 }

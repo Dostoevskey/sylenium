@@ -3,10 +3,11 @@ package io.github.symonk.integrations.communication;
 
 import io.github.symonk.common.enumerations.CommunicationChannel;
 import io.github.symonk.common.interfaces.Communicatable;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 
-@Slf4j
 public class NoChatStrategy implements Communicatable {
+
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(NoChatStrategy.class);
 
     @Override
     public void notifyChannel(final String message) {

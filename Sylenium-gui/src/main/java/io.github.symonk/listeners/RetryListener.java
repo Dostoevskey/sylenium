@@ -1,14 +1,14 @@
 package io.github.symonk.listeners;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 import org.testng.IRetryAnalyzer;
 import org.testng.ITestResult;
 
-@Slf4j
 public class RetryListener implements IRetryAnalyzer {
 
   private static final int MAXIMUM_ATTEMPTS = 1;
-  private int attempts = 0;
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(RetryListener.class);
+    private int attempts = 0;
 
   @Override
   public boolean retry(final ITestResult iTestResult) {

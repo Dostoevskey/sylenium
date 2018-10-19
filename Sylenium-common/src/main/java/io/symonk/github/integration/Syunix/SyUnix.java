@@ -5,12 +5,12 @@ import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
 import io.github.symonk.configurations.properties.SyleniumProperties;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 
-@Slf4j
 public class SyUnix {
 
     private static final JSch jsch = new JSch();
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(SyUnix.class);
     private SyleniumProperties properties;
     private Session session;
 

@@ -2,16 +2,16 @@ package io.github.symonk.integrations.communication;
 
 import io.github.symonk.common.enumerations.CommunicationChannel;
 import io.github.symonk.common.interfaces.Communicatable;
-import lombok.extern.slf4j.Slf4j;
 import net.gpedro.integrations.slack.SlackApi;
 import net.gpedro.integrations.slack.SlackMessage;
+import org.slf4j.Logger;
 
 import javax.inject.Inject;
 
-@Slf4j
 public class SlackChatStrategy implements Communicatable {
 
-  private final SlackApi api;
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(SlackChatStrategy.class);
+    private final SlackApi api;
 
   @Inject
   public SlackChatStrategy(final SlackApi api) {

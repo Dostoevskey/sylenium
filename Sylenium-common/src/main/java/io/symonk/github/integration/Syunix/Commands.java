@@ -1,14 +1,14 @@
 package io.symonk.github.integration.Syunix;
 
 import io.symonk.github.integration.Syunix.commands.Ls;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 
 import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-@Slf4j
 public class Commands {
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(Commands.class);
     private static Commands collection;
 
     private final Map<String, Command> commands = new ConcurrentHashMap<>(10);

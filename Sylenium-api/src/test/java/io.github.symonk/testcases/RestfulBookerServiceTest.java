@@ -7,18 +7,18 @@ import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.TmsLink;
 import io.restassured.response.Response;
-import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
+import org.slf4j.Logger;
 import org.testng.annotations.Test;
 
 import javax.inject.Inject;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Slf4j
 public class RestfulBookerServiceTest {
 
 
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(RestfulBookerServiceTest.class);
     private RestfulBookerServiceWrapper restfulBookerServiceWrapper;
     private AuthentificationServiceWrapper authentificationServiceWrapper;
 

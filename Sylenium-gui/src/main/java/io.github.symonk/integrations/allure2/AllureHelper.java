@@ -2,7 +2,7 @@ package io.github.symonk.integrations.allure2;
 
 import io.github.symonk.common.interfaces.ReportInteractable;
 import io.github.symonk.configurations.properties.SyleniumProperties;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 
 import javax.inject.Inject;
 import java.io.File;
@@ -12,7 +12,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-@Slf4j
 public class AllureHelper implements ReportInteractable {
 
   private static final String FILE_EXISTS = "environment.properties file already exists, deleting it";
@@ -22,8 +21,9 @@ public class AllureHelper implements ReportInteractable {
   private static final String PROPERTIES_HEADER = "Generated runtime properties";
   private static final String INVALID_ARGS = "provided arguments do not meet a valid test run, aborting the run";
   private static final String IO_EXCEPTION = "IO error occurred when generating or pushing the environment file";
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(AllureHelper.class);
 
-  private final SyleniumProperties properties;
+    private final SyleniumProperties properties;
 
   @Inject
   public AllureHelper(final SyleniumProperties properties) {
