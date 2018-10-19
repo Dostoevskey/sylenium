@@ -10,14 +10,13 @@ git:
 before_install:
 
 script:
-  - mvn clean verify org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar -DskipTests
-  - mvn clean verify
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
+  - mvn verify
 
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
   - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
-  - rm -fr /home/travis/.m2/repository/webdriver/
 
 cache:
   directories:
@@ -26,5 +25,5 @@ cache:
 
 addons:
   sonarcloud:
-    organization: sylenium
+    organization: symonk-github
 
