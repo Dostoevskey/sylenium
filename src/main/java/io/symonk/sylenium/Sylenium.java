@@ -19,14 +19,14 @@ public class Sylenium {
   private final ConcurrentHashMap<String, String> localisationResources = new ConcurrentHashMap<>(128);
   private static final SyleniumConfig config = new io.symonk.sylenium.SyleniumConfig();
   private static final String NO_SUCH_FILE_ERROR = "Localisation file was not found under test/resources/localisation/: " + config.language();
-  private static String cachedConfig;
+  private String cachedConfig;
 
   private Sylenium() {}
 
   public static synchronized Sylenium getInstance() {
     if ($y == null) {
       $y = new Sylenium();
-      cachedConfig = config.language();
+      $y.cachedConfig = config.language();
       $y.buildRuntimeLanguageProperties();
     }
     return $y;
