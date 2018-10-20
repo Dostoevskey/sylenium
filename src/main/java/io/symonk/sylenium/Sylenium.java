@@ -8,6 +8,7 @@ public class Sylenium {
 
   private final ConfigManager cfgManager = new ConfigManager();
   private final LocalisedValueParser valueParser = new LocalisedValueParser(cfgManager);
+  private final SyleniumWorld world = new SyleniumWorld();
 
   public String localisedValueOf(final String key) {
     return valueParser.localisedValueOf(key);
