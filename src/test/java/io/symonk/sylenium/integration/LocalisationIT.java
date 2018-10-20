@@ -1,22 +1,14 @@
-package integration;
+package io.symonk.sylenium.integration;
 
 
-import io.symonk.sylenium.Sylenium;
+import io.symonk.sylenium.TestBase;
 import io.symonk.sylenium.ex.NoSuchLanguageFileException;
 import io.symonk.sylenium.ex.NoSuchLocalisedPropertyException;
 import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 
-
-public class LocalisationTestIT {
-
-    private Sylenium sy = new Sylenium();
-
-    @BeforeTest
-    public void clearProperties() {
-    }
+public class LocalisationIT extends TestBase {
 
     @Test(expectedExceptions = NoSuchLanguageFileException.class)
     public void noLocalisationFileThrowsNoSuchLanguageFileException() {
@@ -48,10 +40,6 @@ public class LocalisationTestIT {
     public void updatingLanguageViaSetterWorks() {
         setLocalisationFile("jibberish.properties");
         Assert.assertEquals(sy.localisedValueOf("tango"), "orange");
-    }
-
-    private void setLocalisationFile(final String value) {
-        sy.setProperty("$y.localisation.file", value);
     }
 
 }
