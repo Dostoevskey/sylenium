@@ -1,20 +1,16 @@
 package io.symonk.sylenium;
 
-import org.aeonbits.owner.ConfigFactory;
-
 public class Sylenium {
 
-  private final SyleniumConfig config = ConfigFactory.create(SyleniumConfig.class);
-  private final LocalisedValueParser valueParser = new LocalisedValueParser(config.localisationFile());
+  private final ConfigManager cfgManager = new ConfigManager();
+  private final LocalisedValueParser valueParser = new LocalisedValueParser(cfgManager);
 
   public String localisedValueOf(final String key) {
-    return valueParser.localised(key);
+    return valueParser.localisedValueOf(key);
   }
 
-  public Sylenium updateLocalisationFile(final String newLocalisationFile) {
-    config.setProperty("$y.localisation.file", newLocalisationFile);
-    valueParser.setLocalisationFile(newLocalisationFile);
-    return this;
+  public void setProperty(final String key, final String value) {
+    cfgManager.setProperty(key, value);
   }
 
 
