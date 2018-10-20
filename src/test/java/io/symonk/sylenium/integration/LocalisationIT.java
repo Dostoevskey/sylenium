@@ -1,45 +1,57 @@
 package io.symonk.sylenium.integration;
 
-
-import io.symonk.sylenium.TestBase;
+import io.symonk.sylenium.ConfigManager;
+import io.symonk.sylenium.Sylenium;
 import io.symonk.sylenium.ex.NoSuchLanguageFileException;
 import io.symonk.sylenium.ex.NoSuchLocalisedPropertyException;
 import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+public class LocalisationIT {
 
-public class LocalisationIT extends TestBase {
+  private ConfigManager configManager;
+  private Sylenium sy;
 
-    @Test(expectedExceptions = NoSuchLanguageFileException.class)
-    public void noLocalisationFileThrowsNoSuchLanguageFileException() {
-        setLocalisationFile("made-up.properties");
-        sy.localisedValueOf("fail");
-    }
+  @BeforeTest
+  public void setup() {
+    sy = new Sylenium();
+    configManager = new ConfigManager();
+  }
 
-    @Test
-    public void validLocalisationFileCanReadProperty() {
-        setLocalisationFile("english.properties");
-        Assert.assertEquals(sy.localisedValueOf("one"), "1");
-    }
+  @Test(expectedExceptions = NoSuchLanguageFileException.class)
+  public void noLocalisationFileThrowsNoSuchLanguageFileException() {
+    setLocalisationFile("made-up.properties");
+    sy.localisedValueOf("fail");
+  }
 
-    @Test
-    public void runtimeChangesToLanguageFileAreAccurate() {
-        setLocalisationFile("english.properties");
-        Assert.assertEquals(sy.localisedValueOf("one"), "1");
-        setLocalisationFile("jibberish.properties");
-        Assert.assertEquals(sy.localisedValueOf("tango"), "orange");
-    }
+  @Test
+  public void validLocalisationFileCanReadProperty() {
+    setLocalisationFile("english.properties");
+    Assert.assertEquals(sy.localisedValueOf("one"), "1");
+  }
 
-    @Test(expectedExceptions = NoSuchLocalisedPropertyException.class)
-    public void noSuchPropertyThrowsNoSuchLocalisedPropertyException() {
-        setLocalisationFile("english.properties");
-        Assert.assertEquals(sy.localisedValueOf("n0p3"), "1");
-    }
+  @Test
+  public void runtimeChangesToLanguageFileAreAccurate() {
+    setLocalisationFile("english.properties");
+    Assert.assertEquals(sy.localisedValueOf("one"), "1");
+    setLocalisationFile("jibberish.properties");
+    Assert.assertEquals(sy.localisedValueOf("tango"), "orange");
+  }
 
-    @Test
-    public void updatingLanguageViaSetterWorks() {
-        setLocalisationFile("jibberish.properties");
-        Assert.assertEquals(sy.localisedValueOf("tango"), "orange");
-    }
+  @Test(expectedExceptions = NoSuchLocalisedPropertyException.class)
+  public void noSuchPropertyThrowsNoSuchLocalisedPropertyException() {
+    setLocalisationFile("english.properties");
+    Assert.assertEquals(sy.localisedValueOf("n0p3"), "1");
+  }
 
+  @Test
+  public void updatingLanguageViaSetterWorks() {
+    setLocalisationFile("jibberish.properties");
+    Assert.assertEquals(sy.localisedValueOf("tango"), "orange");
+  }
+
+  private void setLocalisationFile(final String value) {
+    sy.setProperty("$y.localisation.file", value);
+  }
 }
