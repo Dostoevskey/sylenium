@@ -47,7 +47,6 @@ public class SyleniumConfigIT {
     configManager.setProperty(rmprop, "hello");
     configManager.removeProperty(rmprop);
     Assert.assertEquals(configManager.getProperty(rmprop), "");
-
   }
 
 }

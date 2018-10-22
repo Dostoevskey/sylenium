@@ -12,6 +12,7 @@ public class Sylenium {
   private final ResourceReader valueParser = new ResourceReader(cfgManager);
   private final SyleniumWorld world = new SyleniumWorld();
 
+
   public String localisedValueOf(final String key) {
     return valueParser.localisedValueOf(key);
   }
