@@ -1,4 +1,4 @@
-package io.symonk.sylenium;
+package io.symonk.sylenium.interfaces;
 
 
 public interface ConfigObservable {

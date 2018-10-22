@@ -1,6 +1,9 @@
-package io.symonk.sylenium;
+package io.symonk.sylenium.impl;
 
 
+import io.symonk.sylenium.interfaces.ConfigObservable;
+import io.symonk.sylenium.interfaces.ConfigObserver;
+import io.symonk.sylenium.interfaces.SyleniumConfig;
 import org.aeonbits.owner.ConfigFactory;
 
 import java.util.ArrayList;
@@ -10,6 +13,7 @@ public class ConfigManager implements ConfigObservable {
 
     private final SyleniumConfig config = ConfigFactory.create(SyleniumConfig.class);
     private final List<ConfigObserver> myObservers = new ArrayList<>();
+
 
     @Override
     public void registerObserver(final ConfigObserver observer) {
@@ -31,8 +35,12 @@ public class ConfigManager implements ConfigObservable {
         notify(config);
     }
 
+    public void removeProperty(final String key) {
+        config.removeProperty(key);
+    }
+
     public String getProperty(final String key) {
-        return config.getProperty(key);
+        return config.getProperty(key) == null ? "" : config.getProperty(key);
     }
 
 }

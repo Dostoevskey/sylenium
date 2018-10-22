@@ -1,6 +1,6 @@
 package io.symonk.sylenium.integration;
 
-import io.symonk.sylenium.ConfigManager;
+import io.symonk.sylenium.impl.ConfigManager;
 import io.symonk.sylenium.Sylenium;
 import io.symonk.sylenium.ex.NoSuchLanguageFileException;
 import io.symonk.sylenium.ex.NoSuchLocalisedPropertyException;

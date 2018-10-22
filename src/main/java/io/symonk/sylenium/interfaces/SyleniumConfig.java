@@ -1,4 +1,4 @@
-package io.symonk.sylenium;
+package io.symonk.sylenium.interfaces;
 
 import org.aeonbits.owner.Accessible;
 import org.aeonbits.owner.Config;

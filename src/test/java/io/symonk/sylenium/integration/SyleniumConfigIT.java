@@ -1,7 +1,7 @@
 package io.symonk.sylenium.integration;
 
-import io.symonk.sylenium.ConfigManager;
-import io.symonk.sylenium.LocalisationFileReader;
+import io.symonk.sylenium.impl.ConfigManager;
+import io.symonk.sylenium.impl.LocalisationFileReader;
 import io.symonk.sylenium.Sylenium;
 import io.symonk.sylenium.ex.NoSuchLanguageFileException;
 import org.testng.Assert;
@@ -34,4 +34,20 @@ public class SyleniumConfigIT {
     sy.setProperty("$y.localisation.file", "dumbo.properties");
     one.getLanguageValue("wont-exist.properties");
   }
+
+  @Test
+  public void canAddNewProperty() {
+    configManager.setProperty("i.am.new", "hello");
+    Assert.assertEquals(configManager.getProperty("i.am.new"), "hello");
+  }
+
+  @Test
+  public void canRemoveAProperty() {
+    final String rmprop = "removed.prop";
+    configManager.setProperty(rmprop, "hello");
+    configManager.removeProperty(rmprop);
+    Assert.assertEquals(configManager.getProperty(rmprop), "");
+
+  }
+
 }
