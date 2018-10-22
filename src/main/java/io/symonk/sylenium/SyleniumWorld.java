@@ -20,5 +20,6 @@ public class SyleniumWorld<T extends SyleniumObject> {
 
   public void cleanUpWorld() {
     testObjects.forEach(SyleniumObject::cleanUp);
+    testObjects = new ArrayList<>();
   }
 }
