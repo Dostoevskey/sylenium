@@ -26,6 +26,7 @@ public class SyleniumConfigIT extends SyleniumTest {
 
   @Test
   public void observersAreUnregisteredSuccessfully() {
+    sylenium.setProperty("$y.localisation.file", "english.properties");
     final int size = 1;
     final LocalisationFileReader one = new LocalisationFileReader();
     final LocalisationFileReader two = new LocalisationFileReader();
@@ -37,6 +38,7 @@ public class SyleniumConfigIT extends SyleniumTest {
 
   @Test
   public void observersRegisterSuccessfully() {
+    sylenium.setProperty("$y.localisation.file", "english.properties");
     final int size = 2;
     final LocalisationFileReader one = new LocalisationFileReader();
     final LocalisationFileReader two = new LocalisationFileReader();
