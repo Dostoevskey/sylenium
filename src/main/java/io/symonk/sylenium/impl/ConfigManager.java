@@ -14,10 +14,10 @@ public class ConfigManager implements ConfigObservable {
     private final SyleniumConfig config = ConfigFactory.create(SyleniumConfig.class);
     private final List<ConfigObserver> myObservers = new ArrayList<>();
 
-
     @Override
     public void registerObserver(final ConfigObserver observer) {
         myObservers.add(observer);
+        notify(config);
     }
 
     @Override
@@ -37,10 +37,15 @@ public class ConfigManager implements ConfigObservable {
 
     public void removeProperty(final String key) {
         config.removeProperty(key);
+        notify(config);
     }
 
     public String getProperty(final String key) {
         return config.getProperty(key) == null ? "" : config.getProperty(key);
+    }
+
+    public int getObserverCount() {
+        return myObservers.size();
     }
 
 }

@@ -1,25 +1,22 @@
 package io.symonk.sylenium;
 
 
-import io.symonk.sylenium.interfaces.SyleniumObject;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 
 public class SyleniumTest {
 
-    private final ThreadLocal<Sylenium> sylenium = new ThreadLocal<>();
+    protected final Sylenium sylenium = new Sylenium();
 
-    protected <T extends SyleniumObject> void registerTestData(T t) {
-        sylenium.get().register(t);
-    }
+    @BeforeTest
+    public void beforeTest() {
 
-    protected String localisedOf(final String key) {
-        return sylenium.get().localisedValueOf(key);
     }
 
 
     @AfterTest
     public void cleaningUp() {
-        sylenium.get().cleanUpWorld();
+        sylenium.cleanUpWorld();
     }
 
 
