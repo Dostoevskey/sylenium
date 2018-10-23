@@ -1,5 +1,6 @@
 package io.symonk.sylenium;
 
+import com.codeborne.selenide.Selenide;
 import io.symonk.sylenium.ex.NoSuchLocalisedPropertyException;
 import io.symonk.sylenium.impl.ConfigManager;
 import io.symonk.sylenium.interfaces.ConfigObserver;
@@ -49,6 +50,10 @@ public class Sylenium {
 
   public int getWorldSize() {
     return world.get().getWorldSize();
+  }
+
+  public <PageObjectClass> PageObjectClass start(final String url, final  Class<PageObjectClass> pageObjectClassClass) {
+    return Selenide.open(url, pageObjectClassClass);
   }
 
 

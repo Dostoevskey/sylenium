@@ -9,4 +9,8 @@ public class DummyWorldObject implements SyleniumObject {
     public void cleanUp() {
         //dummy
     }
+
+    public void something() {
+    System.out.println("WOW!");
+    }
 }
