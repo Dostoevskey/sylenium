@@ -17,6 +17,9 @@ public class Sylenium {
   public synchronized int getCfgObserversCount() {
     return cfgManager.getObserverCount();
   }
+  public synchronized <T extends ConfigObserver> void unregisterConfigObserver(T object) {
+    cfgManager.removeObserver(object);
+  }
 
   public synchronized <T extends ConfigObserver> void registerConfigObserver(T object) {
     cfgManager.registerObserver(object);

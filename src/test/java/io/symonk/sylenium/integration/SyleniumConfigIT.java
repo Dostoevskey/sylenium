@@ -25,6 +25,27 @@ public class SyleniumConfigIT extends SyleniumTest {
   }
 
   @Test
+  public void observersAreUnregisteredSuccessfully() {
+    final int size = 1;
+    final LocalisationFileReader one = new LocalisationFileReader();
+    final LocalisationFileReader two = new LocalisationFileReader();
+    sylenium.registerConfigObserver(one);
+    sylenium.registerConfigObserver(two);
+    sylenium.unregisterConfigObserver(one);
+    Assert.assertEquals(sylenium.getCfgObserversCount(), size);
+  }
+
+  @Test
+  public void observersRegisterSuccessfully() {
+    final int size = 2;
+    final LocalisationFileReader one = new LocalisationFileReader();
+    final LocalisationFileReader two = new LocalisationFileReader();
+    sylenium.registerConfigObserver(one);
+    sylenium.registerConfigObserver(two);
+    Assert.assertEquals(sylenium.getCfgObserversCount(), size);
+  }
+
+  @Test
   public void canAddNewProperty() {
     sylenium.setProperty("i.am.new", "hello");
     Assert.assertEquals(sylenium.getProperty("i.am.new"), "hello");
