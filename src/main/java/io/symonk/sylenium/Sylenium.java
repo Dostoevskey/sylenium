@@ -55,7 +55,7 @@ public class Sylenium {
     return world.get().getWorldSize();
   }
 
-  public <PageObjectClass> PageObjectClass start(final String url, final  Class<PageObjectClass> pageObjectClassClass) {
+  public <pageObjectClass> pageObjectClass start(final String url, final  Class<pageObjectClass> pageObjectClassClass) {
     return Selenide.open(url, pageObjectClassClass);
   }
 
