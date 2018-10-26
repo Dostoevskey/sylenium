@@ -27,5 +27,4 @@ public class LocalisationFileReaderTest {
     fileReader.update(config);
     Assert.assertEquals(fileReader.getLanguageValue("two"), "2");
   }
-
 }

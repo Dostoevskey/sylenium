@@ -11,12 +11,14 @@ import java.util.Optional;
 public class Sylenium {
 
   private final ConfigManager cfgManager = new ConfigManager();
-  private final ThreadLocal<ResourceReader> valueParser = ThreadLocal.withInitial(() -> new ResourceReader(cfgManager));
+  private final ThreadLocal<ResourceReader> valueParser =
+      ThreadLocal.withInitial(() -> new ResourceReader(cfgManager));
   private final ThreadLocal<SyleniumWorld> world = ThreadLocal.withInitial(SyleniumWorld::new);
 
   public synchronized int getCfgObserversCount() {
     return cfgManager.getObserverCount();
   }
+
   public synchronized <T extends ConfigObserver> void unregisterConfigObserver(T object) {
     cfgManager.removeObserver(object);
   }
@@ -55,11 +57,7 @@ public class Sylenium {
     return world.get().getWorldSize();
   }
 
-  public <T> T launch(final String url, final  Class<T> pageObject) {
+  public <T> T launch(final String url, final Class<T> pageObject) {
     return Selenide.open(url, pageObject);
   }
-
-
-
-
 }

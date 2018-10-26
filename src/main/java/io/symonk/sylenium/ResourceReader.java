@@ -14,6 +14,4 @@ public class ResourceReader {
   public String localisedValueOf(final String key) {
     return localisationFileReader.getLanguageValue(key);
   }
-
-
 }

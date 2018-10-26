@@ -1,12 +1,10 @@
 package io.symonk.sylenium.interfaces;
 
-
 public interface ConfigObservable {
 
-    void registerObserver(final ConfigObserver observer);
+  void registerObserver(final ConfigObserver observer);
 
-    void removeObserver(final ConfigObserver observer);
+  void removeObserver(final ConfigObserver observer);
 
-    void notify(final SyleniumConfig config);
-
+  void notify(final SyleniumConfig config);
 }
