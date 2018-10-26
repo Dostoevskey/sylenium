@@ -11,8 +11,7 @@ import java.util.Optional;
 public class Sylenium {
 
   private final ConfigManager cfgManager = new ConfigManager();
-  private final ThreadLocal<ResourceReader> valueParser =
-      ThreadLocal.withInitial(() -> new ResourceReader(cfgManager));
+  private final ThreadLocal<ResourceReader> valueParser = ThreadLocal.withInitial(() -> new ResourceReader(cfgManager));
   private final ThreadLocal<SyleniumWorld> world = ThreadLocal.withInitial(SyleniumWorld::new);
 
   public synchronized int getCfgObserversCount() {

@@ -6,7 +6,7 @@ import io.symonk.sylenium.impl.ConfigManager;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class ResourceReaderTest {
+public class ResourceReaderIT {
 
   private final ConfigManager cfgManager = new ConfigManager();
   private ResourceReader resourceReader = new ResourceReader(cfgManager);
