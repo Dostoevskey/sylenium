@@ -1,12 +1,9 @@
 package io.symonk.sylenium;
 
 import com.codeborne.selenide.Selenide;
-import io.symonk.sylenium.ex.NoSuchLocalisedPropertyException;
 import io.symonk.sylenium.impl.ConfigManager;
 import io.symonk.sylenium.interfaces.ConfigObserver;
 import io.symonk.sylenium.interfaces.SyleniumObject;
-
-import java.util.Optional;
 
 public class Sylenium {
 

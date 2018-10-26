@@ -1,6 +1,5 @@
 package io.symonk.sylenium.integration;
 
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import io.symonk.sylenium.DummyConfigObserver;
 import io.symonk.sylenium.DummyWorldObject;
