@@ -1,8 +1,8 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Full Regression" verbose="2" parallel="methods">
     <test name="Regression Pack">
-        <classes>
-
-        </classes>
+        <packages>
+            <package name="io.symonk.sylenium.integration"/>
+        </packages>
     </test>
 </suite>
