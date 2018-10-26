@@ -13,7 +13,6 @@ public class ConfigManagerTest {
   @BeforeMethod
   public void prep() {
     cfgManager = new ConfigManager();
-
   }
 
   @Test
