@@ -1,5 +1,7 @@
 package io.symonk.sylenium.integration;
 
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.WebDriverRunner;
 import io.symonk.sylenium.DummyConfigObserver;
 import io.symonk.sylenium.DummyWorldObject;
 import io.symonk.sylenium.SyleniumTest;
@@ -35,5 +37,12 @@ public class SyleniumIT extends SyleniumTest {
   public void canRegisterTestDataToTheWorld() {
     sylenium.register(new DummyWorldObject());
     Assert.assertEquals(sylenium.getWorldSize(), 1);
+  }
+
+  @Test
+  public void startingSyleniumReturnsValidPageObject() {
+    final DummyWorldObject po = sylenium.launch("https://www.google.com", DummyWorldObject.class);
+    Assert.assertNotNull(po);
+    Assert.assertEquals(WebDriverRunner.getWebDriver().getCurrentUrl(), "https://www.google.com/");
   }
 }
