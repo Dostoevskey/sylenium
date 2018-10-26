@@ -35,9 +35,7 @@ public class Sylenium {
   }
 
   public synchronized String getProperty(final String key) {
-    return Optional.ofNullable(cfgManager.getProperty(key))
-        .orElseThrow(
-            () -> new NoSuchLocalisedPropertyException("property: " + key + " does not exist"));
+    return cfgManager.getProperty(key);
   }
 
   public synchronized void removeProperty(final String key) {
