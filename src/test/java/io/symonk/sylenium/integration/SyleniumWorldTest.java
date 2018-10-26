@@ -4,7 +4,7 @@ import io.symonk.sylenium.SyleniumTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class SyleniumWorldIT extends SyleniumTest {
+public class SyleniumWorldTest extends SyleniumTest {
 
   @Test
   public void registerWorldObject() {

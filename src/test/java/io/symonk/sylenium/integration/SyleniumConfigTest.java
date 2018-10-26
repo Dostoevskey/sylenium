@@ -6,7 +6,7 @@ import io.symonk.sylenium.impl.LocalisationFileReader;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class SyleniumConfigIT extends SyleniumTest {
+public class SyleniumConfigTest extends SyleniumTest {
 
   @Test
   public void canGetAndSetProperty() {

@@ -88,6 +88,17 @@
                     <excludes>
                         <exclude>**/*IT.java</exclude>
                     </excludes>
+                    <parallel>classes</parallel>
+                    <threadCount>10</threadCount>
+                    <argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>${project.build.testSourceDirectory}/integration-test.xml</suiteXmlFile>
+                    </suiteXmlFiles>
+                    <testFailureIgnore>false</testFailureIgnore>
+                    <printSummary>true</printSummary>
+                    <argLine>
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspect.j.version}/aspectjweaver-${aspect.j.version}.jar"
+                    </argLine>
                 </configuration>
             </plugin>
 
@@ -108,25 +119,12 @@
                             <includes>
                                 <include>**/*.java</include>
                             </includes>
-                            <reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
                         </configuration>
                     </execution>
                 </executions>
-
-                <configuration>
-                    <parallel>classes</parallel>
-                    <threadCount>10</threadCount>
-                    <argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>
-                    <suiteXmlFiles>
-                        <suiteXmlFile>${project.build.testSourceDirectory}/integration-test.xml</suiteXmlFile>
-                    </suiteXmlFiles>
-                    <testFailureIgnore>false</testFailureIgnore>
-                    <printSummary>true</printSummary>
-                    <argLine>
-                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspect.j.version}/aspectjweaver-${aspect.j.version}.jar"
-                    </argLine>
-                </configuration>
             </plugin>
+
+
         </plugins>
     </build>
 

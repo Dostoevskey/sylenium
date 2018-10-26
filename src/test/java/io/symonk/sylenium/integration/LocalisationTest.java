@@ -6,7 +6,7 @@ import io.symonk.sylenium.ex.NoSuchLocalisedPropertyException;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class LocalisationIT extends SyleniumTest {
+public class LocalisationTest extends SyleniumTest {
 
   @Test(expectedExceptions = NoSuchLanguageFileException.class)
   public void noLocalisationFileThrowsNoSuchLanguageFileException() {
