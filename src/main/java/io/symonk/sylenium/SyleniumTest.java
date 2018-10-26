@@ -1,20 +1,19 @@
 package io.symonk.sylenium;
 
 
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeMethod;
 
 public class SyleniumTest {
 
-    protected final Sylenium sylenium = new Sylenium();
+    protected Sylenium sylenium;
 
-    @BeforeTest
+    @BeforeMethod
     public void beforeTest() {
-
+        sylenium = new Sylenium();
     }
 
 
-    @AfterTest
+    @BeforeMethod
     public void cleaningUp() {
         sylenium.cleanUpWorld();
     }
