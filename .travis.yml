@@ -28,7 +28,6 @@ addons:
   apt:
     update: true
   chrome: stable
-  firefox: latest
   sonarcloud:
     organization: symonk-github
 
