@@ -10,12 +10,21 @@
 
 ## Sylenium-framework :flags: :star:
 
-OLD SYLENIUM PROJECT IS NOW HOSTED HERE -> https://github.com/Sylenium/sylenium
+Are you looking for the old sylenium project? it is now hosted here at a sister organisation -> https://github.com/Sylenium/sylenium
 
 **note:** Sylenium is still under heavy development and is not remotely close to feature complete, nor does the documentation match up fully with implemented functionality.
 
-The aim of this project is simple, provide a powerful test automation harness for testing web applications with java.  Because test automation (especially) at the ui layer is plagued with bad practice
-I would like to start by outlining a few things of what **NOT** to use this harness for.  If such a license existed that would ban you from doing the following, I would apply it to this repository...
+The aim of Sylenium is simple, one dependency to rule them all.  Using our maven arche command to start a project off you will be able to get up to speed extremely fast.  All you
+need is 3 things, web app specific things.
+
+1. Create a project with our archetype
+2. Define your own PageObjects for your app (we can't do that for you sorry!)
+3. Define your own Business logic for tests (we can't do that for you either sorry!!)
+4. Run the tests
+
+No hassle, no fuss, no messing around with boilerplate code, no messing around with pulling dependencies together and wiring them all up.  Sylenium has you covered.
+
+*Sorry folks, Test automation is in general plagued with bad practice.  If you do one thing from visiting this page, please read the guidelines below.*
 
 ---
 
