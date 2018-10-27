@@ -1,9 +1,12 @@
 package io.symonk.sylenium;
 
 import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideElement;
 import io.symonk.sylenium.impl.ConfigManager;
 import io.symonk.sylenium.interfaces.ConfigObserver;
 import io.symonk.sylenium.interfaces.SyleniumObject;
+
+import static com.codeborne.selenide.Selenide.$;
 
 public class Sylenium {
 
@@ -54,4 +57,9 @@ public class Sylenium {
   public <T> T launch(final String url, final Class<T> pageObject) {
     return Selenide.open(url, pageObject);
   }
+
+  public SelenideElement $yLinkText(final String resourceKey) {
+    return $(SyleniumLinkText.$yLinkText(localisedValueOf(resourceKey)));
+  }
+
 }
