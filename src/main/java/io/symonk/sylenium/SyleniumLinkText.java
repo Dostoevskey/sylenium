@@ -8,6 +8,8 @@ import java.util.List;
 
 public class SyleniumLinkText {
 
+  private SyleniumLinkText() {}
+
   public static By syLinkText(final String languageKey) {
     return new By() {
       @Override

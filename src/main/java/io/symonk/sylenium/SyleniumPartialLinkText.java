@@ -6,10 +6,9 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-/**
- * @author SimonK
- */
 public class SyleniumPartialLinkText {
+
+    private SyleniumPartialLinkText() {}
 
     public static By syLinkText(final String languageKey) {
         return new By() {
