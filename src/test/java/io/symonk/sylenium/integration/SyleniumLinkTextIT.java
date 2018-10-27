@@ -11,6 +11,6 @@ public class SyleniumLinkTextIT extends SyleniumTest {
     @Test
     public void canElementByLocalisedText() {
         sylenium.launch("http://toolsqa.com/automation-practice-form/", DummyWorldObject.class);
-        sylenium.$yLinkText("partial.link.text").shouldBe(Condition.visible);
+        sylenium.localisedLinkText("partial.link.text").shouldBe(Condition.visible);
     }
 }

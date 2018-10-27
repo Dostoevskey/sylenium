@@ -58,7 +58,7 @@ public class Sylenium {
     return Selenide.open(url, pageObject);
   }
 
-  public SelenideElement $yLinkText(final String resourceKey) {
+  public SelenideElement localisedLinkText(final String resourceKey) {
     return $(SyleniumLinkText.$yLinkText(localisedValueOf(resourceKey)));
   }
 

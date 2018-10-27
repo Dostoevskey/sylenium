@@ -172,6 +172,30 @@ This framework provides a serious amount of functionality right out of the box.
 
 ---
 
+### :earth_africa: Localised link text lookup
+Looking up linkText by a static value is really bad practice, if your application is multilingual links may change their text.  Sylenium
+provides you a method of using the runtime language of Sylenium to automagically retrieve the localised value.  All you need to do is specify your
+language to the sylenium.properties file and then define your localisation file(s).  After those are defined, just simple pass the *Key* value for the lookup
+into the localisedLinkText method.
+```java
+    @Test
+    public void canElementByLocalisedText() {
+        sylenium.launch("http://toolsqa.com/automation-practice-form/", MyPageObject.class);
+        sylenium.localisedLinkText("partial.link.text").shouldBe(Condition.visible);
+    }
+    
+```
+
+```
+<-- Localisation example file -->
+one=1
+two=2
+three=3
+partial.link.text=Partial Link Test
+```
+
+---
+
 ### :earth_africa: Managing your own models/test data objects in the report
 Attach any object in pretty json format easily with Sylenium! simply tell Sylenium to add your attachment and pass in your object instance! :) 
 
