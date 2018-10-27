@@ -1,15 +1,15 @@
-package io.symonk.sylenium.command;
+package io.symonk.sylenium.command.fakedata;
 
 
 import com.github.javafaker.Faker;
 import io.symonk.sylenium.interfaces.SyleniumCommand;
 
-public class GetRandomNumber implements SyleniumCommand<Long> {
+public class GetRandomNumberCommand implements SyleniumCommand<Long> {
 
     private final Faker faker = new Faker();
 
     @Override
-    public Long execute() {
+    public Long execute(final Object[] args) {
         return faker.number().randomNumber();
     }
 }

@@ -4,12 +4,8 @@ import org.testng.annotations.BeforeMethod;
 
 public class SyleniumTest {
 
-  protected Sylenium sylenium;
+  protected Sylenium sylenium = Sylenium.INSTANCE;
 
-  @BeforeMethod
-  public void beforeTest() {
-    sylenium = new Sylenium();
-  }
 
   @BeforeMethod
   public void cleaningUp() {

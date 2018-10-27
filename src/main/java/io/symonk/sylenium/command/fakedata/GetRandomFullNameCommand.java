@@ -1,15 +1,15 @@
-package io.symonk.sylenium.command;
+package io.symonk.sylenium.command.fakedata;
 
 import com.github.javafaker.Faker;
 import io.symonk.sylenium.interfaces.SyleniumCommand;
 
 
-public class GetRandomFullName implements SyleniumCommand<String> {
+public class GetRandomFullNameCommand implements SyleniumCommand<String> {
 
     private Faker faker = new Faker();
 
     @Override
-    public String execute() {
+    public String execute(final Object[] args) {
         return faker.name().fullName();
     }
 }

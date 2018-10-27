@@ -1,17 +1,17 @@
 package io.symonk.sylenium.unit.command;
 
 
-import io.symonk.sylenium.command.GetRandomNumber;
+import io.symonk.sylenium.command.fakedata.GetRandomNumberCommand;
 import org.testng.annotations.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class RandomNumberCommandTest {
 
-    private final GetRandomNumber command = new GetRandomNumber();
+    private final GetRandomNumberCommand command = new GetRandomNumberCommand();
 
     @Test
     public void randomNumberIsGreaterThanZero() {
-        assertThat(command.execute()).isGreaterThan(0);
+        assertThat(command.execute(new Object[]{})).isGreaterThan(0);
     }
 }

@@ -1,81 +1,50 @@
 package io.symonk.sylenium;
 
-import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.SelenideElement;
+import io.symonk.sylenium.command.Commands;
 import io.symonk.sylenium.impl.ConfigManager;
-import io.symonk.sylenium.interfaces.ConfigObserver;
 import io.symonk.sylenium.interfaces.SyleniumObject;
 
-import java.util.List;
+public enum Sylenium implements ISylenium {
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
+  INSTANCE;
 
-public class Sylenium {
+  private static final ConfigManager configManager = new ConfigManager();
+  private static final ResourceReader localisationValueReader = new ResourceReader(configManager);
+  private static final SyleniumWorld world = new SyleniumWorld();
+  private static final Commands commands = Commands.INSTANCE;
 
-  private final ConfigManager cfgManager = new ConfigManager();
-  private final ThreadLocal<ResourceReader> valueParser = ThreadLocal.withInitial(() -> new ResourceReader(cfgManager));
-  private final ThreadLocal<SyleniumWorld> world = ThreadLocal.withInitial(SyleniumWorld::new);
-
-  public synchronized int getCfgObserversCount() {
-    return cfgManager.getObserverCount();
-  }
-
-  public synchronized <T extends ConfigObserver> void unregisterConfigObserver(T object) {
-    cfgManager.removeObserver(object);
-  }
-
-  public synchronized <T extends ConfigObserver> void registerConfigObserver(T object) {
-    cfgManager.registerObserver(object);
-  }
-
+  @Override
   public String localisedValueOf(final String key) {
-    return valueParser.get().localisedValueOf(key);
+    return commands.execute("localisedValueOf", new Object[]{localisationValueReader, key});
   }
 
-  public synchronized void setProperty(final String key, final String value) {
-    cfgManager.setProperty(key, value);
+  @Override
+  public <T extends SyleniumObject> void registerWorldObject(final T testData) {
+     commands.execute("registerWorldObject", new Object[] {world, testData});
   }
 
-  public synchronized String getProperty(final String key) {
-    return cfgManager.getProperty(key);
-  }
-
-  public synchronized void removeProperty(final String key) {
-    cfgManager.removeProperty(key);
-  }
-
-  public <T extends SyleniumObject> void register(final T object) {
-    world.get().registerObject(object);
-  }
-
+  @Override
   public void cleanUpWorld() {
-    world.get().cleanUpWorld();
+    commands.execute("cleanUpWorld", new Object[]{world});
   }
 
-  public int getWorldSize() {
-    return world.get().getWorldSize();
+  @Override
+  public String getName() {
+    return commands.execute("getName", new Object[]{});
   }
 
-  public <T> T launch(final String url, final Class<T> pageObject) {
-    return Selenide.open(url, pageObject);
+  @Override
+  public String getLastName() {
+    return commands.execute("getLastName", new Object[]{});
   }
 
-  public SelenideElement $localisedLinkText(final String resourceKey) {
-    return $(SyleniumLinkText.syLinkText(localisedValueOf(resourceKey)));
+  @Override
+  public String getFirstName() {
+    return commands.execute("getFirstName", new Object[]{});
   }
 
-  public ElementsCollection $$localisedLinkText(final String resourceKey) {
-    return $$(SyleniumLinkText.syLinkText(localisedValueOf(resourceKey)));
-  }
 
-  public SelenideElement $localisedPartialLinkText(final String resourceKey) {
-    return $(SyleniumPartialLinkText.syLinkText(localisedValueOf(resourceKey)));
-  }
 
-  public ElementsCollection $$localisedPartialLinkText(final String resourceKey) {
-    return $$(SyleniumPartialLinkText.syLinkText(localisedValueOf(resourceKey)));
-  }
+
 
 }
