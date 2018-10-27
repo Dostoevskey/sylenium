@@ -187,11 +187,11 @@ into the localisedLinkText method.
 ```
 
 ```
-<-- Localisation example file -->
-one=1
-two=2
-three=3
-partial.link.text=Partial Link Test
+    <-- Localisation example file -->
+    one=1
+    two=2
+    three=3
+    partial.link.text=Partial Link Test
 ```
 
 ---
