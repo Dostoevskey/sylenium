@@ -1,4 +1,4 @@
-package io.symonk.sylenium.command.fakedata;
+package io.symonk.sylenium.command.data;
 
 
 import com.github.javafaker.Faker;

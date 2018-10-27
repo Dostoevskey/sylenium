@@ -10,7 +10,7 @@ public enum Sylenium implements ISylenium {
 
   private static final ConfigManager configManager = new ConfigManager();
   private static final ResourceReader localisationValueReader = new ResourceReader(configManager);
-  private static final SyleniumWorld world = new SyleniumWorld();
+  private static final ThreadLocal<SyleniumWorld> world = ThreadLocal.withInitial(SyleniumWorld::new);
   private static final Commands commands = Commands.INSTANCE;
 
   @Override
@@ -19,13 +19,31 @@ public enum Sylenium implements ISylenium {
   }
 
   @Override
-  public <T extends SyleniumObject> void registerWorldObject(final T testData) {
+  public <T extends SyleniumObject> Sylenium registerWorldObject(final T testData) {
      commands.execute("registerWorldObject", new Object[] {world, testData});
+     return this;
   }
 
   @Override
-  public void cleanUpWorld() {
+  public <T extends SyleniumObject> Sylenium unregisterWorldObject(final T testData) {
+    commands.execute("unregisterWorldObject", new Object[] {world, testData});
+    return this;
+  }
+
+  @Override
+  public Sylenium cleanUpWorld() {
     commands.execute("cleanUpWorld", new Object[]{world});
+    return this;
+  }
+
+  @Override
+  public int getWorldSize() {
+    return commands.execute("getWorldSize", new Object[]{world});
+  }
+
+  @Override
+  public <T> T start(final T pageObjectClass) {
+    return commands.execute("start", new Object[]{pageObjectClass});
   }
 
   @Override

@@ -1,11 +1,13 @@
 package io.symonk.sylenium.command;
 
 
-import io.symonk.sylenium.command.fakedata.GetRandomFirstNameCommand;
-import io.symonk.sylenium.command.fakedata.GetRandomLastNameCommand;
+import io.symonk.sylenium.command.browser.StartCommand;
+import io.symonk.sylenium.command.data.GetRandomFirstNameCommand;
+import io.symonk.sylenium.command.data.GetRandomLastNameCommand;
 import io.symonk.sylenium.command.sylenium.CleanUpWorldCommand;
 import io.symonk.sylenium.command.sylenium.LocalisedValueOfCommand;
 import io.symonk.sylenium.command.sylenium.RegisterWorldObjectCommand;
+import io.symonk.sylenium.command.sylenium.UnregisterWorldObjectCommand;
 import io.symonk.sylenium.interfaces.SyleniumCommand;
 import org.openqa.selenium.InvalidArgumentException;
 
@@ -32,15 +34,15 @@ public enum Commands {
     }
 
     private void registerBrowserCommands() {
-
+        register("start", new StartCommand());
     }
 
     private void registerSyleniumCommands() {
         register("localisedValueOf", new LocalisedValueOfCommand());
         register("registerWorldObject", new RegisterWorldObjectCommand());
+        register("unregisterWorldObject", new UnregisterWorldObjectCommand());
         register("cleanUpWorld", new CleanUpWorldCommand());
     }
-
 
     private void register(final String name, final SyleniumCommand command) {
         mapOfCommands.put(name, command);

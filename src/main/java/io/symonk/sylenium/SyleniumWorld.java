@@ -13,6 +13,10 @@ public class SyleniumWorld<T extends SyleniumObject> {
     testObjects.add(t);
   }
 
+  public void unregisterObject(T t) {
+    testObjects.remove(t);
+  }
+
   public int getWorldSize() {
     return testObjects.size();
   }

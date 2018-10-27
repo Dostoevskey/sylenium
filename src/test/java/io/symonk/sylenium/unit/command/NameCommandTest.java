@@ -1,7 +1,7 @@
 package io.symonk.sylenium.unit.command;
 
 
-import io.symonk.sylenium.command.fakedata.GetRandomFullNameCommand;
+import io.symonk.sylenium.command.data.GetRandomFullNameCommand;
 import org.testng.annotations.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

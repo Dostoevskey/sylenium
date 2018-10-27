@@ -40,7 +40,7 @@ public class SyleniumIT extends SyleniumTest {
 
   @Test
   public void startingSyleniumReturnsValidPageObject() {
-    final DummyWorldObject po = sylenium.launch("https://www.google.com", DummyWorldObject.class);
+    final DummyWorldObject po = sylenium.start("https://www.google.com", DummyWorldObject.class);
     Assert.assertNotNull(po);
     Assert.assertEquals(WebDriverRunner.getWebDriver().getCurrentUrl(), "https://www.google.com/");
   }
