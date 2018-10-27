@@ -181,7 +181,7 @@ into the localisedLinkText method.
     @Test
     public void canElementByLocalisedText() {
         sylenium.launch("http://toolsqa.com/automation-practice-form/", MyPageObject.class);
-        sylenium.localisedLinkText("partial.link.text").shouldBe(Condition.visible);
+        sylenium.localisedLinkText("partial.link.text").shouldBe(visible);
     }
     
 ```
