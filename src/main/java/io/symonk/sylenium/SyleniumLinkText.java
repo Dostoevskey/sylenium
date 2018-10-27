@@ -8,7 +8,7 @@ import java.util.List;
 
 public class SyleniumLinkText {
 
-  public static By $yLinkText(final String languageKey) {
+  public static By syLinkText(final String languageKey) {
     return new By() {
       @Override
       public List<WebElement> findElements(final SearchContext searchContext) {
@@ -24,7 +24,6 @@ public class SyleniumLinkText {
         return "By localised linktext";
       }
     };
-
   }
 
 }

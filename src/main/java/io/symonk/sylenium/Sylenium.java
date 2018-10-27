@@ -1,12 +1,16 @@
 package io.symonk.sylenium;
 
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import io.symonk.sylenium.impl.ConfigManager;
 import io.symonk.sylenium.interfaces.ConfigObserver;
 import io.symonk.sylenium.interfaces.SyleniumObject;
 
+import java.util.List;
+
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 public class Sylenium {
 
@@ -58,8 +62,20 @@ public class Sylenium {
     return Selenide.open(url, pageObject);
   }
 
-  public SelenideElement localisedLinkText(final String resourceKey) {
-    return $(SyleniumLinkText.$yLinkText(localisedValueOf(resourceKey)));
+  public SelenideElement $localisedLinkText(final String resourceKey) {
+    return $(SyleniumLinkText.syLinkText(localisedValueOf(resourceKey)));
+  }
+
+  public ElementsCollection $$localisedLinkText(final String resourceKey) {
+    return $$(SyleniumLinkText.syLinkText(localisedValueOf(resourceKey)));
+  }
+
+  public SelenideElement $localisedPartialLinkText(final String resourceKey) {
+    return $(SyleniumPartialLinkText.syLinkText(localisedValueOf(resourceKey)));
+  }
+
+  public ElementsCollection $$localisedPartialLinkText(final String resourceKey) {
+    return $$(SyleniumPartialLinkText.syLinkText(localisedValueOf(resourceKey)));
   }
 
 }
