@@ -20,20 +20,20 @@ public class SyleniumLinkTextIT extends SyleniumTest {
 
     @Test
     public void canFindListOfExactTextElements() {
-        sy.start("http://toolsqa.com/automation-practice-form/", DummyWorldObject.class);
+        sy.start(DummyWorldObject.class);
         $$(sy.localisedLinkTextOf("link.text")).shouldHaveSize(11);
     }
 
 
     @Test
     public void canFindPartialLinkTextElement() {
-        sy.start("http://toolsqa.com/automation-practice-form/", DummyWorldObject.class);
+        sy.start(DummyWorldObject.class);
        $(sy.localisedLinkTextOf("multiple.link.text")).shouldBe(Condition.visible);
     }
 
     @Test
     public void canFindListOfPartialTextElements() {
-        sy.start("http://toolsqa.com/automation-practice-form/", DummyWorldObject.class);
+        sy.start(DummyWorldObject.class);
         $$(sy.localisedLinkTextOf("multiple.link.text")).shouldHaveSize(11);
     }
 }
