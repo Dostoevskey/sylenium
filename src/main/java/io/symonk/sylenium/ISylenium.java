@@ -4,6 +4,7 @@ package io.symonk.sylenium;
 import com.codeborne.selenide.ElementsContainer;
 import com.codeborne.selenide.SelenideElement;
 import io.symonk.sylenium.interfaces.SyleniumObject;
+import org.openqa.selenium.By;
 
 public interface ISylenium {
 
@@ -47,7 +48,7 @@ public interface ISylenium {
      * @see io.symonk.sylenium.command.sylenium.RegisterWorldObjectCommand
      * @param testData - The Test Data Object Sylenium should keep track of
      * @param <T> - An Object which implements SyleniumObject
-     * @return The sylenium instance
+     * @return The sy instance
      * @see io.symonk.sylenium.interfaces.SyleniumObject
      */
     <T extends SyleniumObject> Sylenium registerWorldObject(final T testData);
@@ -63,7 +64,7 @@ public interface ISylenium {
     <T extends SyleniumObject> Sylenium unregisterWorldObject(final T testData);
 
     /**
-     * Clears out the sylenium world of all test data objects
+     * Clears out the sy world of all test data objects
      * @see io.symonk.sylenium.command.sylenium.CleanUpWorldCommand
      * //todo implement strategy pattern to offer a per test / method / class / suite clear up policy?
      */
@@ -77,7 +78,7 @@ public interface ISylenium {
     int getWorldSize();
 
     /**
-     * Retrieve the value of any runtime properties specified in the sylenium config file
+     * Retrieve the value of any runtime properties specified in the sy config file
      * @param propertyKey The key to use as a lookup to return the value
      * @return The property value
      * @see io.symonk.sylenium.command.sylenium.GetPropertyCommand
@@ -85,17 +86,17 @@ public interface ISylenium {
     String getProperty(final String propertyKey);
 
     /**
-     * Set a sylenium property value programmatically at runtime
+     * Set a sy property value programmatically at runtime
      * @param propertyKey The key to use as a lookup to set the value
      * @param newValue The new value for this property
-     * @return The sylenium instance
+     * @return The sy instance
      * @see io.symonk.sylenium.command.sylenium.UpdatePropertyCommand
      */
     Sylenium updateProperty(final String propertyKey, final String newValue);
 
 
+    By localisedLinkTextOf(final String languageKey);
 
-    SelenideElement elementLocalisedExactLinktext(final String languageKey);
+    By localisedPartialLinkTextOf(final String languageKey);
 
-    ElementsContainer elementsLocalisedExactLinktext(final String languageKey);
 }

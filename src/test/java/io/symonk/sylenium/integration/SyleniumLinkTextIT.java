@@ -6,31 +6,34 @@ import io.symonk.sylenium.SyleniumTest;
 import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
+
 @Ignore
 public class SyleniumLinkTextIT extends SyleniumTest {
 
     @Test
     public void canFindExactLinkTextElement() {
-        sylenium.start(DummyWorldObject.class);
-        $(sylenium.).shouldBe(Condition.visible);
+        sy.start(DummyWorldObject.class);
+        $(sy.localisedLinkTextOf("link.text")).shouldBe(Condition.visible);
     }
 
     @Test
     public void canFindListOfExactTextElements() {
-        sylenium.start("http://toolsqa.com/automation-practice-form/", DummyWorldObject.class);
-        sylenium.$$localisedLinkText("link.text").shouldHaveSize(1);
+        sy.start("http://toolsqa.com/automation-practice-form/", DummyWorldObject.class);
+        $$(sy.localisedLinkTextOf("link.text")).shouldHaveSize(11);
     }
 
 
     @Test
     public void canFindPartialLinkTextElement() {
-        sylenium.start("http://toolsqa.com/automation-practice-form/", DummyWorldObject.class);
-        sylenium.$localisedPartialLinkText("multiple.link.text").shouldBe(Condition.visible);
+        sy.start("http://toolsqa.com/automation-practice-form/", DummyWorldObject.class);
+       $(sy.localisedLinkTextOf("multiple.link.text")).shouldBe(Condition.visible);
     }
 
     @Test
     public void canFindListOfPartialTextElements() {
-        sylenium.start("http://toolsqa.com/automation-practice-form/", DummyWorldObject.class);
-        sylenium.$$localisedPartialLinkText("multiple.link.text").shouldHaveSize(11);
+        sy.start("http://toolsqa.com/automation-practice-form/", DummyWorldObject.class);
+        $$(sy.localisedLinkTextOf("multiple.link.text")).shouldHaveSize(11);
     }
 }

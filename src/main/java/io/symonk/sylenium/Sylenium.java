@@ -1,8 +1,15 @@
 package io.symonk.sylenium;
 
+import com.codeborne.selenide.ElementsContainer;
+import com.codeborne.selenide.SelenideElement;
 import io.symonk.sylenium.command.Commands;
+import io.symonk.sylenium.command.browser.ExactLocalisedLinkTextLookupCommand;
 import io.symonk.sylenium.impl.PropertyManager;
 import io.symonk.sylenium.interfaces.SyleniumObject;
+import org.openqa.selenium.By;
+
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 public enum Sylenium implements ISylenium {
 
@@ -50,6 +57,16 @@ public enum Sylenium implements ISylenium {
   public Sylenium updateProperty(final String propertyKey, final String newValue) {
     commands.execute("updateProperty", new Object[]{PROPERTY_MANAGER, propertyKey, newValue});
     return this;
+  }
+
+  @Override
+  public By localisedLinkTextOf(final String languageKey) {
+    return commands.execute("exactLinktext", new Object[]{languageKey});
+  }
+
+  @Override
+  public By localisedPartialLinkTextOf(final String languageKey) {
+    return commands.execute("partialLinkText", new Object[]{languageKey});
   }
 
   @Override

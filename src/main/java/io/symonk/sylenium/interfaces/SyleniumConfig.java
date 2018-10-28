@@ -7,7 +7,7 @@ import org.aeonbits.owner.Config.Sources;
 import org.aeonbits.owner.Mutable;
 
 @HotReload
-@Sources("classpath:sylenium.properties")
+@Sources("classpath:sy.properties")
 public interface SyleniumConfig extends Config, Mutable, Accessible {
 
   @Key("sy.enable.localisation")

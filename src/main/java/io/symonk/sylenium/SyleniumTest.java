@@ -4,11 +4,11 @@ import org.testng.annotations.BeforeMethod;
 
 public class SyleniumTest {
 
-  protected Sylenium sylenium = Sylenium.INSTANCE;
+  protected Sylenium sy = Sylenium.INSTANCE;
 
 
   @BeforeMethod
   public void cleaningUp() {
-    sylenium.cleanUpWorld();
+    sy.cleanUpWorld();
   }
 }
