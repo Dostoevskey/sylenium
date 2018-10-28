@@ -6,4 +6,6 @@ public interface ConfigObservable {
 
   void removeObserver(final ConfigObserver observer);
 
+  int getObserverCount();
+
 }

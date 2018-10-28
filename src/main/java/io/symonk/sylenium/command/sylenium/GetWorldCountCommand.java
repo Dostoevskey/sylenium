@@ -3,7 +3,7 @@ package io.symonk.sylenium.command.sylenium;
 import io.symonk.sylenium.SyleniumWorld;
 import io.symonk.sylenium.interfaces.SyleniumCommand;
 
-public class GetWorldSizeCommand implements SyleniumCommand<Integer> {
+public class GetWorldCountCommand implements SyleniumCommand<Integer> {
 
     @Override
     public Integer execute(final Object[] args) {

@@ -2,6 +2,7 @@ package io.symonk.sylenium;
 
 import io.symonk.sylenium.command.Commands;
 import io.symonk.sylenium.impl.PropertyManager;
+import io.symonk.sylenium.interfaces.ConfigObserver;
 import io.symonk.sylenium.interfaces.SyleniumObject;
 import org.openqa.selenium.By;
 
@@ -10,77 +11,92 @@ public enum Sylenium implements ISylenium {
   INSTANCE;
 
   private static final PropertyManager PROPERTY_MANAGER = new PropertyManager();
-  private static final ResourceReader localisationValueReader = new ResourceReader(PROPERTY_MANAGER);
-  private static final ThreadLocal<SyleniumWorld> world = ThreadLocal.withInitial(SyleniumWorld::new);
-  private static final Commands commands = Commands.INSTANCE;
+  private static final ResourceReader LOCAL_VALUE_READER = new ResourceReader(PROPERTY_MANAGER);
+  private static final ThreadLocal<SyleniumWorld> WORLD = ThreadLocal.withInitial(SyleniumWorld::new);
+  private static final Commands COMMANDS = Commands.INSTANCE;
 
   @Override
   public String localisedValueOf(final String key) {
-    return commands.execute("localisedValueOf", new Object[]{localisationValueReader, key});
+    return COMMANDS.execute("localisedValueOf", new Object[]{LOCAL_VALUE_READER, key});
   }
 
   @Override
   public <T extends SyleniumObject> Sylenium registerWorldObject(final T testData) {
-     commands.execute("registerWorldObject", new Object[] {world, testData});
+     COMMANDS.execute("registerWorldObject", new Object[] {WORLD, testData});
      return this;
   }
 
   @Override
   public <T extends SyleniumObject> Sylenium unregisterWorldObject(final T testData) {
-    commands.execute("unregisterWorldObject", new Object[] {world, testData});
+    COMMANDS.execute("unregisterWorldObject", new Object[] {WORLD, testData});
     return this;
   }
 
   @Override
   public Sylenium cleanUpWorld() {
-    commands.execute("cleanUpWorld", new Object[]{world});
+    COMMANDS.execute("cleanUpWorld", new Object[]{WORLD});
     return this;
   }
 
   @Override
   public int getWorldItemCount() {
-    return commands.execute("getWorldItemCount", new Object[]{world});
+    return COMMANDS.execute("getWorldItemCount", new Object[]{WORLD});
   }
 
   @Override
   public String getProperty(final String propertyKey) {
-    return commands.execute("getProperty", new Object[]{PROPERTY_MANAGER, propertyKey});
+    return COMMANDS.execute("getProperty", new Object[]{PROPERTY_MANAGER, propertyKey});
   }
 
   @Override
   public Sylenium updateProperty(final String propertyKey, final String newValue) {
-    commands.execute("updateProperty", new Object[]{PROPERTY_MANAGER, propertyKey, newValue});
+    COMMANDS.execute("updateProperty", new Object[]{PROPERTY_MANAGER, propertyKey, newValue});
     return this;
   }
 
   @Override
   public By localisedLinkTextOf(final String languageKey) {
-    return commands.execute("exactLinktext", new Object[]{languageKey});
+    return COMMANDS.execute("exactLinktext", new Object[]{languageKey});
   }
 
   @Override
   public By localisedPartialLinkTextOf(final String languageKey) {
-    return commands.execute("partialLinkText", new Object[]{languageKey});
+    return COMMANDS.execute("partialLinkText", new Object[]{languageKey});
+  }
+
+  @Override
+  public <T extends ConfigObserver> Sylenium addConfigObserver(final T observer) {
+    return COMMANDS.execute("addConfigObserver", new Object[]{PROPERTY_MANAGER, observer});
+  }
+
+  @Override
+  public <T extends ConfigObserver> Sylenium removeConfigObserver(final T observer) {
+    return COMMANDS.execute("removeConfigObservers", new Object[]{PROPERTY_MANAGER, observer});
+  }
+
+  @Override
+  public int getConfigObserverCount() {
+    return COMMANDS.execute("getConfigObserverCount", new Object[]{});
   }
 
   @Override
   public <T> T start(final T pageObjectClass) {
-    return commands.execute("start", new Object[]{pageObjectClass});
+    return COMMANDS.execute("start", new Object[]{pageObjectClass});
   }
 
   @Override
   public String getName() {
-    return commands.execute("getName", new Object[]{});
+    return COMMANDS.execute("getName", new Object[]{});
   }
 
   @Override
   public String getLastName() {
-    return commands.execute("getLastName", new Object[]{});
+    return COMMANDS.execute("getLastName", new Object[]{});
   }
 
   @Override
   public String getFirstName() {
-    return commands.execute("getFirstName", new Object[]{});
+    return COMMANDS.execute("getFirstName", new Object[]{});
   }
 
 

@@ -13,9 +13,9 @@ public class SyleniumIT extends SyleniumTest {
   public void canRegisterAndRemoveObservers() {
     final DummyConfigObserver dummy = new DummyConfigObserver();
     sy.registerConfigObserver(dummy);
-    Assert.assertEquals(sy.getCfgObserversCount(), 1);
+    Assert.assertEquals(sy.getConfigObserverCount(), 1);
     sy.unregisterConfigObserver(dummy);
-    Assert.assertEquals(sy.getCfgObserversCount(), 0);
+    Assert.assertEquals(sy.getConfigObserverCount(), 0);
   }
 
   @Test
@@ -38,7 +38,7 @@ public class SyleniumIT extends SyleniumTest {
 
   @Test
   public void startingSyleniumReturnsValidPageObject() {
-    final DummyWorldObject po = sy.start("https://www.google.com", DummyWorldObject.class);
+    final DummyWorldObject po = sy.start(DummyWorldObject.class);
     Assert.assertNotNull(po);
     Assert.assertEquals(WebDriverRunner.getWebDriver().getCurrentUrl(), "https://www.google.com/");
   }

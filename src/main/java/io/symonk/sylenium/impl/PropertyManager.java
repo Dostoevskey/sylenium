@@ -25,6 +25,7 @@ public class PropertyManager implements ConfigObservable {
     myObservers.remove(observer);
   }
 
+  @Override
   public int getObserverCount() {
     return myObservers.size();
   }

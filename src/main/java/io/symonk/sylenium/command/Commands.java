@@ -52,8 +52,11 @@ public enum Commands {
         register("unregisterWorldObject", new UnregisterWorldObjectCommand());
         register("cleanUpWorld", new CleanUpWorldCommand());
         register("getProperty", new GetPropertyCommand());
-        register("getWorldItemCount", new GetWorldSizeCommand());
+        register("getWorldItemCount", new GetWorldCountCommand());
         register("updateProperty", new UpdatePropertyCommand());
+        register("getConfigObserverCount", new GetConfigObserverCountCommand());
+        register("addConfigObserver", new ObserveConfigCommand());
+        register("removeConfigObserver", new UnobserveConfigCommand());
     }
 
     private void register(final String name, final SyleniumCommand command) {
