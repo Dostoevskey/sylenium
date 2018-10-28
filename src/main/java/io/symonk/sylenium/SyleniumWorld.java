@@ -14,7 +14,7 @@ public class SyleniumWorld<T extends SyleniumObject> {
   }
 
   public void unregisterObject(T t) {
-    testObjects.remove(t);
+    testObjects.removeIf(e -> testObjects.contains(t));
   }
 
   public int getWorldSize() {
