@@ -4,9 +4,9 @@ import io.symonk.sylenium.ex.NoSuchLanguageFileException;
 import io.symonk.sylenium.impl.LocalisationFileReader;
 import io.symonk.sylenium.interfaces.SyleniumConfig;
 import org.mockito.Mock;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -25,6 +25,6 @@ public class LocalisationFileReaderTest {
   public void canReadResourceFile() {
     when(config.localisationFile()).thenReturn("english.properties");
     fileReader.update(config);
-    Assert.assertEquals(fileReader.getLanguageValue("two"), "2");
+    assertThat(fileReader.getLanguageValue("two")).isEqualTo("2");
   }
 }

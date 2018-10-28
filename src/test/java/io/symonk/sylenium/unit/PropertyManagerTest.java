@@ -6,6 +6,8 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class PropertyManagerTest {
 
   private PropertyManager cfgManager;
@@ -19,6 +21,7 @@ public class PropertyManagerTest {
   public void canRegisterObserver() {
     cfgManager.registerObserver(new DummyConfigObserver());
     Assert.assertEquals(cfgManager.getObserverCount(), 1);
+    assertThat(cfgManager.getObserverCount()).isEqualTo(1);
   }
 
   @Test
@@ -26,13 +29,13 @@ public class PropertyManagerTest {
     final DummyConfigObserver dummy = new DummyConfigObserver();
     cfgManager.registerObserver(dummy);
     cfgManager.removeObserver(dummy);
-    Assert.assertEquals(cfgManager.getObserverCount(), 0);
+    assertThat(cfgManager.getObserverCount()).isEqualTo(0);
   }
 
   @Test
   public void canSetAndGetProperty() {
     cfgManager.updateProperty("setter", "setter");
-    Assert.assertEquals(cfgManager.getProperty("setter"), "setter");
+    assertThat(cfgManager.getProperty("setter")).isEqualTo("setter");
   }
 
 }

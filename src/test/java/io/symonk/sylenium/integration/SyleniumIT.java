@@ -6,6 +6,8 @@ import io.symonk.sylenium.DummyWorldObject;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class SyleniumIT extends BaseIT {
 
   @Test
@@ -19,24 +21,24 @@ public class SyleniumIT extends BaseIT {
   @Test
   public void canUpdateAndGetProperties() {
     sy.updateProperty("sy.enable.localisation", "true");
-    Assert.assertEquals(sy.getProperty("sy.enable.localisation"), "true");
+    assertThat(sy.getProperty("sy.enable.localisation")).isEqualTo("true");
   }
 
   @Test
   public void canReadLanguageResource() {
-    Assert.assertEquals(sy.localisedValueOf("one"), "1");
+    assertThat(sy.localisedValueOf("one")).isEqualTo("1");
   }
 
   @Test
   public void canRegisterTestDataToTheWorld() {
     sy.registerWorldObject(new DummyWorldObject());
-    Assert.assertEquals(sy.getWorldItemCount(), 1);
+    assertThat(sy.getWorldItemCount()).isEqualTo(1);
   }
 
   @Test
   public void startingSyleniumReturnsValidPageObject() {
     final DummyWorldObject po = sy.start(DummyWorldObject.class);
-    Assert.assertNotNull(po);
-    Assert.assertEquals(WebDriverRunner.getWebDriver().getCurrentUrl(), "http://toolsqa.com/automation-practice-form/");
+    assertThat(po).isNotNull();
+    assertThat(WebDriverRunner.getWebDriver().getCurrentUrl()).isEqualTo("http://toolsqa.com/automation-practice-form/");
   }
 }
