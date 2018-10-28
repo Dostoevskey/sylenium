@@ -19,12 +19,10 @@ public class SyleniumIT extends SyleniumTest {
   }
 
   @Test
-  public void canSetGetAndRemoveProperties() {
+  public void canUpdateAndGetProperties() {
     final String random = "random";
-    sylenium.setProperty(random, random);
+    sylenium.updateProperty(random, random);
     Assert.assertEquals(sylenium.getProperty(random), random);
-    sylenium.removeProperty(random);
-    Assert.assertEquals(sylenium.getProperty(random), "");
   }
 
   @Test

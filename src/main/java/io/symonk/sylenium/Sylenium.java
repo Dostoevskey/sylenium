@@ -1,15 +1,15 @@
 package io.symonk.sylenium;
 
 import io.symonk.sylenium.command.Commands;
-import io.symonk.sylenium.impl.ConfigManager;
+import io.symonk.sylenium.impl.PropertyManager;
 import io.symonk.sylenium.interfaces.SyleniumObject;
 
 public enum Sylenium implements ISylenium {
 
   INSTANCE;
 
-  private static final ConfigManager configManager = new ConfigManager();
-  private static final ResourceReader localisationValueReader = new ResourceReader(configManager);
+  private static final PropertyManager PROPERTY_MANAGER = new PropertyManager();
+  private static final ResourceReader localisationValueReader = new ResourceReader(PROPERTY_MANAGER);
   private static final ThreadLocal<SyleniumWorld> world = ThreadLocal.withInitial(SyleniumWorld::new);
   private static final Commands commands = Commands.INSTANCE;
 
@@ -39,6 +39,17 @@ public enum Sylenium implements ISylenium {
   @Override
   public int getWorldSize() {
     return commands.execute("getWorldSize", new Object[]{world});
+  }
+
+  @Override
+  public String getProperty(final String propertyKey) {
+    return commands.execute("getProperty", new Object[]{PROPERTY_MANAGER, propertyKey});
+  }
+
+  @Override
+  public Sylenium updateProperty(final String propertyKey, final String newValue) {
+    commands.execute("updateProperty", new Object[]{PROPERTY_MANAGER, propertyKey, newValue});
+    return this;
   }
 
   @Override

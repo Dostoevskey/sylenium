@@ -1,18 +1,18 @@
 package io.symonk.sylenium.unit;
 
 import io.symonk.sylenium.DummyConfigObserver;
-import io.symonk.sylenium.impl.ConfigManager;
+import io.symonk.sylenium.impl.PropertyManager;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class ConfigManagerTest {
+public class PropertyManagerTest {
 
-  private ConfigManager cfgManager;
+  private PropertyManager cfgManager;
 
   @BeforeMethod
   public void prep() {
-    cfgManager = new ConfigManager();
+    cfgManager = new PropertyManager();
   }
 
   @Test
@@ -31,14 +31,8 @@ public class ConfigManagerTest {
 
   @Test
   public void canSetAndGetProperty() {
-    cfgManager.setProperty("setter", "setter");
+    cfgManager.updateProperty("setter", "setter");
     Assert.assertEquals(cfgManager.getProperty("setter"), "setter");
   }
 
-  @Test
-  public void canRemoveProperty() {
-    cfgManager.setProperty("remove", "remove");
-    cfgManager.removeProperty("remove");
-    Assert.assertEquals(cfgManager.getProperty("remove"), "");
-  }
 }

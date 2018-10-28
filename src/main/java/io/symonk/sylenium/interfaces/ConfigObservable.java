@@ -6,5 +6,4 @@ public interface ConfigObservable {
 
   void removeObserver(final ConfigObserver observer);
 
-  void notify(final SyleniumConfig config);
 }

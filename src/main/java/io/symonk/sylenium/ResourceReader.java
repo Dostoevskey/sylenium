@@ -1,13 +1,13 @@
 package io.symonk.sylenium;
 
-import io.symonk.sylenium.impl.ConfigManager;
+import io.symonk.sylenium.impl.PropertyManager;
 import io.symonk.sylenium.impl.LocalisationFileReader;
 
 public class ResourceReader {
 
   private final LocalisationFileReader localisationFileReader = new LocalisationFileReader();
 
-  public ResourceReader(final ConfigManager cfgManager) {
+  public ResourceReader(final PropertyManager cfgManager) {
     cfgManager.registerObserver(localisationFileReader);
   }
 

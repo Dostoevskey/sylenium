@@ -8,10 +8,11 @@ import org.aeonbits.owner.ConfigFactory;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ConfigManager implements ConfigObservable {
+public class PropertyManager implements ConfigObservable {
 
   private final SyleniumConfig config = ConfigFactory.create(SyleniumConfig.class);
   private final List<ConfigObserver> myObservers = new ArrayList<>();
+
 
   @Override
   public void registerObserver(final ConfigObserver observer) {
@@ -24,18 +25,17 @@ public class ConfigManager implements ConfigObservable {
     myObservers.remove(observer);
   }
 
-  @Override
-  public void notify(final SyleniumConfig config) {
+  public int getObserverCount() {
+    return myObservers.size();
+  }
+
+
+  private void notify(final SyleniumConfig config) {
     myObservers.forEach(observer -> observer.update(config));
   }
 
-  public void setProperty(final String key, final String value) {
+  public void updateProperty(final String key, final String value) {
     config.setProperty(key, value);
-    notify(config);
-  }
-
-  public void removeProperty(final String key) {
-    config.removeProperty(key);
     notify(config);
   }
 
@@ -43,7 +43,4 @@ public class ConfigManager implements ConfigObservable {
     return config.getProperty(key) == null ? "" : config.getProperty(key);
   }
 
-  public int getObserverCount() {
-    return myObservers.size();
-  }
 }

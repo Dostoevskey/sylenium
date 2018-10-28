@@ -2,13 +2,13 @@ package io.symonk.sylenium.integration;
 
 import io.symonk.sylenium.ResourceReader;
 import io.symonk.sylenium.ex.NoSuchLocalisedPropertyException;
-import io.symonk.sylenium.impl.ConfigManager;
+import io.symonk.sylenium.impl.PropertyManager;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class ResourceReaderIT {
 
-  private final ConfigManager cfgManager = new ConfigManager();
+  private final PropertyManager cfgManager = new PropertyManager();
   private ResourceReader resourceReader = new ResourceReader(cfgManager);
 
   @Test
@@ -31,6 +31,6 @@ public class ResourceReaderIT {
   }
 
   private void setLocalisationFile(final String value) {
-    cfgManager.setProperty("$y.localisation.file", value);
+    cfgManager.updateProperty("$y.localisation.file", value);
   }
 }

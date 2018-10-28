@@ -10,12 +10,11 @@ import org.aeonbits.owner.Mutable;
 @Sources("classpath:sylenium.properties")
 public interface SyleniumConfig extends Config, Mutable, Accessible {
 
-  /** $ylenium localisation */
-  @Key("$y.enable.localisation")
+  @Key("sy.enable.localisation")
   @DefaultValue("false")
   boolean isLocalisationEnabled();
 
-  @Key("$y.localisation.file")
+  @Key("sy.localisation.file")
   @DefaultValue("english.properties")
   String localisationFile();
 }

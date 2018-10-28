@@ -35,7 +35,7 @@ public interface ISylenium {
     /**
      * Retrieves a localised property from the specified language file
      * @see io.symonk.sylenium.command.sylenium.LocalisedValueOfCommand
-     * @return the string representation of the given key
+     * @return The string representation of the given key
      */
     String localisedValueOf(final String key);
 
@@ -45,6 +45,7 @@ public interface ISylenium {
      * @see io.symonk.sylenium.command.sylenium.RegisterWorldObjectCommand
      * @param testData - The Test Data Object Sylenium should keep track of
      * @param <T> - An Object which implements SyleniumObject
+     * @return The sylenium instance
      * @see io.symonk.sylenium.interfaces.SyleniumObject
      */
     <T extends SyleniumObject> Sylenium registerWorldObject(final T testData);
@@ -73,6 +74,21 @@ public interface ISylenium {
      */
     int getWorldSize();
 
+    /**
+     * Retrieve the value of any runtime properties specified in the sylenium config file
+     * @param propertyKey The key to use as a lookup to return the value
+     * @return The property value
+     * @see io.symonk.sylenium.command.sylenium.GetPropertyCommand
+     */
+    String getProperty(final String propertyKey);
 
+    /**
+     * Set a sylenium property value programmatically at runtime
+     * @param propertyKey The key to use as a lookup to set the value
+     * @param newValue The new value for this property
+     * @return The sylenium instance
+     * @see io.symonk.sylenium.command.sylenium.UpdatePropertyCommand
+     */
+    Sylenium updateProperty(final String propertyKey, final String newValue);
 
 }
