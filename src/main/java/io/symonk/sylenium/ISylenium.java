@@ -1,6 +1,8 @@
 package io.symonk.sylenium;
 
 
+import com.codeborne.selenide.ElementsContainer;
+import com.codeborne.selenide.SelenideElement;
 import io.symonk.sylenium.interfaces.SyleniumObject;
 
 public interface ISylenium {
@@ -91,4 +93,9 @@ public interface ISylenium {
      */
     Sylenium updateProperty(final String propertyKey, final String newValue);
 
+
+
+    SelenideElement elementLocalisedExactLinktext(final String languageKey);
+
+    ElementsContainer elementsLocalisedExactLinktext(final String languageKey);
 }

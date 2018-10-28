@@ -12,7 +12,7 @@ public class SyleniumLinkTextIT extends SyleniumTest {
     @Test
     public void canFindExactLinkTextElement() {
         sylenium.start(DummyWorldObject.class);
-        sylenium.$localisedLinkText("link.text").shouldBe(Condition.visible);
+        $(sylenium.).shouldBe(Condition.visible);
     }
 
     @Test
