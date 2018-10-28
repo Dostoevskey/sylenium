@@ -1,15 +1,9 @@
 package io.symonk.sylenium;
 
-import com.codeborne.selenide.ElementsContainer;
-import com.codeborne.selenide.SelenideElement;
 import io.symonk.sylenium.command.Commands;
-import io.symonk.sylenium.command.browser.ExactLocalisedLinkTextLookupCommand;
 import io.symonk.sylenium.impl.PropertyManager;
 import io.symonk.sylenium.interfaces.SyleniumObject;
 import org.openqa.selenium.By;
-
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
 
 public enum Sylenium implements ISylenium {
 
@@ -44,8 +38,8 @@ public enum Sylenium implements ISylenium {
   }
 
   @Override
-  public int getWorldSize() {
-    return commands.execute("getWorldSize", new Object[]{world});
+  public int getWorldItemCount() {
+    return commands.execute("getWorldItemCount", new Object[]{world});
   }
 
   @Override

@@ -1,7 +1,7 @@
 package io.symonk.sylenium;
 
-import io.symonk.sylenium.impl.PropertyManager;
 import io.symonk.sylenium.impl.LocalisationFileReader;
+import io.symonk.sylenium.impl.PropertyManager;
 
 public class ResourceReader {
 

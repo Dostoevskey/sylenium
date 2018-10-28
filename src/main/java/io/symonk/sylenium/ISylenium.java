@@ -1,8 +1,7 @@
 package io.symonk.sylenium;
 
 
-import com.codeborne.selenide.ElementsContainer;
-import com.codeborne.selenide.SelenideElement;
+import io.symonk.sylenium.interfaces.ConfigObserver;
 import io.symonk.sylenium.interfaces.SyleniumObject;
 import org.openqa.selenium.By;
 
@@ -75,7 +74,7 @@ public interface ISylenium {
      * Returns the current size of the test world
      * @return an int dictating the size of the test world objects list
      */
-    int getWorldSize();
+    int getWorldItemCount();
 
     /**
      * Retrieve the value of any runtime properties specified in the sy config file
@@ -98,5 +97,11 @@ public interface ISylenium {
     By localisedLinkTextOf(final String languageKey);
 
     By localisedPartialLinkTextOf(final String languageKey);
+
+    <T extends ConfigObserver> Sylenium addConfigObserver(final T observer);
+
+    <T extends ConfigObserver> Sylenium removeConfigObserver(final T observer);
+
+    int getConfigObserverCount();
 
 }

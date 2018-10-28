@@ -52,7 +52,7 @@ public enum Commands {
         register("unregisterWorldObject", new UnregisterWorldObjectCommand());
         register("cleanUpWorld", new CleanUpWorldCommand());
         register("getProperty", new GetPropertyCommand());
-        register("getWorldSize", new GetWorldSizeCommand());
+        register("getWorldItemCount", new GetWorldSizeCommand());
         register("updateProperty", new UpdatePropertyCommand());
     }
 

@@ -33,7 +33,7 @@ public class SyleniumIT extends SyleniumTest {
   @Test
   public void canRegisterTestDataToTheWorld() {
     sy.registerWorldObject(new DummyWorldObject());
-    Assert.assertEquals(sy.getWorldSize(), 1);
+    Assert.assertEquals(sy.getWorldItemCount(), 1);
   }
 
   @Test
