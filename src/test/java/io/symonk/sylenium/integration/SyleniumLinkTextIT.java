@@ -1,15 +1,15 @@
 package io.symonk.sylenium.integration;
 
 import com.codeborne.selenide.Condition;
+import io.symonk.sylenium.BaseIT;
 import io.symonk.sylenium.DummyWorldObject;
-import io.symonk.sylenium.SyleniumTest;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 
-public class SyleniumLinkTextIT extends SyleniumTest {
+public class SyleniumLinkTextIT extends BaseIT {
 
     @Test
     public void canFindExactLinkTextElement() {
@@ -20,9 +20,8 @@ public class SyleniumLinkTextIT extends SyleniumTest {
     @Test
     public void canFindListOfExactTextElements() {
         sy.start(DummyWorldObject.class);
-        $$(sy.localisedLinkTextOf("link.text")).shouldHaveSize(11);
+        $$(sy.localisedLinkTextOf("link.text")).shouldHaveSize(1);
     }
-
 
     @Test
     public void canFindPartialLinkTextElement() {

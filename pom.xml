@@ -21,6 +21,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <faker.version>0.16</faker.version>
         <assertj.version>3.11.1</assertj.version>
+        <jetty.version>9.4.12.v20180830</jetty.version>
     </properties>
 
     <dependencies>
@@ -73,7 +74,18 @@
             <version>${assertj.version}</version>
             <scope>test</scope>
         </dependency>
-
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-server</artifactId>
+            <version>${jetty.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-webapp</artifactId>
+            <version>${jetty.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -101,7 +113,7 @@
                     <excludes>
                         <exclude>**/*IT.java</exclude>
                     </excludes>
-                    <parallel>classes</parallel>
+                    <parallel>methods</parallel>
                     <threadCount>10</threadCount>
                     <argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>
                     <suiteXmlFiles>
