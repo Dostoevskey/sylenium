@@ -17,4 +17,18 @@ public interface SyleniumConfig extends Config, Mutable, Accessible {
   @Key("sy.localisation.file")
   @DefaultValue("english.properties")
   String localisationFile();
+
+    @DefaultValue("")
+    @Key("testrail.endpoint")
+    String testrailEndpoint();
+
+    @DefaultValue("")
+    String testrailUsername();
+
+    @DefaultValue("")
+    String testrailApiKey();
+
+    @DefaultValue("")
+    String testrailProject();
+
 }
