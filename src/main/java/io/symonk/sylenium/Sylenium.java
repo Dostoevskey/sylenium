@@ -1,5 +1,7 @@
 package io.symonk.sylenium;
 
+import com.codeborne.selenide.Selenide;
+import io.symonk.sylenium.annotation.StartUrl;
 import io.symonk.sylenium.command.Commands;
 import io.symonk.sylenium.impl.PropertyManager;
 import io.symonk.sylenium.interfaces.ConfigObserver;
@@ -80,8 +82,9 @@ public enum Sylenium implements ISylenium {
   }
 
   @Override
-  public <T> T start(final T pageObjectClass) {
-    return COMMANDS.execute("start", new Object[]{pageObjectClass});
+  public <T> T start(final Class<T> pageObjectClassClass) {
+    final String title = pageObjectClassClass.getAnnotation(StartUrl.class).url();
+    return Selenide.open(title, pageObjectClassClass);
   }
 
   @Override

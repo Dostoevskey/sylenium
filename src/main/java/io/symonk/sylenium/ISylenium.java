@@ -10,10 +10,9 @@ public interface ISylenium {
     /**
      * Launches the browser, and returns your login page object
      * Login Page should contain a @Url annotation to guide the browser when using this command
-     * @param pageObjectClass -> PageObject class
      * @return the page object instance post navigation
      */
-    <pageObjectClass> pageObjectClass start(final pageObjectClass pageObjectClass);
+    <T> T  start(final Class<T> pageObjectClassClass);
 
     /**
      * Retrieves a randomised full name

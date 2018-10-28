@@ -3,7 +3,6 @@ package io.symonk.sylenium.command;
 
 import io.symonk.sylenium.command.browser.ExactLocalisedLinkTextLookupCommand;
 import io.symonk.sylenium.command.browser.PartialLocalisedLinkTextLookupCommand;
-import io.symonk.sylenium.command.browser.StartCommand;
 import io.symonk.sylenium.command.data.GetRandomFirstNameCommand;
 import io.symonk.sylenium.command.data.GetRandomLastNameCommand;
 import io.symonk.sylenium.command.data.GetRandomNumberBetweenCommand;
@@ -41,7 +40,6 @@ public enum Commands {
     }
 
     private void registerBrowserCommands() {
-        register("start", new StartCommand());
         register("exactLinkText", new ExactLocalisedLinkTextLookupCommand());
         register("partialLinkText", new PartialLocalisedLinkTextLookupCommand());
     }
