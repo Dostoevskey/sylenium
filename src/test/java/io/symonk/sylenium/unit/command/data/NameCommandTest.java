@@ -1,4 +1,4 @@
-package io.symonk.sylenium.unit.command;
+package io.symonk.sylenium.unit.command.data;
 
 
 import io.symonk.sylenium.command.data.GetRandomFullNameCommand;
