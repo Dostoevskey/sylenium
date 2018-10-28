@@ -2,7 +2,7 @@ package io.symonk.sylenium.command.browser;
 
 import io.symonk.sylenium.ResourceReader;
 import io.symonk.sylenium.SyleniumLinkText;
-import io.symonk.sylenium.interfaces.SyleniumCommand;
+import io.symonk.sylenium.contracts.SyleniumCommand;
 import org.openqa.selenium.By;
 
 public class ExactLocalisedLinkTextLookupCommand implements SyleniumCommand<By> {

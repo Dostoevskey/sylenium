@@ -1,7 +1,7 @@
 package io.symonk.sylenium;
 
-import io.symonk.sylenium.interfaces.ConfigObserver;
-import io.symonk.sylenium.interfaces.SyleniumConfig;
+import io.symonk.sylenium.contracts.ConfigObserver;
+import io.symonk.sylenium.contracts.SyleniumConfig;
 
 import java.util.logging.Logger;
 

@@ -1,4 +1,4 @@
-package io.symonk.sylenium.interfaces;
+package io.symonk.sylenium.contracts;
 
 public interface SyleniumObject {
 

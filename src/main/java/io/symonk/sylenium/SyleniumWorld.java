@@ -1,6 +1,6 @@
 package io.symonk.sylenium;
 
-import io.symonk.sylenium.interfaces.SyleniumObject;
+import io.symonk.sylenium.contracts.SyleniumObject;
 
 import java.util.ArrayList;
 import java.util.List;

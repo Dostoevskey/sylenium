@@ -1,7 +1,7 @@
 package io.symonk.sylenium.command.sylenium;
 
 import io.symonk.sylenium.ResourceReader;
-import io.symonk.sylenium.interfaces.SyleniumCommand;
+import io.symonk.sylenium.contracts.SyleniumCommand;
 
 
 public class LocalisedValueOfCommand implements SyleniumCommand<String> {

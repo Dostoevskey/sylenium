@@ -8,7 +8,7 @@ import io.symonk.sylenium.command.data.GetRandomLastNameCommand;
 import io.symonk.sylenium.command.data.GetRandomNumberBetweenCommand;
 import io.symonk.sylenium.command.data.GetRandomNumberCommand;
 import io.symonk.sylenium.command.sylenium.*;
-import io.symonk.sylenium.interfaces.SyleniumCommand;
+import io.symonk.sylenium.contracts.SyleniumCommand;
 import org.openqa.selenium.InvalidArgumentException;
 
 import java.util.HashMap;

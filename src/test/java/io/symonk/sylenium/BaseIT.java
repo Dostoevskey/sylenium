@@ -1,6 +1,6 @@
 package io.symonk.sylenium;
 
-import io.symonk.sylenium.interfaces.ConfigObserver;
+import io.symonk.sylenium.contracts.ConfigObserver;
 import org.eclipse.jetty.server.Server;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
@@ -17,7 +17,7 @@ public class BaseIT {
   private final Server server = new Server();
 
   @BeforeSuite
-  public void startJettyServer() throws Exception {
+  public void startJettyServer() {
 
   }
 

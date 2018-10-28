@@ -1,8 +1,8 @@
 package io.symonk.sylenium.impl;
 
-import io.symonk.sylenium.interfaces.ConfigObservable;
-import io.symonk.sylenium.interfaces.ConfigObserver;
-import io.symonk.sylenium.interfaces.SyleniumConfig;
+import io.symonk.sylenium.contracts.ConfigObservable;
+import io.symonk.sylenium.contracts.ConfigObserver;
+import io.symonk.sylenium.contracts.SyleniumConfig;
 import org.aeonbits.owner.ConfigFactory;
 
 import java.util.ArrayList;

@@ -1,8 +1,8 @@
 package io.symonk.sylenium.command.sylenium;
 
-import io.symonk.sylenium.interfaces.ConfigObservable;
-import io.symonk.sylenium.interfaces.ConfigObserver;
-import io.symonk.sylenium.interfaces.SyleniumCommand;
+import io.symonk.sylenium.contracts.ConfigObservable;
+import io.symonk.sylenium.contracts.ConfigObserver;
+import io.symonk.sylenium.contracts.SyleniumCommand;
 
 
 public class UnobserveConfigCommand implements SyleniumCommand<Void> {

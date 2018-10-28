@@ -1,8 +1,8 @@
 package io.symonk.sylenium;
 
 
-import io.symonk.sylenium.interfaces.ConfigObserver;
-import io.symonk.sylenium.interfaces.SyleniumObject;
+import io.symonk.sylenium.contracts.ConfigObserver;
+import io.symonk.sylenium.contracts.SyleniumObject;
 import org.openqa.selenium.By;
 
 public interface ISylenium {
@@ -47,7 +47,7 @@ public interface ISylenium {
      * @param testData - The Test Data Object Sylenium should keep track of
      * @param <T> - An Object which implements SyleniumObject
      * @return The sy instance
-     * @see io.symonk.sylenium.interfaces.SyleniumObject
+     * @see io.symonk.sylenium.contracts.SyleniumObject
      */
     <T extends SyleniumObject> Sylenium registerWorldObject(final T testData);
 
@@ -57,7 +57,7 @@ public interface ISylenium {
      * @see io.symonk.sylenium.command.sylenium.UnregisterWorldObjectCommand
      * @param testData - The Test Data Object that should be removed
      * @param <T> - An Object which implements SyleniumObject
-     * @see io.symonk.sylenium.interfaces.SyleniumObject
+     * @see io.symonk.sylenium.contracts.SyleniumObject
      */
     <T extends SyleniumObject> Sylenium unregisterWorldObject(final T testData);
 

@@ -1,8 +1,8 @@
 package io.symonk.sylenium.unit;
 
+import io.symonk.sylenium.contracts.SyleniumConfig;
 import io.symonk.sylenium.ex.NoSuchLanguageFileException;
 import io.symonk.sylenium.impl.LocalisationFileReader;
-import io.symonk.sylenium.interfaces.SyleniumConfig;
 import org.mockito.Mock;
 import org.testng.annotations.Test;
 

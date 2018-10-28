@@ -1,9 +1,9 @@
 package io.symonk.sylenium.impl;
 
+import io.symonk.sylenium.contracts.ConfigObserver;
+import io.symonk.sylenium.contracts.SyleniumConfig;
 import io.symonk.sylenium.ex.NoSuchLanguageFileException;
 import io.symonk.sylenium.ex.NoSuchLocalisedPropertyException;
-import io.symonk.sylenium.interfaces.ConfigObserver;
-import io.symonk.sylenium.interfaces.SyleniumConfig;
 
 import java.io.Closeable;
 import java.io.IOException;

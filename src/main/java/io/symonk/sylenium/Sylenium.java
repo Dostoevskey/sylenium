@@ -3,9 +3,9 @@ package io.symonk.sylenium;
 import com.codeborne.selenide.Selenide;
 import io.symonk.sylenium.annotation.StartUrl;
 import io.symonk.sylenium.command.Commands;
+import io.symonk.sylenium.contracts.ConfigObserver;
+import io.symonk.sylenium.contracts.SyleniumObject;
 import io.symonk.sylenium.impl.PropertyManager;
-import io.symonk.sylenium.interfaces.ConfigObserver;
-import io.symonk.sylenium.interfaces.SyleniumObject;
 import org.openqa.selenium.By;
 
 public enum Sylenium implements ISylenium {

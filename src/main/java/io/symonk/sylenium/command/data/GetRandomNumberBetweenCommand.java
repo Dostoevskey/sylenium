@@ -2,7 +2,7 @@ package io.symonk.sylenium.command.data;
 
 
 import com.github.javafaker.Faker;
-import io.symonk.sylenium.interfaces.SyleniumCommand;
+import io.symonk.sylenium.contracts.SyleniumCommand;
 
 public class GetRandomNumberBetweenCommand implements SyleniumCommand<Integer> {
 
