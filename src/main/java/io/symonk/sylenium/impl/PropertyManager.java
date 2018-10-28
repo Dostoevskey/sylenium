@@ -22,7 +22,7 @@ public class PropertyManager implements ConfigObservable {
 
   @Override
   public void removeObserver(final ConfigObserver observer) {
-    myObservers.removeIf(e -> myObservers.contains(observer));
+    myObservers.removeIf(obj -> obj.equals(observer));
   }
 
   @Override
