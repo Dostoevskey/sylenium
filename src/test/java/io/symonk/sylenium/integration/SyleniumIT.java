@@ -1,12 +1,12 @@
 package io.symonk.sylenium.integration;
 
 import com.codeborne.selenide.WebDriverRunner;
+import io.symonk.sylenium.BaseIT;
 import io.symonk.sylenium.DummyWorldObject;
-import io.symonk.sylenium.SyleniumTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class SyleniumIT extends SyleniumTest {
+public class SyleniumIT extends BaseIT {
 
   @Test
   public void canRegisterAndRemoveObservers() {
