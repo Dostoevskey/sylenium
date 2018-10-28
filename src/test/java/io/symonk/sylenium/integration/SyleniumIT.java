@@ -12,9 +12,9 @@ public class SyleniumIT extends SyleniumTest {
   @Test
   public void canRegisterAndRemoveObservers() {
     final DummyConfigObserver dummy = new DummyConfigObserver();
-    sy.registerConfigObserver(dummy);
+    sy.addConfigObserver(dummy);
     Assert.assertEquals(sy.getConfigObserverCount(), 1);
-    sy.unregisterConfigObserver(dummy);
+    sy.removeConfigObserver(dummy);
     Assert.assertEquals(sy.getConfigObserverCount(), 0);
   }
 
