@@ -10,11 +10,10 @@ public class RandomNumberBetweenCommandTest {
 
     private final int min = 1;
     private final int max = 1000;
-    private final GetRandomNumberBetweenCommand command = new GetRandomNumberBetweenCommand(min, max);
 
-    @Test(invocationCount = 3)
+    @Test
     public void randomNumberIsBetweenCorrect() {
-        assertThat(command.execute(new Object[]{})).isBetween(min, max);
+        assertThat(new GetRandomNumberBetweenCommand().execute(new Object[]{})).isBetween(min, max);
     }
 
 
