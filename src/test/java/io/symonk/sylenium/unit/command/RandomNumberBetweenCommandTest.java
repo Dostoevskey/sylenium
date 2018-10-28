@@ -13,7 +13,7 @@ public class RandomNumberBetweenCommandTest {
 
     @Test
     public void randomNumberIsBetweenCorrect() {
-        assertThat(new GetRandomNumberBetweenCommand().execute(new Object[]{})).isBetween(min, max);
+        assertThat(new GetRandomNumberBetweenCommand().execute(new Object[]{min, max})).isBetween(min, max);
     }
 
 

@@ -31,6 +31,6 @@ public class ResourceReaderIT {
   }
 
   private void setLocalisationFile(final String value) {
-    cfgManager.updateProperty("$y.localisation.file", value);
+    cfgManager.updateProperty("sy.localisation.file", value);
   }
 }

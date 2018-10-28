@@ -1,7 +1,6 @@
 package io.symonk.sylenium.integration;
 
 import com.codeborne.selenide.WebDriverRunner;
-import io.symonk.sylenium.DummyConfigObserver;
 import io.symonk.sylenium.DummyWorldObject;
 import io.symonk.sylenium.SyleniumTest;
 import org.testng.Assert;
@@ -11,18 +10,16 @@ public class SyleniumIT extends SyleniumTest {
 
   @Test
   public void canRegisterAndRemoveObservers() {
-    final DummyConfigObserver dummy = new DummyConfigObserver();
-    sy.addConfigObserver(dummy);
+    sy.addConfigObserver(testObservers.get(0));
+    Assert.assertEquals(sy.getConfigObserverCount(), 2);
+    sy.removeConfigObserver(testObservers.get(0));
     Assert.assertEquals(sy.getConfigObserverCount(), 1);
-    sy.removeConfigObserver(dummy);
-    Assert.assertEquals(sy.getConfigObserverCount(), 0);
   }
 
   @Test
   public void canUpdateAndGetProperties() {
-    final String random = "random";
-    sy.updateProperty(random, random);
-    Assert.assertEquals(sy.getProperty(random), random);
+    sy.updateProperty("sy.enable.localisation", "true");
+    Assert.assertEquals(sy.getProperty("sy.enable.localisation"), "true");
   }
 
   @Test
@@ -40,6 +37,6 @@ public class SyleniumIT extends SyleniumTest {
   public void startingSyleniumReturnsValidPageObject() {
     final DummyWorldObject po = sy.start(DummyWorldObject.class);
     Assert.assertNotNull(po);
-    Assert.assertEquals(WebDriverRunner.getWebDriver().getCurrentUrl(), "https://www.google.com/");
+    Assert.assertEquals(WebDriverRunner.getWebDriver().getCurrentUrl(), "http://toolsqa.com/automation-practice-form/");
   }
 }

@@ -24,25 +24,25 @@ public enum Sylenium implements ISylenium {
 
   @Override
   public <T extends SyleniumObject> Sylenium registerWorldObject(final T testData) {
-     COMMANDS.execute("registerWorldObject", new Object[] {WORLD, testData});
+     COMMANDS.execute("registerWorldObject", new Object[] {WORLD.get(), testData});
      return this;
   }
 
   @Override
   public <T extends SyleniumObject> Sylenium unregisterWorldObject(final T testData) {
-    COMMANDS.execute("unregisterWorldObject", new Object[] {WORLD, testData});
+    COMMANDS.execute("unregisterWorldObject", new Object[] {WORLD.get(), testData});
     return this;
   }
 
   @Override
   public Sylenium cleanUpWorld() {
-    COMMANDS.execute("cleanUpWorld", new Object[]{WORLD});
+    COMMANDS.execute("cleanUpWorld", new Object[]{WORLD.get()});
     return this;
   }
 
   @Override
   public int getWorldItemCount() {
-    return COMMANDS.execute("getWorldItemCount", new Object[]{WORLD});
+    return COMMANDS.execute("getWorldItemCount", new Object[]{WORLD.get()});
   }
 
   @Override
@@ -58,12 +58,12 @@ public enum Sylenium implements ISylenium {
 
   @Override
   public By localisedLinkTextOf(final String languageKey) {
-    return COMMANDS.execute("exactLinktext", new Object[]{languageKey});
+    return COMMANDS.execute("exactLinkText", new Object[]{LOCAL_VALUE_READER, languageKey});
   }
 
   @Override
   public By localisedPartialLinkTextOf(final String languageKey) {
-    return COMMANDS.execute("partialLinkText", new Object[]{languageKey});
+    return COMMANDS.execute("partialLinkText", new Object[]{LOCAL_VALUE_READER, languageKey});
   }
 
   @Override
@@ -73,12 +73,12 @@ public enum Sylenium implements ISylenium {
 
   @Override
   public <T extends ConfigObserver> Sylenium removeConfigObserver(final T observer) {
-    return COMMANDS.execute("removeConfigObservers", new Object[]{PROPERTY_MANAGER, observer});
+    return COMMANDS.execute("removeConfigObserver", new Object[]{PROPERTY_MANAGER, observer});
   }
 
   @Override
   public int getConfigObserverCount() {
-    return COMMANDS.execute("getConfigObserverCount", new Object[]{});
+    return COMMANDS.execute("getConfigObserverCount", new Object[]{PROPERTY_MANAGER});
   }
 
   @Override

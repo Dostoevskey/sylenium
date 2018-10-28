@@ -3,13 +3,12 @@ package io.symonk.sylenium.integration;
 import com.codeborne.selenide.Condition;
 import io.symonk.sylenium.DummyWorldObject;
 import io.symonk.sylenium.SyleniumTest;
-import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-@Ignore
+
 public class SyleniumLinkTextIT extends SyleniumTest {
 
     @Test
@@ -28,12 +27,12 @@ public class SyleniumLinkTextIT extends SyleniumTest {
     @Test
     public void canFindPartialLinkTextElement() {
         sy.start(DummyWorldObject.class);
-       $(sy.localisedLinkTextOf("multiple.link.text")).shouldBe(Condition.visible);
+       $(sy.localisedPartialLinkTextOf("multiple.link.text")).shouldBe(Condition.visible);
     }
 
     @Test
     public void canFindListOfPartialTextElements() {
         sy.start(DummyWorldObject.class);
-        $$(sy.localisedLinkTextOf("multiple.link.text")).shouldHaveSize(11);
+        $$(sy.localisedPartialLinkTextOf("multiple.link.text")).shouldHaveSize(11);
     }
 }
