@@ -1,4 +1,4 @@
-![](/.github/.images/sylenium2.png)
+![](/.github/.images/sylenium.png)
 
 [![Build Status](https://api.travis-ci.org/symonk/sylenium.svg?branch=master)](https://travis-ci.org/symonk/sylenium)
 [![License MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://github.com/symonk/selenide-testng-allure2-test-automation-framework/blob/master/LICENSE)
