@@ -1,15 +1,14 @@
 package io.symonk.sylenium;
 
 import io.symonk.sylenium.contracts.ConfigObserver;
+import io.symonk.sylenium.testng.SyleniumTestNg;
 import org.eclipse.jetty.server.Server;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Listeners(SyleniumTestNg.class)
 public class BaseIT {
 
   protected Sylenium sy = Sylenium.INSTANCE;
