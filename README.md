@@ -354,7 +354,7 @@ out of the box, but its easy to make your own.  Simply implement Command and usi
 
 ---
 
-###  :Star: Backers of the project who provide us with free tools:
+###  :star: Backers of the project who provide us with free tools:
 
 [![Intellij IDEA](https://cloud.google.com/tools/images/icon_IntelliJIDEA.png)](http://www.jetbrains.com/idea)
 [![BrowserStack](https://www.browserstack.com/images/mail/browserstack-logo-footer.png)](https://www.browserstack.com)
