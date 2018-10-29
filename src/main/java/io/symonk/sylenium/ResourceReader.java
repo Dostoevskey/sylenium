@@ -2,7 +2,9 @@ package io.symonk.sylenium;
 
 import io.symonk.sylenium.impl.LocalisationFileReader;
 import io.symonk.sylenium.impl.PropertyManager;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class ResourceReader {
 
   private final LocalisationFileReader localisationFileReader = new LocalisationFileReader();

@@ -3,16 +3,17 @@ package io.symonk.sylenium.testng;
 import io.symonk.sylenium.annotation.$y;
 import io.symonk.sylenium.model.SyleniumTestModel;
 import io.symonk.sylenium.types.SyleniumTestCaseResult;
+import lombok.extern.slf4j.Slf4j;
 import org.testng.*;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 import static io.symonk.sylenium.SyleniumAsciiParser.parseAscii;
 
+@Slf4j
 public class SyleniumTestNg implements IExecutionListener, ISuiteListener, ITestListener {
 
     private List<SyleniumTestModel> testCases = Collections.synchronizedList(new ArrayList<>());
@@ -24,19 +25,19 @@ public class SyleniumTestNg implements IExecutionListener, ISuiteListener, ITest
 
     @Override
     public void onExecutionFinish() {
-        System.out.println("Well that was easy wasen't it? Thanks for using Sylenium!");
+        log.info("Well that was easy wasen't it? Thanks for using Sylenium!");
     }
 
     @Override
     public void onStart(ISuite iSuite) {
-        System.out.println("Sylenium has detected an execution of the suite: " + iSuite.getName());
-        System.out.println("Total tests to be executed as part of this suite: " + iSuite.getAllMethods().size());
+        log.info("Sylenium has detected an execution of the suite: " + iSuite.getName());
+        log.info("Total tests to be executed as part of this suite: " + iSuite.getAllMethods().size());
     }
 
     @Override
     public void onFinish(ISuite iSuite) {
-        System.out.println("Suite: " + iSuite.getName() + " has finished.");
-        testCases.forEach(test -> System.out.println(test.toString()));
+        log.info("Suite: " + iSuite.getName() + " has finished.");
+        testCases.forEach(test -> log.info(test.toString()));
     }
 
     @Override
@@ -44,9 +45,7 @@ public class SyleniumTestNg implements IExecutionListener, ISuiteListener, ITest
         final Method testMethod = iTestResult.getMethod().getConstructorOrMethod().getMethod();
         final String name = getTestCaseSyleniumName(testMethod);
         final int id = getTestCaseSyleniumId(testMethod);
-        if (!name.isEmpty() && id != 0) {
-            testCases.add(new SyleniumTestModel(name, id));
-        }
+        if (doesTestMeetSyleniumRequirements(testMethod)) testCases.add(new SyleniumTestModel(name, id));
     }
 
     @Override
@@ -78,11 +77,17 @@ public class SyleniumTestNg implements IExecutionListener, ISuiteListener, ITest
     }
 
     private String getTestCaseSyleniumName(final Method testMethod) {
-        return Optional.of(testMethod.getAnnotation($y.class).caseName()).orElse("");
+        if (doesTestMeetSyleniumRequirements(testMethod)) {
+            return getTestCasename(testMethod);
+        }
+        return "";
     }
 
     private int getTestCaseSyleniumId(final Method testMethod) {
-        return Optional.of(testMethod.getAnnotation($y.class).caseId()).orElse(0);
+        if (doesTestMeetSyleniumRequirements(testMethod)) {
+            return getTestCaseId(testMethod);
+        }
+        return -1;
     }
 
     private void updateResultForSyleniumTest(final String testName, final int status) {
@@ -91,10 +96,25 @@ public class SyleniumTestNg implements IExecutionListener, ISuiteListener, ITest
                     if (e.getCaseName().equals(testName))
                         e.setResult(
                                 SyleniumTestCaseResult.valueOf(status).orElse(SyleniumTestCaseResult.UNKNOWN));
-        });
+                });
     }
 
     private SyleniumTestCaseResult getResultStatus(final int id) {
         return SyleniumTestCaseResult.valueOf(id).orElse(SyleniumTestCaseResult.UNKNOWN);
+    }
+
+    private boolean doesTestMeetSyleniumRequirements(final Method method) {
+        if (method.isAnnotationPresent($y.class)) {
+            return method.getAnnotation($y.class).caseId() > 0 && !method.getAnnotation($y.class).caseName().isEmpty();
+        }
+        return false;
+    }
+
+    private int getTestCaseId(final Method method) {
+        return method.getAnnotation($y.class).caseId();
+    }
+
+    private String getTestCasename(final Method method) {
+        return method.getAnnotation($y.class).caseName();
     }
 }

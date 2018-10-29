@@ -1,12 +1,15 @@
 package io.symonk.sylenium;
 
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Objects;
 
+@Slf4j
 public class SyleniumAsciiParser {
 
     public static void parseAscii() {
