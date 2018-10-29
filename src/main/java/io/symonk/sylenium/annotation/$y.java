@@ -9,5 +9,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
 public @interface $y {
-    String name();
+    String caseName();
+
+    int caseId();
 }

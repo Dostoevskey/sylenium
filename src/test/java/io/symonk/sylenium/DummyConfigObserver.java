@@ -11,6 +11,6 @@ public class DummyConfigObserver implements ConfigObserver {
 
   @Override
   public void update(final SyleniumConfig config) {
-    log.info("Updating dummy config observer");
+      // do nothing for now
   }
 }

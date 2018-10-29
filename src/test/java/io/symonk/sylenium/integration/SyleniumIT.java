@@ -3,6 +3,7 @@ package io.symonk.sylenium.integration;
 import com.codeborne.selenide.WebDriverRunner;
 import io.symonk.sylenium.BaseIT;
 import io.symonk.sylenium.DummyWorldObject;
+import io.symonk.sylenium.annotation.$y;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -10,6 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class SyleniumIT extends BaseIT {
 
+  @$y(caseName = "Sylenium can register new config observers and remove them", caseId = 1)
   @Test
   public void canRegisterAndRemoveObservers() {
     sy.addConfigObserver(testObservers.get(0));
