@@ -5,6 +5,8 @@ import io.symonk.sylenium.SyleniumTestCase;
 import io.symonk.sylenium.types.SyleniumTestCaseResult;
 import org.testng.*;
 
+import java.lang.reflect.Method;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -34,6 +36,7 @@ public class SyleniumTestNg implements IExecutionListener, ISuiteListener {
 
     @Override
     public void onFinish(ISuite iSuite) {
+
         iSuite.getResults().forEach((k,v) -> {
             System.out.println("Result:");
             v.getTestContext().getPassedTests().getAllMethods().forEach(m -> System.out.println(m.getMethodName()));
