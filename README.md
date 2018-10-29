@@ -354,6 +354,13 @@ out of the box, but its easy to make your own.  Simply implement Command and usi
 
 ---
 
+### Open source supporters of the project (Many thanks for these free tools to aid in making open source better)
+
+[![Intellij IDEA](https://cloud.google.com/tools/images/icon_IntelliJIDEA.png)](http://www.jetbrains.com/idea)
+[![BrowserStack](https://www.browserstack.com/images/mail/browserstack-logo-footer.png)](https://www.browserstack.com)
+
+---
+
 ### Attributions! :star:
 
 Here are all the great freebie / open-source things I have used as part of building $ylenium.  A massive thanks to the following:
