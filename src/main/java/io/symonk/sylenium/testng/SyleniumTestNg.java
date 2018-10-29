@@ -1,6 +1,5 @@
 package io.symonk.sylenium.testng;
 
-import io.symonk.sylenium.Sylenium;
 import io.symonk.sylenium.annotation.$y;
 import io.symonk.sylenium.model.SyleniumTestModel;
 import io.symonk.sylenium.types.SyleniumTestCaseResult;
@@ -17,7 +16,6 @@ import static io.symonk.sylenium.SyleniumAsciiParser.parseAscii;
 public class SyleniumTestNg implements IExecutionListener, ISuiteListener, ITestListener {
 
     private List<SyleniumTestModel> testCases = Collections.synchronizedList(new ArrayList<>());
-    private Sylenium sy = Sylenium.INSTANCE;
 
     @Override
     public void onExecutionStart() {
@@ -90,7 +88,7 @@ public class SyleniumTestNg implements IExecutionListener, ISuiteListener, ITest
     private void updateResultForSyleniumTest(final String testName, final int status) {
         testCases.forEach(
                 e -> {
-                    if (e.equals(testName))
+                    if (e.getCaseName().equals(testName))
                         e.setResult(
                                 SyleniumTestCaseResult.valueOf(status).orElse(SyleniumTestCaseResult.UNKNOWN));
         });

@@ -18,6 +18,10 @@ public class SyleniumTestModel {
         this.result = result;
     }
 
+    public String getCaseName() {
+        return this.caseName;
+    }
+
     @Override
     public String toString() {
         return "name: " + caseName + " | " + "caseId: " + caseId + " | " + "result: " + result;
