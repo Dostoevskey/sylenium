@@ -2,6 +2,7 @@ package io.symonk.sylenium.testng;
 
 import io.symonk.sylenium.annotation.CaseID;
 import io.symonk.sylenium.annotation.CaseDescription;
+import io.symonk.sylenium.ex.InvalidSyleniumTestContractException;
 import io.symonk.sylenium.model.SyleniumTestModel;
 import io.symonk.sylenium.types.SyleniumTestCaseResult;
 import lombok.extern.slf4j.Slf4j;
@@ -53,7 +54,7 @@ public class SyleniumTestNg extends TestListenerAdapter implements IExecutionLis
         if(!name.isEmpty() && id != -1) {
             testCases.add(new SyleniumTestModel(name, id));
         } else {
-            throw new SkipException("Test signature does not adhere to syleniums annotation expectations, skipping test");
+            throw new InvalidSyleniumTestContractException("Test signature does not adhere to syleniums annotation expectations, skipping test");
         }
     }
 
