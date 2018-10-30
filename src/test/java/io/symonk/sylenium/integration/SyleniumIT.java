@@ -4,7 +4,8 @@ import com.codeborne.selenide.WebDriverRunner;
 import groovy.util.logging.Slf4j;
 import io.symonk.sylenium.BaseIT;
 import io.symonk.sylenium.DummyWorldObject;
-import io.symonk.sylenium.annotation.$y;
+import io.symonk.sylenium.annotation.CaseID;
+import io.symonk.sylenium.annotation.CaseDescription;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -13,8 +14,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Slf4j
 public class SyleniumIT extends BaseIT {
 
-  @$y(caseName = "Sylenium can register new config observers and remove them", caseId = 1)
   @Test
+  @CaseDescription("Sylenium can register new config observers and remove them")
+  @CaseID(100)
   public void canRegisterAndRemoveObservers() {
     sy.addConfigObserver(testObservers.get(0));
     Assert.assertEquals(sy.getConfigObserverCount(), 2);

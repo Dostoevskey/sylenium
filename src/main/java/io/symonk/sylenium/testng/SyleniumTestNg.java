@@ -1,23 +1,22 @@
 package io.symonk.sylenium.testng;
 
-import io.symonk.sylenium.annotation.$y;
+import io.symonk.sylenium.annotation.CaseID;
+import io.symonk.sylenium.annotation.CaseDescription;
 import io.symonk.sylenium.model.SyleniumTestModel;
 import io.symonk.sylenium.types.SyleniumTestCaseResult;
 import lombok.extern.slf4j.Slf4j;
-import org.aspectj.weaver.ast.Test;
 import org.testng.*;
 
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static io.symonk.sylenium.SyleniumAsciiParser.parseAscii;
 
 @Slf4j
-public class SyleniumTestNg implements IExecutionListener, ISuiteListener, ITestListener {
+public class SyleniumTestNg extends TestListenerAdapter implements IExecutionListener, ISuiteListener, ITestListener {
 
-    private List<SyleniumTestModel> testCases = Collections.synchronizedList(new ArrayList<>());
+    private Set<SyleniumTestModel> testCases = Collections.synchronizedSet(new LinkedHashSet<>());
 
     @Override
     public void onExecutionStart() {
@@ -43,10 +42,19 @@ public class SyleniumTestNg implements IExecutionListener, ISuiteListener, ITest
 
     @Override
     public void onTestStart(final ITestResult iTestResult) {
+        validateTestContainsAnnotations(iTestResult);
+    }
+
+
+    private void validateTestContainsAnnotations(final ITestResult iTestResult) {
         final Method testMethod = iTestResult.getMethod().getConstructorOrMethod().getMethod();
-        final String name = getTestCaseSyleniumName(testMethod);
-        final int id = getTestCaseSyleniumId(testMethod);
-        if (doesTestMeetSyleniumRequirements(testMethod)) testCases.add(new SyleniumTestModel(name, id));
+        final String name = validateAndGetCaseName(testMethod);
+        final int id = validateAndGetCaseId(testMethod);
+        if(!name.isEmpty() && id != -1) {
+            testCases.add(new SyleniumTestModel(name, id));
+        } else {
+            throw new SkipException("Test signature does not adhere to syleniums annotation expectations, skipping test");
+        }
     }
 
     @Override
@@ -77,20 +85,6 @@ public class SyleniumTestNg implements IExecutionListener, ISuiteListener, ITest
     public void onFinish(final ITestContext iTestContext) {
     }
 
-    private String getTestCaseSyleniumName(final Method testMethod) {
-        if (doesTestMeetSyleniumRequirements(testMethod)) {
-            return getTestCasename(testMethod);
-        }
-        return "";
-    }
-
-    private int getTestCaseSyleniumId(final Method testMethod) {
-        if (doesTestMeetSyleniumRequirements(testMethod)) {
-            return getTestCaseId(testMethod);
-        }
-        return -1;
-    }
-
     private void updateResultForSyleniumTest(final String testName, final int status) {
         testCases.forEach(
                 e -> {
@@ -100,22 +94,17 @@ public class SyleniumTestNg implements IExecutionListener, ISuiteListener, ITest
                 });
     }
 
-    private SyleniumTestCaseResult getResultStatus(final int id) {
-        return SyleniumTestCaseResult.valueOf(id).orElse(SyleniumTestCaseResult.UNKNOWN);
+
+    private int validateAndGetCaseId(final Method method) {
+        return method.isAnnotationPresent(CaseID.class) && method.getAnnotation(CaseID.class).value() > 0
+                ? method.getAnnotation(CaseID.class).value()
+                : - 1;
     }
 
-    private boolean doesTestMeetSyleniumRequirements(final Method method) {
-        if (method.isAnnotationPresent($y.class)) {
-            return method.getAnnotation($y.class).caseId() > 0 && !method.getAnnotation($y.class).caseName().isEmpty();
-        }
-        return false;
+    private String validateAndGetCaseName(final Method method) {
+        return method.isAnnotationPresent(CaseDescription.class) && !method.getAnnotation(CaseDescription.class).value().isEmpty()
+                ? method.getAnnotation(CaseDescription.class).value()
+                : "";
     }
 
-    private int getTestCaseId(final Method method) {
-        return method.getAnnotation($y.class).caseId();
-    }
-
-    private String getTestCasename(final Method method) {
-        return method.getAnnotation($y.class).caseName();
-    }
 }
