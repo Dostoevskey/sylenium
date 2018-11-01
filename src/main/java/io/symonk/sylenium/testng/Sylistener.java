@@ -1,7 +1,9 @@
 package io.symonk.sylenium.testng;
 
-import io.symonk.sylenium.annotation.CaseID;
+import io.symonk.sylenium.Sylenium;
 import io.symonk.sylenium.annotation.CaseDescription;
+import io.symonk.sylenium.annotation.CaseID;
+import io.symonk.sylenium.annotation.IgnoreOn;
 import io.symonk.sylenium.ex.InvalidSyleniumTestContractException;
 import io.symonk.sylenium.model.SyleniumTestModel;
 import io.symonk.sylenium.types.SyleniumTestCaseResult;
@@ -10,14 +12,14 @@ import org.testng.*;
 
 import java.lang.reflect.Method;
 import java.util.*;
-import java.util.stream.Collectors;
 
 import static io.symonk.sylenium.SyleniumAsciiParser.parseAscii;
 
 @Slf4j
-public class SyleniumTestNg extends TestListenerAdapter implements IExecutionListener, ISuiteListener, ITestListener {
+public class Sylistener extends TestListenerAdapter implements IExecutionListener, ISuiteListener, ITestListener {
 
     private Set<SyleniumTestModel> testCases = Collections.synchronizedSet(new LinkedHashSet<>());
+    private Sylenium sy = Sylenium.INSTANCE;
 
     @Override
     public void onExecutionStart() {
@@ -33,6 +35,7 @@ public class SyleniumTestNg extends TestListenerAdapter implements IExecutionLis
     public void onStart(ISuite iSuite) {
         log.info("Sylenium has detected an execution of the suite: " + iSuite.getName());
         log.info("Total tests to be executed as part of this suite: " + iSuite.getAllMethods().size());
+        iSuite.getAllMethods().forEach(method -> log.info(method.getMethodName()));
     }
 
     @Override
@@ -43,14 +46,16 @@ public class SyleniumTestNg extends TestListenerAdapter implements IExecutionLis
 
     @Override
     public void onTestStart(final ITestResult iTestResult) {
-        validateTestContainsAnnotations(iTestResult);
+        validate(iTestResult);
     }
 
 
-    private void validateTestContainsAnnotations(final ITestResult iTestResult) {
+    private void validate(final ITestResult iTestResult) {
         final Method testMethod = iTestResult.getMethod().getConstructorOrMethod().getMethod();
         final String name = validateAndGetCaseName(testMethod);
         final int id = validateAndGetCaseId(testMethod);
+        final ArrayList environments = validateAndGetIgnoredEnvironments(testMethod);
+
         if(!name.isEmpty() && id != -1) {
             testCases.add(new SyleniumTestModel(name, id));
         } else {
@@ -108,4 +113,10 @@ public class SyleniumTestNg extends TestListenerAdapter implements IExecutionLis
                 : "";
     }
 
+    private ArrayList validateAndGetIgnoredEnvironments(final Method method) {
+        return method.isAnnotationPresent(IgnoreOn.class) && method.getAnnotation(IgnoreOn.class).environments().length > 0
+                ? new ArrayList(Arrays.asList(method.getAnnotation(IgnoreOn.class).environments()))
+                : new ArrayList();
+
+    }
 }
