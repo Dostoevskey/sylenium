@@ -2,10 +2,11 @@ package io.symonk.sylenium.integration;
 
 import com.codeborne.selenide.WebDriverRunner;
 import groovy.util.logging.Slf4j;
+import io.qameta.allure.TmsLink;
 import io.symonk.sylenium.BaseIT;
 import io.symonk.sylenium.DummyWorldObject;
-import io.symonk.sylenium.annotation.CaseID;
 import io.symonk.sylenium.annotation.CaseDescription;
+import io.symonk.sylenium.annotation.CaseID;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -17,6 +18,7 @@ public class SyleniumIT extends BaseIT {
   @Test
   @CaseDescription("Sylenium can register new config observers and remove them")
   @CaseID(100)
+  @TmsLink("100")
   public void canRegisterAndRemoveObservers() {
     sy.addConfigObserver(testObservers.get(0));
     Assert.assertEquals(sy.getConfigObserverCount(), 2);
