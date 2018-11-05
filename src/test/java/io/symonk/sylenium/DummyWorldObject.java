@@ -2,13 +2,11 @@ package io.symonk.sylenium;
 
 import io.symonk.sylenium.annotation.StartUrl;
 import io.symonk.sylenium.contracts.SyleniumObject;
+import lombok.extern.slf4j.Slf4j;
 
-import java.util.logging.Logger;
-
+@Slf4j
 @StartUrl(url = "http://toolsqa.com/automation-practice-form/")
 public class DummyWorldObject implements SyleniumObject {
-
-  private static final Logger log = Logger.getLogger(DummyWorldObject.class.getName());
 
   @Override
   public void cleanUp() {

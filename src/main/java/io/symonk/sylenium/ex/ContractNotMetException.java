@@ -4,9 +4,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.testng.SkipException;
 
 @Slf4j
-public class InvalidSyleniumTestContractException extends SkipException {
+public class ContractNotMetException extends SkipException {
 
-    public InvalidSyleniumTestContractException(String s) {
+    public ContractNotMetException(String s) {
         super(s);
         log.error("Test was skipped because it does not adhere to Syleniums test contract");
     }
