@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class SyleniumWorld<T extends SyleniumObject> {
 
-  private List<T> testObjects = new ArrayList<>();
+  private final List<T> testObjects = new ArrayList<>();
 
   public T registerObject(T t) {
     testObjects.add(t);
