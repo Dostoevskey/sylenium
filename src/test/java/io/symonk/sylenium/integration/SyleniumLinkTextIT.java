@@ -3,12 +3,13 @@ package io.symonk.sylenium.integration;
 import com.codeborne.selenide.Condition;
 import io.symonk.sylenium.BaseIT;
 import io.symonk.sylenium.DummyWorldObject;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-
+@Ignore
 public class SyleniumLinkTextIT extends BaseIT {
 
     @Test
