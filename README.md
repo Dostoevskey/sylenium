@@ -8,7 +8,7 @@
 [![Find_Me LinkedIn](https://img.shields.io/badge/Find_Me-LinkedIn-brightgreen.svg)](https://www.linkedin.com/in/simonk09/)
 [![Find_Me Slack](https://img.shields.io/badge/Find_Me-Slack-brightgreen.svg)](https://testersio.slack.com)
 
-## Sylenium-framework :flags: :star:
+### Sylenium-framework :flags:
 
 Sylenium is an open source test automation harness for system/e2e testing (or one of the other 100 names people call it these days).
 Sylenium is hassle free and abstracts all the mundane boilerplate code from you, the user so you can focus on business logic and add value right away.
@@ -16,7 +16,7 @@ Sylenium promises to maintain a high level of test coverage itself, practice wha
 Sylenium will **never** support BDD, it is a waste of time and unnecessary overhead which is often burdened to testing and not executed development-wide.
 ---
 
-# :earth_africa: Getting started
+### :earth_africa: Getting started
 
 1. Create a new project using our maven archetype
 2. Implement your application specific code (leave the mundane stuff to us)
