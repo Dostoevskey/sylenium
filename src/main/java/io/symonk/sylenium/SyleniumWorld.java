@@ -33,7 +33,7 @@ public class SyleniumWorld<T extends SyleniumObject> {
    * to flush out the world in reverse order to avoid issues where a parent cannot be deleted because it has children.
    */
   public void cleanUpWorld() {
-    Lists.reverse(testObjects).forEach(testData -> testData.cleanUp());
+    Lists.reverse(testObjects).forEach(SyleniumObject::cleanUp);
     testObjects.clear();
   }
 }
