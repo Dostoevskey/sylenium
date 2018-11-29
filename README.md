@@ -33,5 +33,5 @@
 
 Here are all the great freebie / open-source things I have used as part of building $ylenium.  A massive thanks to the following:
 
-- https://www.designevo.com (cool logos creator)
+- Nothing... (yet!)
 
