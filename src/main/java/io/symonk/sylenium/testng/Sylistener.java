@@ -3,7 +3,7 @@ package io.symonk.sylenium.testng;
 import io.symonk.sylenium.annotation.CaseDescription;
 import io.symonk.sylenium.annotation.CaseID;
 import io.symonk.sylenium.model.TestContainer;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 import org.testng.*;
 
 import java.lang.reflect.Method;
@@ -15,9 +15,9 @@ import java.util.Set;
 import static io.symonk.sylenium.SyleniumOutputParserUtility.parseAscii;
 import static io.symonk.sylenium.SyleniumOutputParserUtility.parseResults;
 
-@Slf4j
 public class Sylistener extends TestListenerAdapter implements IExecutionListener, ISuiteListener, ITestListener {
 
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(Sylistener.class);
     private Set<TestContainer> testCases = Collections.synchronizedSet(new LinkedHashSet<>());
 
     @Override

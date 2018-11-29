@@ -1,7 +1,7 @@
 package io.symonk.sylenium;
 
 import io.symonk.sylenium.model.TestContainer;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -10,8 +10,9 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.Set;
 
-@Slf4j
 public class SyleniumOutputParserUtility {
+
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(SyleniumOutputParserUtility.class);
 
     public static void parseAscii() {
         try (BufferedReader br =

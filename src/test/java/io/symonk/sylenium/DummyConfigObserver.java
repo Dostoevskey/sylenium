@@ -2,13 +2,14 @@ package io.symonk.sylenium;
 
 import io.symonk.sylenium.contracts.ConfigObserver;
 import io.symonk.sylenium.contracts.SyleniumConfig;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 
-@Slf4j
 public class DummyConfigObserver implements ConfigObserver {
 
 
-  @Override
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(DummyConfigObserver.class);
+
+    @Override
   public void update(final SyleniumConfig config) {
       // do nothing for now
   }

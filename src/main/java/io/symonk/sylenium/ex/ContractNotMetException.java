@@ -1,10 +1,11 @@
 package io.symonk.sylenium.ex;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 import org.testng.SkipException;
 
-@Slf4j
 public class ContractNotMetException extends SkipException {
+
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(ContractNotMetException.class);
 
     public ContractNotMetException(String s) {
         super(s);

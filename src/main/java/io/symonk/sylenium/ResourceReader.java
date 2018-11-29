@@ -2,12 +2,12 @@ package io.symonk.sylenium;
 
 import io.symonk.sylenium.impl.LocalisationFileReader;
 import io.symonk.sylenium.impl.PropertyManager;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 
-@Slf4j
 public class ResourceReader {
 
-  private final LocalisationFileReader localisationFileReader = new LocalisationFileReader();
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(ResourceReader.class);
+    private final LocalisationFileReader localisationFileReader = new LocalisationFileReader();
 
   public ResourceReader(final PropertyManager cfgManager) {
     cfgManager.registerObserver(localisationFileReader);

@@ -17,7 +17,6 @@ public class ResourceReaderIT {
     setLocalisationFile("english.properties");
     setLocalisationFile("jibberish.properties");
     assertThat(resourceReader.localisedValueOf("tango")).isEqualTo("orange");
-
   }
 
   @Test(expectedExceptions = NoSuchLocalisedPropertyException.class)
