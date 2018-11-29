@@ -9,27 +9,27 @@
     <version>1.0-BETA</version>
 
     <properties>
-        <allure.version>2.7.0</allure.version>
+        <allure.version>2.8.1</allure.version>
         <testng.version>6.14.3</testng.version>
         <owner.version>1.0.10</owner.version>
-        <selenide.version>5.0.0</selenide.version>
+        <selenide.version>5.0.1</selenide.version>
         <mockito.version>2.0.2-beta</mockito.version>
         <java.version>1.8</java.version>
         <maven.compiler.version>3.8.0</maven.compiler.version>
         <maven.failfire.version>2.22.1</maven.failfire.version>
-        <aspect.j.version>1.9.1</aspect.j.version>
+        <aspect.j.version>1.9.2</aspect.j.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <faker.version>0.16</faker.version>
         <assertj.version>3.11.1</assertj.version>
-        <jetty.version>9.4.12.v20180830</jetty.version>
+        <jetty.version>9.4.14.v20181114</jetty.version>
         <jackson.version>2.9.7</jackson.version>
         <rest.assured.version>3.2.0</rest.assured.version>
         <lombok.version>1.18.2</lombok.version>
         <slf4j.version>1.8.0-beta2</slf4j.version>
         <logback.version>1.3.0-alpha4</logback.version>
         <logstash.version>5.2</logstash.version>
-        <guava.version>27.0-jre</guava.version>
+        <guava.version>27.0.1-jre</guava.version>
     </properties>
 
     <dependencies>
