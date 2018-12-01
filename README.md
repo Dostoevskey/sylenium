@@ -24,6 +24,7 @@ boilerplate code and instability in your end to end tests, Sylenium takes care o
     public void testLogin() {
       start(LoginPage.class);
       $(By.name("user.name")).setValue("Simon");
+      $(By.name("password")).setValue("securepassword");
       $("#submit").click();
       $("#username").shouldHave(text("Hello, Simon!"));
     }
