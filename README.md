@@ -111,7 +111,7 @@ and ofcourse, open PRs here
 
 --- 
 
-## :earth_africa: How the hell can I get my hands on this ?!
+# :earth_africa: How the hell can I get my hands on this ?!
 
 1. Create a new project using our maven archetype
 2. Implement your application specific code (leave the mundane stuff to us)
