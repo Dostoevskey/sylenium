@@ -8,7 +8,7 @@
 [![Find_Me LinkedIn](https://img.shields.io/badge/Find_Me-LinkedIn-brightgreen.svg)](https://www.linkedin.com/in/simonk09/)
 [![Find_Me Slack](https://img.shields.io/badge/Find_Me-Slack-brightgreen.svg)](https://testersio.slack.com)
 
-### What is Sylenium? :flags: 
+## What is Sylenium? :flags: 
 
 Sylenium is a test automation harness for web applications written in java.  Why spend time fussing around
 boilerplate code and instability in your end to end tests, Sylenium takes care of it.
@@ -20,6 +20,7 @@ boilerplate code and instability in your end to end tests, Sylenium takes care o
 3. Incorporate your tests into a pipeline or run locally with ease!
 4. Deliver results, effectively.
 
+--- 
 
 ## Features of Sylenium :flags:
 
@@ -42,8 +43,7 @@ smart enough to handle invocationCount usage of testNG by using the iteration as
     sy.updateProperty("sy.enable.localisation", "true");
     assertThat(sy.getProperty("sy.enable.localisation")).isEqualTo("true");
   }
-  
-```
+  ```
 
 ---
 
