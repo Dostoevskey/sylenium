@@ -21,7 +21,9 @@ boilerplate code and instability in your end to end tests, Sylenium takes care o
 4. Deliver results, effectively.
 
 
-### Features of Sylenium :flags:
+## Features of Sylenium :flags:
+
+--- 
 
 ### :earth_africa: Managed Logging capabilities on a per test basis
 Sylenium takes care of log management by providing custom annotations for tests and sensible assumed defaults.
@@ -43,6 +45,7 @@ smart enough to handle invocationCount usage of testNG by using the iteration as
   
 ```
 
+---
 
 ##  :star: Backers of the project who provide us with free tools:
 
