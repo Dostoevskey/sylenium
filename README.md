@@ -103,8 +103,6 @@ and ofcourse, open PRs here
 
 ## Features of Sylenium :flags:
 
---- 
-
 ### :earth_africa: Managed Logging capabilities on a per test basis
 Sylenium takes care of log management by providing custom annotations for tests and sensible assumed defaults.
 
@@ -123,6 +121,44 @@ smart enough to handle invocationCount usage of testNG by using the iteration as
     assertThat(sy.getProperty("sy.enable.localisation")).isEqualTo("true");
   }
   ```
+
+---
+
+### :earth_africa: Suite-wide test data world
+Anyone familiar with cucumber BDD will typically be aware of state persistence across step definitions, Sylenium takes this approach to the
+standard multi threaded environment, allowing you register any test data objects in a world which is accessible across suites, using a Queued approach
+Sylenium makes tidying up after yourself an absolute breeze!
+
+```java
+      /** World test data objects should implement the following interface **/
+      public interface SyleniumObject {
+        void cleanUp();
+      }
+    
+      /**Now simply add them to the world **/
+      @Test
+      public void registeringObjects() {
+        world.registerObject(new DummyWorldObject());
+        assertThat(world.getWorldSize()).isEqualTo(1);
+      }
+    
+      /** Need to remove something manually from the world? **/
+      @Test
+      public void unregisteringObjects() {
+        final DummyWorldObject obj = new DummyWorldObject();
+        world.registerObject(obj);
+        world.unregisterObject(obj);
+        assertThat(world.getWorldSize()).isEqualTo(0);
+      }
+    
+      /** Want to manually flush the world? alternatively configure a clean up strategy. **/
+      @Test
+      public void cleaningUpEmptiesTheWorld() {
+        world.registerObject(new DummyWorldObject());
+        world.cleanUpWorld();
+        assertThat(world.getWorldSize()).isEqualTo(0);
+      }
+```
 
 ---
 
