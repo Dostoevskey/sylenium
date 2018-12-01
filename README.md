@@ -120,7 +120,7 @@ and ofcourse, open PRs here
 
 --- 
 
-## :earth_africa: Feature: Managed Logging capabilities on a per test basis
+### :earth_africa: Feature: Managed Logging capabilities on a per test basis
 Sylenium takes care of log management by providing custom annotations for tests and sensible assumed defaults.
 
 - By default sylenium stores one log per test execution
