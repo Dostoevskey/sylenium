@@ -9,7 +9,10 @@ import org.slf4j.MDC;
 import org.testng.*;
 
 import java.lang.reflect.Method;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import static io.symonk.sylenium.SyleniumOutputParserUtility.parseAscii;
 import static io.symonk.sylenium.SyleniumOutputParserUtility.parseResults;

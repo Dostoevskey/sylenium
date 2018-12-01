@@ -6,19 +6,22 @@ import io.symonk.sylenium.BaseIT;
 import io.symonk.sylenium.DummyWorldObject;
 import io.symonk.sylenium.annotation.CaseDescription;
 import io.symonk.sylenium.annotation.CaseID;
-import lombok.extern.slf4j.Slf4j;
+import io.symonk.sylenium.annotation.ConfigureLog;
+import org.slf4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Slf4j
 public class SyleniumIT extends BaseIT {
+
+  private static final Logger log = org.slf4j.LoggerFactory.getLogger(SyleniumIT.class);
 
   @Test()
   @CaseDescription("Sylenium can register new config observers and remove them")
   @CaseID(100)
   @TmsLink("100")
+  @ConfigureLog()
   public void canRegisterAndRemoveObservers() {
     sy.addConfigObserver(testObservers.get(0));
     Assert.assertEquals(sy.getConfigObserverCount(), 2);
