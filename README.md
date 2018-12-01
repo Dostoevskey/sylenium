@@ -120,9 +120,7 @@ and ofcourse, open PRs here
 
 --- 
 
-# :flags: Features of Sylenium :
-
-## :earth_africa: Managed Logging capabilities on a per test basis
+## :earth_africa: Feature: Managed Logging capabilities on a per test basis
 Sylenium takes care of log management by providing custom annotations for tests and sensible assumed defaults.
 
 - By default sylenium stores one log per test execution
@@ -143,7 +141,7 @@ smart enough to handle invocationCount usage of testNG by using the iteration as
 
 ---
 
-### :earth_africa: Strategy based test data management across suites
+### :earth_africa: Feature: Strategy based test data management across suites
 Anyone familiar with cucumber BDD will typically be aware of state persistence across step definitions, Sylenium takes this approach to the
 standard multi threaded environment, allowing you register any test data objects in a world which is accessible across suites, using a Queued approach
 Sylenium makes tidying up after yourself an absolute breeze!
@@ -181,7 +179,7 @@ Sylenium makes tidying up after yourself an absolute breeze!
 
 ---
 
-:earth_africa: Solving pesky localisation issues
+### :earth_africa: Feature: Solving pesky localisation issues
 We all know that using LinkText explicitly or using hard coded strings for ui tests that may change under a difference language are
 flaky and known to break. Any time you need a localised value in your tests Sylenium comes straight to the rescue. 
 These are determined by your framework properties at runtime for language(s). For example:
