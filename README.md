@@ -124,7 +124,7 @@ smart enough to handle invocationCount usage of testNG by using the iteration as
 
 ---
 
-### :earth_africa: Suite-wide test data world
+### :earth_africa: Strategy based test data management across suites
 Anyone familiar with cucumber BDD will typically be aware of state persistence across step definitions, Sylenium takes this approach to the
 standard multi threaded environment, allowing you register any test data objects in a world which is accessible across suites, using a Queued approach
 Sylenium makes tidying up after yourself an absolute breeze!
