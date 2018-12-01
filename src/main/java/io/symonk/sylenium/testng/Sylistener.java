@@ -2,7 +2,7 @@ package io.symonk.sylenium.testng;
 
 import io.symonk.sylenium.annotation.CaseDescription;
 import io.symonk.sylenium.annotation.CaseID;
-import io.symonk.sylenium.annotation.Log;
+import io.symonk.sylenium.annotation.ConfigureLog;
 import io.symonk.sylenium.model.TestContainer;
 import org.slf4j.Logger;
 import org.slf4j.MDC;
@@ -10,7 +10,6 @@ import org.testng.*;
 
 import java.lang.reflect.Method;
 import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import static io.symonk.sylenium.SyleniumOutputParserUtility.parseAscii;
 import static io.symonk.sylenium.SyleniumOutputParserUtility.parseResults;
@@ -19,7 +18,7 @@ public class Sylistener extends TestListenerAdapter implements IExecutionListene
 
     private static final Logger log = org.slf4j.LoggerFactory.getLogger(Sylistener.class);
     private Set<TestContainer> testCases = Collections.synchronizedSet(new LinkedHashSet<>());
-    private AtomicInteger testCount = new AtomicInteger(0);
+    private ThreadLocal<String> mdcLogger = new ThreadLocal<>();
 
     @Override
     public void onExecutionStart() {
@@ -68,35 +67,44 @@ public class Sylistener extends TestListenerAdapter implements IExecutionListene
 
     @Override
     public void onTestStart(final ITestResult iTestResult) {
-        testCount.getAndIncrement();
-        final boolean appendToSame = Optional.ofNullable(iTestResult.getMethod().getConstructorOrMethod().getMethod().getAnnotation(Log.class).isUniqueLog()).orElse(false);
+        final Method method =  iTestResult.getMethod().getConstructorOrMethod().getMethod();
+        final boolean isFirstRun = getTestInvocationCount(iTestResult) == 0;
+        final boolean splitLogs = shouldSplitLogs(method);
+        String name = getUniqueLogName(method);
 
-        log.info("Starting test {}", getCaseDescription(iTestResult.getMethod().getConstructorOrMethod().getMethod()));
+        if(splitLogs && !isFirstRun) name +=  "_" + getTestInvocationCount(iTestResult);
+
+        mdcLogger.set(name);
+        prepareMDCForGivenTest(mdcLogger.get());
     }
 
     private String getUniqueLogName(final Method method) {
         return Arrays.stream(method.getAnnotations())
-                .filter(annotation -> annotation.annotationType() == Log.class)
-                .map(annotation -> (Log) annotation)
-                .map(Log::name)
+                .filter(annotation -> annotation.annotationType() == ConfigureLog.class)
+                .map(annotation -> (ConfigureLog) annotation)
+                .map(ConfigureLog::name)
                 .filter(name -> !name.isEmpty())
                 .findFirst().orElse(method.getName());
     }
 
-    private boolean checkIfLogIsRolling(final Method method) {
+    private boolean shouldSplitLogs(final Method method) {
         return Arrays.stream(method.getAnnotations())
-                .filter(anno -> anno.annotationType() == Log.class)
-                .map(anno -> (Log) anno)
-                .map(Log::isUniqueLog)
-                .findFirst().orElse(false);
+                .filter(annotation -> annotation.annotationType() == ConfigureLog.class)
+                .map(anno -> (ConfigureLog) anno)
+                .filter(anno -> !anno.splitLogFiles())
+                .count() < 1;
+    }
+
+    private int getTestInvocationCount(final ITestResult result) {
+        return result.getMethod().getCurrentInvocationCount();
     }
 
     private void prepareMDCForGivenTest(final String testLoggerName) {
-        MDC.put("test", testLoggerName);
+        MDC.put("sylenium", testLoggerName);
     }
 
     private void removeMDCForTest(final String testLoggerName) {
-
+        MDC.remove(testLoggerName);
     }
 
     @Override
@@ -107,7 +115,6 @@ public class Sylistener extends TestListenerAdapter implements IExecutionListene
                 tc.setStatus(iTestResult.getStatus());
             }
         });
-
     }
 
     @Override
@@ -131,6 +138,7 @@ public class Sylistener extends TestListenerAdapter implements IExecutionListene
 
     @Override
     public void onFinish(final ITestContext iTestContext) {
+        removeMDCForTest(mdcLogger.get());
     }
 
 

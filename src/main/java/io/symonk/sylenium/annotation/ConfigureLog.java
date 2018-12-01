@@ -11,9 +11,9 @@ import java.lang.annotation.Target;
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Log {
+public @interface ConfigureLog {
     
-  boolean isUniqueLog() default true; // Should sylenium append all invocations of the same test to the same log file? or should it be unique per execution
+  boolean splitLogFiles() default true; // Should sylenium append all invocations of the same test to the same log file? or should it be unique per execution
   boolean keepOnlyFailure() default true; // Destroy log files if the test passes by default
   String  name() default ""; // By default sylenium will take the test name, override it if you desire for a test
   

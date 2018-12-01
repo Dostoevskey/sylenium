@@ -2,12 +2,12 @@
     <timestamp key="time" datePattern="yyyy-MM-dd'_'HH-mm-ss.SSS"/>
     <appender name="RootSiftAppender" class="ch.qos.logback.classic.sift.SiftingAppender">
         <discriminator>
-            <Key>test</Key>
+            <Key>sylenium</Key>
             <DefaultValue>Sylenium</DefaultValue>
         </discriminator>
         <sift>
             <appender name="FILE-${testname}" class="ch.qos.logback.core.rolling.RollingFileAppender">
-                <File>target${file.separator}test_logs${file.separator}${test}-${time}.json</File>
+                <File>target${file.separator}test_logs-${time}${file.separator}${sylenium}.json</File>
                 <encoder class="net.logstash.logback.encoder.LogstashEncoder">
                     <timestampPattern>yyyy-MM-dd'_'HH-mm-ss.SSS</timestampPattern>
                     <version>Selenide-TestNG-Framework</version>
