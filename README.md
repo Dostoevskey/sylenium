@@ -11,7 +11,25 @@
 ## What is Sylenium? :flags: 
 
 Sylenium is a test automation harness for web applications written in java.  Why spend time fussing around
-boilerplate code and instability in your end to end tests, Sylenium takes care of it.
+boilerplate code and instability in your end to end tests, Sylenium takes care of it.  Let's see simple it really is:
+
+
+```java
+
+    /** Page Objects and business logic sold seperately! **/
+    @Test()
+    @CaseDescription("Sylenium can help you login!")
+    @Issue("jira-100")
+    @TmsLink("jira-101")
+    public void testLogin() {
+      start(LoginPage.class);
+      $(By.name("user.name")).setValue("Simon");
+      $("#submit").click();
+      $("#username").shouldHave(text("Hello, Simon!"));
+    }
+
+```
+
 
 The aim of this project is simple, provide a powerful test automation harness for testing web applications with java.  Because test automation (especially) at the ui layer is plagued with bad practice
 I would like to start by outlining a few things of what **NOT** to use this harness for.  If such a license existed that would ban you from doing the following, I would apply it to this repository...
@@ -159,6 +177,22 @@ Sylenium makes tidying up after yourself an absolute breeze!
         assertThat(world.getWorldSize()).isEqualTo(0);
       }
 ```
+
+---
+
+:earth_africa: Solving pesky localisation issues
+We all know that using LinkText explicitly or using hard coded strings for ui tests that may change under a difference language are
+flaky and known to break. Any time you need a localised value in your tests Sylenium comes straight to the rescue. 
+These are determined by your framework properties at runtime for language(s). For example:
+
+```java
+    /** Given a runtime argument of -Dsylenium.language=spanish, Sylenium does a lookup in your spanish.resources file for the K:V pair **/
+    @Test
+    public void canFindExactLinkTextElement() {
+        sy.start(DummyWorldObject.class);
+        $(sy.localisedLinkTextOf("link.text")).shouldBe(Condition.visible);
+    }
+  ```
 
 ---
 
