@@ -11,7 +11,7 @@
 ## What is Sylenium? :flags: 
 
 Sylenium is a test automation harness for web applications written in java.  Why spend time fussing around
-boilerplate code and instability in your end to end tests, Sylenium takes care of it.  Let's see simple it really is:
+boilerplate code and instability in your end to end tests, Sylenium takes care of it.  Let's see how simple it really is:
 
 
 ```java
