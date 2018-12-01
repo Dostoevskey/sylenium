@@ -120,7 +120,7 @@ and ofcourse, open PRs here
 
 --- 
 
-# flags: Features of Sylenium :
+# :flags: Features of Sylenium :
 
 ## :earth_africa: Managed Logging capabilities on a per test basis
 Sylenium takes care of log management by providing custom annotations for tests and sensible assumed defaults.
