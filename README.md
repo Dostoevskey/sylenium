@@ -109,9 +109,9 @@ https://github.com/codeborne/selenide
 
 and ofcourse, open PRs here
 
----
+--- 
 
-### :earth_africa: Getting started
+## :earth_africa: How the hell can I get my hands on this ?!
 
 1. Create a new project using our maven archetype
 2. Implement your application specific code (leave the mundane stuff to us)
@@ -120,9 +120,9 @@ and ofcourse, open PRs here
 
 --- 
 
-## Features of Sylenium :flags:
+# flags: Features of Sylenium :
 
-### :earth_africa: Managed Logging capabilities on a per test basis
+## :earth_africa: Managed Logging capabilities on a per test basis
 Sylenium takes care of log management by providing custom annotations for tests and sensible assumed defaults.
 
 - By default sylenium stores one log per test execution
