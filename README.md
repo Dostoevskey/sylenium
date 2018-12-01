@@ -16,7 +16,7 @@ boilerplate code and instability in your end to end tests, Sylenium takes care o
 
 ```java
 
-    /** Page Objects and business logic sold seperately! **/
+    /** Page Objects and business logic sold seperately! Credit @ Selenide with a bit more juice! **/
     @Test()
     @CaseDescription("Sylenium can help you login!")
     @Issue("jira-100")
