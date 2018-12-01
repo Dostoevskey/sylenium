@@ -2,15 +2,15 @@ package io.symonk.sylenium.testng;
 
 import io.symonk.sylenium.annotation.CaseDescription;
 import io.symonk.sylenium.annotation.CaseID;
+import io.symonk.sylenium.annotation.Log;
 import io.symonk.sylenium.model.TestContainer;
 import org.slf4j.Logger;
+import org.slf4j.MDC;
 import org.testng.*;
 
 import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static io.symonk.sylenium.SyleniumOutputParserUtility.parseAscii;
 import static io.symonk.sylenium.SyleniumOutputParserUtility.parseResults;
@@ -19,6 +19,7 @@ public class Sylistener extends TestListenerAdapter implements IExecutionListene
 
     private static final Logger log = org.slf4j.LoggerFactory.getLogger(Sylistener.class);
     private Set<TestContainer> testCases = Collections.synchronizedSet(new LinkedHashSet<>());
+    private AtomicInteger testCount = new AtomicInteger(0);
 
     @Override
     public void onExecutionStart() {
@@ -67,7 +68,35 @@ public class Sylistener extends TestListenerAdapter implements IExecutionListene
 
     @Override
     public void onTestStart(final ITestResult iTestResult) {
+        testCount.getAndIncrement();
+        final boolean appendToSame = Optional.ofNullable(iTestResult.getMethod().getConstructorOrMethod().getMethod().getAnnotation(Log.class).isUniqueLog()).orElse(false);
+
         log.info("Starting test {}", getCaseDescription(iTestResult.getMethod().getConstructorOrMethod().getMethod()));
+    }
+
+    private String getUniqueLogName(final Method method) {
+        return Arrays.stream(method.getAnnotations())
+                .filter(annotation -> annotation.annotationType() == Log.class)
+                .map(annotation -> (Log) annotation)
+                .map(Log::name)
+                .filter(name -> !name.isEmpty())
+                .findFirst().orElse(method.getName());
+    }
+
+    private boolean checkIfLogIsRolling(final Method method) {
+        return Arrays.stream(method.getAnnotations())
+                .filter(anno -> anno.annotationType() == Log.class)
+                .map(anno -> (Log) anno)
+                .map(Log::isUniqueLog)
+                .findFirst().orElse(false);
+    }
+
+    private void prepareMDCForGivenTest(final String testLoggerName) {
+        MDC.put("test", testLoggerName);
+    }
+
+    private void removeMDCForTest(final String testLoggerName) {
+
     }
 
     @Override
