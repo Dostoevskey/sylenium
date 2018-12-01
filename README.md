@@ -37,7 +37,7 @@ Below is an example of how you can configure your tests on a test by test basis 
 smart enough to handle invocationCount usage of testNG by using the iteration as part of the log file name.
 
 ```java
-  @Test
+  @Test(invocationCount = 50)
   @ConfigureLog(name = "custom-name", splitLogFiles = false, keepFailures = true)
   public void canUpdateAndGetProperties() {
     sy.updateProperty("sy.enable.localisation", "true");
