@@ -21,13 +21,11 @@ public class SyleniumIT extends BaseIT {
   @CaseDescription("Sylenium can register new config observers and remove them")
   @CaseID(100)
   @TmsLink("100")
-  @ConfigureLog()
   public void canRegisterAndRemoveObservers() {
     sy.addConfigObserver(testObservers.get(0));
     Assert.assertEquals(sy.getConfigObserverCount(), 2);
     sy.removeConfigObserver(testObservers.get(0));
     Assert.assertEquals(sy.getConfigObserverCount(), 1);
-    log.info("hello!");
   }
 
   @Test

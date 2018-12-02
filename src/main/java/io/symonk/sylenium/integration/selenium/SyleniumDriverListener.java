@@ -1,5 +1,7 @@
 package io.symonk.sylenium.integration.selenium;
 
+import io.qameta.allure.Attachment;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
@@ -131,6 +133,7 @@ public class SyleniumDriverListener implements WebDriverEventListener {
     @Override
     public void onException(final Throwable throwable, final WebDriver webDriver) {
         log.info("An exception occurred: {} ", throwable.getMessage());
+
     }
 
     @Override
