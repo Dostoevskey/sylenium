@@ -111,15 +111,6 @@ and ofcourse, open PRs here
 
 --- 
 
-# :earth_africa: How the hell can I get my hands on this ?!
-
-1. Create a new project using our maven archetype
-2. Implement your application specific code (leave the mundane stuff to us)
-3. Incorporate your tests into a pipeline or run locally with ease!
-4. Deliver results, effectively.
-
---- 
-
 ### :earth_africa: Feature: Managed Logging capabilities on a per test basis
 Sylenium takes care of log management by providing custom annotations for tests and sensible assumed defaults.
 
@@ -152,7 +143,7 @@ Sylenium makes tidying up after yourself an absolute breeze!
         void cleanUp();
       }
     
-      /**Now simply add them to the world **/
+      /** Now simply add them to the world **/
       @Test
       public void registeringObjects() {
         world.registerObject(new DummyWorldObject());
