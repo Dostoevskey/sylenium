@@ -115,7 +115,7 @@ and ofcourse, open PRs here
 Sylenium takes care of log management by providing custom annotations for tests and sensible assumed defaults.
 
 - By default sylenium stores one log per test execution
-- By default sylenium only stores logs which pass
+- By default sylenium only stores logs which fail
 - By default sylenium uses the testNG method name as the logger name
 
 Below is an example of how you can configure your tests on a test by test basis to override such values.  Sylenium is
